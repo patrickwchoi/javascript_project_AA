@@ -1,0 +1,9 @@
+// CSS Entry File
+//SCSS lets you visually nest selectors more easily
+//will get converted into main css
+.tree{
+  li{
+    color : red;
+    font-size: 10px;
+  }
+}
