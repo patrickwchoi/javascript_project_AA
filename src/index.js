@@ -3,6 +3,7 @@ console.log('Hello');
 const Sprite = require("./sprite.js");
 const collisions = require("./collisions.js");
 const Player = require("./player.js");
+const Boundary = require("./boundary.js");
 
 //Create Canvas
 const canvas = document.getElementById('canvas'); 
@@ -14,19 +15,7 @@ const collisionsMap = [];
 for (let i=0; i<collisions.length; i+=125){ //do i do .length-1?
   collisionsMap.push(collisions.slice(i, i+125))
 }
-class Boundary {
-  static width = 16;
-  static height = 16;
-  constructor({pos}){
-    this.pos = pos
-    this.width = 16
-    this.height = 16  //dimensions of tiles after adjusting for zoom
-  }
-  draw() {
-    ctx.fillStyle = 'red';
-    ctx.fillRect(this.pos[0], this.pos[1], this.width, this.height);
-  }
-}
+
 const boundaries = [];
 const offset = [0,-80] //default location of map at start
 
@@ -34,6 +23,7 @@ collisionsMap.forEach((row, i) => {
   row.forEach((symbol, j)=>{
     if (symbol === 17281){ //if pos on our collisions grid has collision, add boundaruy
       boundaries.push(new Boundary({
+      ctx:ctx,
       pos: [j*Boundary.width + offset[0],i*Boundary.height+ offset[1]] 
     }))}
     //pushing boundary object where i is row, j is coln in our collisions arr
@@ -50,7 +40,7 @@ const background = new Sprite({pos: offset, image: map, ctx:ctx});
 const player = new Player({
   pos: [canvas.width/2 - 48/3, canvas.height/2 - 80/4] , //manually fixed pos based on james.png dim
   image: james, ctx:ctx,
-  frames:{width:3, height:4, zoom:2}});
+  frames:{dimx:3, dimy:4, zoom:2}});
 console.log(background)
 console.log(player)
 const keys = {
@@ -59,68 +49,7 @@ const keys = {
   s:{ pressed: false},
   d:{ pressed: false},
 }
-
-const moveables = [background, ...boundaries];
-
-function rectangularCollision(rec1, rec2){
-  return (
-    rec1.pos[0]+rec1.width >= rec2.pos[0]&&
-    rec1.pos[0] <= rec2.pos[0]+rec2.width&&
-    rec1.pos[1]+rec1.height >= rec2.pos[1]&&
-    rec1.pos[1] <= rec2.pos[1]+rec2.height
-  )
-}
-function animate() { //animates screen. will run infinietly and 'refresh' screen
-  window.requestAnimationFrame(animate);
-  // ctx.drawImage(map, background.pos[0] ,background.pos[1]); 
-  background.draw();
-  boundaries.forEach(boundary => { 
-    boundary.draw(); //animate our collisions
-  })
-  player.draw();
-    //check if movement will collide with a collision
-  boundaries.forEach((boundary)=>{
-    if (rectangularCollision(player, boundary)){
-      console.log('colliding')
-    } 
-  })
-  let moving = true;
-
-  //moving background with WASD
-  if (keys.w.pressed && lastkey==='w') {
-    for (let i=0; i<boundaries.length; i++){
-      const boundary = boundaries[i]
-      //creating copy of boundary rectangle one step in future
-      if (rectangularCollision(player, {...boundary,
-        pos: [boundary.pos[0], boundary.pos[1]+8]})){
-          console.log('w')
-          moving=false;
-          break;
-      }
-    }
-    if (moving){ //if we should be moving
-      moveables.forEach((moveable) =>{
-        moveable.pos[1]+=8
-      }) }
-    }
-      
-  else if(keys.s.pressed && lastkey==='s'){
-    moveables.forEach((moveable) =>{
-      moveable.pos[1]-=8
-    })}
-  else if(keys.a.pressed && lastkey==='a'){
-    moveables.forEach((moveable) =>{
-      moveable.pos[0]+=8
-    })}
-  else if(keys.d.pressed && lastkey==='d'){
-    moveables.forEach((moveable) =>{
-      moveable.pos[0]-=8
-    })}
-  }
-animate();
-
-
-let lastkey = ''; //this is a bit redundant, but it helps tidy up wasd in case multiple keys are pressed down at once
+let lastkey = 'something'; //this is a bit redundant, but it helps tidy up wasd in case multiple keys are pressed down at once
 window.addEventListener("keydown", (e)=>{ //whenever a key is pressed, will update keys hash
   switch(e.key){
     case 'w': 
@@ -139,8 +68,7 @@ window.addEventListener("keydown", (e)=>{ //whenever a key is pressed, will upda
       keys.d.pressed = true
       lastkey = 'd'
       break;
-  }
-})
+  }})
 window.addEventListener("keyup", (e)=>{ //whenever a key is not pressed, will update keys hash
   switch(e.key){
     case 'w': 
@@ -155,5 +83,84 @@ window.addEventListener("keyup", (e)=>{ //whenever a key is not pressed, will up
     case 'd': 
       keys.d.pressed = false
       break;
+}})
+
+const moveables = [background, ...boundaries];
+
+function rectangularCollision(rec1, rec2){
+  return (
+    rec1.pos[0]+rec1.width >= rec2.pos[0]&&
+    rec1.pos[0] <= rec2.pos[0]+rec2.width&&
+    rec1.pos[1]+rec1.height >= rec2.pos[1]&&
+    rec1.pos[1] <= rec2.pos[1]+rec2.height
+  )
+}
+function animate() { //animates screen. will run infinietly and 'refresh' screen
+  window.requestAnimationFrame(animate);
+  background.draw();
+  boundaries.forEach(boundary => { 
+    boundary.draw(); //animate our collisions
+  })
+  player.draw();
+    //check if movement will collide with a collision
+  // boundaries.forEach((boundary)=>{
+  //   if (rectangularCollision(player, boundary)){
+  //     console.log('colliding')
+  //   } 
+  // })
+
+  let moving = true;
+  //moving background with WASD
+  if (keys.w.pressed && lastkey) {
+    for (let i=0; i<boundaries.length; i++){
+      let boundary = boundaries[i]
+      //creating copy of boundary rectangle one step in future
+      if (rectangularCollision(player, {...boundary,
+        pos: [boundary.pos[0], boundary.pos[1]+8]})){
+          console.log('w')
+          moving=false;
+          break;
+      }}
+    if (moving){ //if we should be moving
+      moveables.forEach((moveable) => moveable.pos[1]+=4) }
+    }
+      
+  else if (keys.s.pressed && lastkey) {
+    for (let i=0; i<boundaries.length; i++){
+      let boundary = boundaries[i]
+      if (rectangularCollision(player, {...boundary,
+        pos: [boundary.pos[0], boundary.pos[1]-8]})){
+          console.log('s')
+          moving=false;
+          break;
+      }}
+    if (moving){ 
+      moveables.forEach((moveable) => moveable.pos[1]-=4) }
+    }
+  else if (keys.a.pressed && lastkey) {
+    for (let i=0; i<boundaries.length; i++){
+      let boundary = boundaries[i]
+      if (rectangularCollision(player, {...boundary,
+        pos: [boundary.pos[0]+8, boundary.pos[1]]})){
+          moving=false;
+          console.log('a')
+          break;
+      }}
+    if (moving){ 
+      moveables.forEach((moveable) => moveable.pos[0]+=4) }
+    }
+  else if (keys.d.pressed && lastkey) {
+    for (let i=0; i<boundaries.length; i++){
+      let boundary = boundaries[i]
+      if (rectangularCollision(player, {...boundary,
+        pos: [boundary.pos[0]-8, boundary.pos[1]]})){
+          moving=false;
+          console.log('d')
+          break;
+      }}
+    if (moving){ 
+      moveables.forEach((moveable) => moveable.pos[0]-=4) }
+    }
   }
-})
+animate();
+
