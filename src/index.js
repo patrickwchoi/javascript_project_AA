@@ -34,13 +34,13 @@ collisionsMap.forEach((row, i) => {
 const map = new Image();
 map.src = '../img/tilemap3.png';
 const james = new Image();
-james.src = '../img/james_sprites.png';
+james.src = '../img/james_sprites_resized.png';
 
 const background = new Sprite({pos: offset, image: map, ctx:ctx});
 const player = new Player({
   pos: [canvas.width/2 - 48/3, canvas.height/2 - 80/4] , //manually fixed pos based on james.png dim
   image: james, ctx:ctx,
-  frames:{dimx:3, dimy:4, zoom:2}});
+  frames:{dimx:3, dimy:4, zoom:1}});
 console.log(background)
 console.log(player)
 const keys = {
