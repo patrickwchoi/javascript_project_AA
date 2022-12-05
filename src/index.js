@@ -34,13 +34,13 @@ collisionsMap.forEach((row, i) => {
 const map = new Image();
 map.src = '../img/tilemap3.png';
 const james = new Image();
-james.src = '../img/james_sprites_resized.png';
+james.src = '../img/james_sprites.png';
 
 const background = new Sprite({pos: offset, image: map, ctx:ctx});
 const player = new Player({
   pos: [canvas.width/2 - 48/3, canvas.height/2 - 80/4] , //manually fixed pos based on james.png dim
   image: james, ctx:ctx,
-  frames:{dimx:3, dimy:4, zoom:1}});
+  frames:{dimx:3, dimy:4, zoom:1.75}});
 console.log(background)
 console.log(player)
 const keys = {
@@ -88,11 +88,13 @@ window.addEventListener("keyup", (e)=>{ //whenever a key is not pressed, will up
 const moveables = [background, ...boundaries];
 
 function rectangularCollision(rec1, rec2){
+  let r1zoom = rec1.frames.zoom;
+  let r2zoom = rec2.frames.zoom;
   return (
-    rec1.pos[0]+rec1.width >= rec2.pos[0]&&
-    rec1.pos[0] <= rec2.pos[0]+rec2.width&&
-    rec1.pos[1]+rec1.height >= rec2.pos[1]&&
-    rec1.pos[1] <= rec2.pos[1]+rec2.height
+    rec1.pos[0]+rec1.width*r1zoom >= rec2.pos[0]&&
+    rec1.pos[0] <= rec2.pos[0]+rec2.width*r2zoom&&
+    rec1.pos[1]+rec1.height*r1zoom >= rec2.pos[1]&&
+    rec1.pos[1] <= rec2.pos[1]+rec2.height*r2zoom
   )
 }
 function animate() { //animates screen. will run infinietly and 'refresh' screen
@@ -102,16 +104,13 @@ function animate() { //animates screen. will run infinietly and 'refresh' screen
     boundary.draw(); //animate our collisions
   })
   player.draw();
-    //check if movement will collide with a collision
-  // boundaries.forEach((boundary)=>{
-  //   if (rectangularCollision(player, boundary)){
-  //     console.log('colliding')
-  //   } 
-  // })
 
   let moving = true;
+  player.moving = false;
   //moving background with WASD
   if (keys.w.pressed && lastkey) {
+    player.moving = true;
+    player.frames.yval = 3;
     for (let i=0; i<boundaries.length; i++){
       let boundary = boundaries[i]
       //creating copy of boundary rectangle one step in future
@@ -126,6 +125,8 @@ function animate() { //animates screen. will run infinietly and 'refresh' screen
     }
       
   else if (keys.s.pressed && lastkey) {
+    player.moving = true;
+    player.frames.yval = 0;
     for (let i=0; i<boundaries.length; i++){
       let boundary = boundaries[i]
       if (rectangularCollision(player, {...boundary,
@@ -137,7 +138,10 @@ function animate() { //animates screen. will run infinietly and 'refresh' screen
     if (moving){ 
       moveables.forEach((moveable) => moveable.pos[1]-=4) }
     }
+
   else if (keys.a.pressed && lastkey) {
+    player.moving = true;
+    player.frames.yval = 1;
     for (let i=0; i<boundaries.length; i++){
       let boundary = boundaries[i]
       if (rectangularCollision(player, {...boundary,
@@ -149,7 +153,10 @@ function animate() { //animates screen. will run infinietly and 'refresh' screen
     if (moving){ 
       moveables.forEach((moveable) => moveable.pos[0]+=4) }
     }
+
   else if (keys.d.pressed && lastkey) {
+    player.moving = true;
+    player.frames.yval = 2;
     for (let i=0; i<boundaries.length; i++){
       let boundary = boundaries[i]
       if (rectangularCollision(player, {...boundary,

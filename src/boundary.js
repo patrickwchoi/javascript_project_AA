@@ -5,6 +5,7 @@ class Boundary {
   constructor({pos, ctx}){
     this.pos = pos
     this.ctx = ctx
+    this.frames = {zoom:1}
     this.width = 16
     this.height = 16  //dimensions of tiles after adjusting for zoom
   }
