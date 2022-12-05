@@ -45,15 +45,14 @@ const map = new Image();
 map.src = '../img/tilemap3.png';
 const james = new Image();
 james.src = '../img/james_sprites.png';
-let james_width = james.width*2
-let james_height = james.height*2
 
 const background = new Sprite({pos: offset, image: map, ctx:ctx});
 const player = new Player({
   pos: [canvas.width/2 - 48/3, canvas.height/2 - 80/4] , //manually fixed pos based on james.png dim
-  image: james, ctx:ctx, 
-  frames:{width:3, height:4}});
-
+  image: james, ctx:ctx,
+  frames:{width:3, height:4, zoom:2}});
+console.log(background)
+console.log(player)
 const keys = {
   w:{ pressed: false},
   a:{ pressed: false},
@@ -61,27 +60,15 @@ const keys = {
   d:{ pressed: false},
 }
 
-const testBoundary = new Boundary({pos: [100,50]});
-const moveables = [background, testBoundary];
+const moveables = [background, ...boundaries];
 
 function rectangularCollision(rec1, rec2){
-      // If one rectangle is on left side of other
-      if (rec1.pos[0] > rec2.pos[0]+rec2.width || rec1.pos[0]+rec1.width < rec2.pos[0]) {
-          return false;
-      }
-
-      // If one rectangle is above other
-      if (rec2.pos[1] > rec1.pos[1]+rec1.height || rec2.pos[1]+rec2.height < rec1.pos[1]) {
-          return false;
-      }
-
-      return true;
-  // return (
-  //   rec1.pos[0]+rec1.width >= rec2.pos[0]&&
-  //   rec1.pos[0] <= rec2.pos[0]+rec2.width&&
-  //   rec1.pos[1]+rec1.height >= rec2.pos[1]&&
-  //   rec1.pos[1] <= rec2.pos[1]+rec2.height
-  // )
+  return (
+    rec1.pos[0]+rec1.width >= rec2.pos[0]&&
+    rec1.pos[0] <= rec2.pos[0]+rec2.width&&
+    rec1.pos[1]+rec1.height >= rec2.pos[1]&&
+    rec1.pos[1] <= rec2.pos[1]+rec2.height
+  )
 }
 function animate() { //animates screen. will run infinietly and 'refresh' screen
   window.requestAnimationFrame(animate);
@@ -90,37 +77,46 @@ function animate() { //animates screen. will run infinietly and 'refresh' screen
   boundaries.forEach(boundary => { 
     boundary.draw(); //animate our collisions
   })
-  testBoundary.draw();
-  // ctx.drawImage(james, 
-  //   0,0,
-  //   16,20, //first 4 args are cropping sprite
-  //   canvas.width/2-james_width/2,
-  //   canvas.height/2-james_height/2, //where on canvas we place james, from the top left corner
-  //   32,
-  //   40); //how big james is
   player.draw();
     //check if movement will collide with a collision
-    if (rectangularCollision(player, testBoundary)){
+  boundaries.forEach((boundary)=>{
+    if (rectangularCollision(player, boundary)){
       console.log('colliding')
+    } 
+  })
+  let moving = true;
+
+  //moving background with WASD
+  if (keys.w.pressed && lastkey==='w') {
+    for (let i=0; i<boundaries.length; i++){
+      const boundary = boundaries[i]
+      //creating copy of boundary rectangle one step in future
+      if (rectangularCollision(player, {...boundary,
+        pos: [boundary.pos[0], boundary.pos[1]+8]})){
+          console.log('w')
+          moving=false;
+          break;
+      }
     }
-    //moving background with WASD
-    if (keys.w.pressed && lastkey==='w') {
+    if (moving){ //if we should be moving
       moveables.forEach((moveable) =>{
         moveable.pos[1]+=8
-      })}
-    else if(keys.s.pressed && lastkey==='s'){
-      moveables.forEach((moveable) =>{
-        moveable.pos[1]-=8
-      })}
-    else if(keys.a.pressed && lastkey==='a'){
-      moveables.forEach((moveable) =>{
-        moveable.pos[0]+=8
-      })}
-    else if(keys.d.pressed && lastkey==='d'){
-      moveables.forEach((moveable) =>{
-        moveable.pos[0]-=8
-      })}
+      }) }
     }
+      
+  else if(keys.s.pressed && lastkey==='s'){
+    moveables.forEach((moveable) =>{
+      moveable.pos[1]-=8
+    })}
+  else if(keys.a.pressed && lastkey==='a'){
+    moveables.forEach((moveable) =>{
+      moveable.pos[0]+=8
+    })}
+  else if(keys.d.pressed && lastkey==='d'){
+    moveables.forEach((moveable) =>{
+      moveable.pos[0]-=8
+    })}
+  }
 animate();
 
 
