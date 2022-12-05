@@ -1,9 +1,10 @@
 // JS Entry File
-console.log('Hello');
 const Sprite = require("./sprite.js");
 const collisions = require("./collisions.js");
 const Player = require("./player.js");
 const Boundary = require("./boundary.js");
+const Utils = require("./utils.js");
+
 
 //Create Canvas
 const canvas = document.getElementById('canvas'); 
@@ -87,16 +88,7 @@ window.addEventListener("keyup", (e)=>{ //whenever a key is not pressed, will up
 
 const moveables = [background, ...boundaries];
 
-function rectangularCollision(rec1, rec2){
-  let r1zoom = rec1.frames.zoom;
-  let r2zoom = rec2.frames.zoom;
-  return (
-    rec1.pos[0]+rec1.width*r1zoom >= rec2.pos[0]&&
-    rec1.pos[0] <= rec2.pos[0]+rec2.width*r2zoom&&
-    rec1.pos[1]+rec1.height*r1zoom >= rec2.pos[1]&&
-    rec1.pos[1] <= rec2.pos[1]+rec2.height*r2zoom
-  )
-}
+
 function animate() { //animates screen. will run infinietly and 'refresh' screen
   window.requestAnimationFrame(animate);
   background.draw();
@@ -108,66 +100,8 @@ function animate() { //animates screen. will run infinietly and 'refresh' screen
   let moving = true;
   player.moving = false;
   //moving background with WASD
-  if (keys.w.pressed && lastkey) {
-    player.moving = true;
-    player.frames.yval = 3;
-    for (let i=0; i<boundaries.length; i++){
-      let boundary = boundaries[i]
-      //creating copy of boundary rectangle one step in future
-      if (rectangularCollision(player, {...boundary,
-        pos: [boundary.pos[0], boundary.pos[1]+8]})){
-          console.log('w')
-          moving=false;
-          break;
-      }}
-    if (moving){ //if we should be moving
-      moveables.forEach((moveable) => moveable.pos[1]+=4) }
-    }
-      
-  else if (keys.s.pressed && lastkey) {
-    player.moving = true;
-    player.frames.yval = 0;
-    for (let i=0; i<boundaries.length; i++){
-      let boundary = boundaries[i]
-      if (rectangularCollision(player, {...boundary,
-        pos: [boundary.pos[0], boundary.pos[1]-8]})){
-          console.log('s')
-          moving=false;
-          break;
-      }}
-    if (moving){ 
-      moveables.forEach((moveable) => moveable.pos[1]-=4) }
-    }
+  Utils.movePlayer(player, keys, boundaries, moveables, lastkey, moving);
 
-  else if (keys.a.pressed && lastkey) {
-    player.moving = true;
-    player.frames.yval = 1;
-    for (let i=0; i<boundaries.length; i++){
-      let boundary = boundaries[i]
-      if (rectangularCollision(player, {...boundary,
-        pos: [boundary.pos[0]+8, boundary.pos[1]]})){
-          moving=false;
-          console.log('a')
-          break;
-      }}
-    if (moving){ 
-      moveables.forEach((moveable) => moveable.pos[0]+=4) }
-    }
-
-  else if (keys.d.pressed && lastkey) {
-    player.moving = true;
-    player.frames.yval = 2;
-    for (let i=0; i<boundaries.length; i++){
-      let boundary = boundaries[i]
-      if (rectangularCollision(player, {...boundary,
-        pos: [boundary.pos[0]-8, boundary.pos[1]]})){
-          moving=false;
-          console.log('d')
-          break;
-      }}
-    if (moving){ 
-      moveables.forEach((moveable) => moveable.pos[0]-=4) }
-    }
   }
 animate();
 
