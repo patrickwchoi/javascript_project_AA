@@ -1,9 +1,21 @@
 // CSS Entry File
 //SCSS lets you visually nest selectors more easily
 //will get converted into main css
-.tree{
-  li{
-    color : red;
-    font-size: 10px;
-  }
+// @import './styles/reset.css';
+
+#dialogue-box{
+	background-color: lightblue;
+	height: 140px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-top: 4px black solid;
+
+}
+
+#dialogue-text{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

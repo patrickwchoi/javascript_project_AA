@@ -1,6 +1,6 @@
 
 class Sprite{
-  constructor({pos, velocity, image, ctx, frames = {dimx:1, dimy:1, zoom:1}}) {
+  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}}) {
     this.pos = pos //[x,y]
     this.image=image
     this.ctx = ctx
