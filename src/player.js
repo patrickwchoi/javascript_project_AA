@@ -1,14 +1,18 @@
 const Sprite = require("./sprite.js");
+const Utils = require("./utils.js");
 
 class Player extends Sprite{
-  // draw(){
-  //   this.ctx.drawImage(this.image, 
-  //     0,0,
-  //     this.image.width/3 ,this.image.height/4, //first 4 args are cropping sprite
-  //     canvas.width/2-this.image.width/3 /2,
-  //     canvas.height/2-this.image.width/4 /2, //where on canvas we place james, from the top left corner
-  //     32,
-  //     40); //how big james is
-  // }
+
+  constructor(...args){
+    super(...args)
+    this.prevPos = this.pos
+    this.stepsMoved = 0;
+    this.posForPokemon = [this.pos[0]-25, this.pos[1]] //25 is guess for pokemons width
+  }
+  prevPosition(){
+    if(!Utils.rectangularCollision(this.prevPos, this.pos)){
+      return
+    }
+  }
 }
 module.exports = Player;

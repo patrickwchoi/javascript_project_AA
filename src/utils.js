@@ -23,7 +23,10 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
           break;
       }}
     if (moving){ //if we should be moving
-      moveables.forEach((moveable) => moveable.pos[1]+=4) }
+      moveables.forEach((moveable) => moveable.pos[1]+=4) 
+      // update pokemons position to follow you
+      player.posForPokemon = [player.pos[0], player.pos[1]+ 35] //35 is roughly pokemons height
+    }
     }
       
   else if (keys.s.pressed && lastkey) {
@@ -38,7 +41,10 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
           break;
       }}
     if (moving){ 
-      moveables.forEach((moveable) => moveable.pos[1]-=4) }
+      moveables.forEach((moveable) => moveable.pos[1]-=4) 
+      player.posForPokemon = [player.pos[0], player.pos[1]- 35]
+    }
+       
     }
 
   else if (keys.a.pressed && lastkey) {
@@ -53,7 +59,9 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
           break;
       }}
     if (moving){ 
-      moveables.forEach((moveable) => moveable.pos[0]+=4) }
+      moveables.forEach((moveable) => moveable.pos[0]+=4) 
+      player.posForPokemon = [player.pos[0]+30, player.pos[1]] 
+    }
     }
 
   else if (keys.d.pressed && lastkey) {
@@ -68,7 +76,9 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
           break;
       }}
     if (moving){ 
-      moveables.forEach((moveable) => moveable.pos[0]-=4) }
+      moveables.forEach((moveable) => moveable.pos[0]-=4) 
+      player.posForPokemon = [player.pos[0]-30, player.pos[1]] 
+    }
     }
 }
 module.exports = {

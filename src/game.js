@@ -33,6 +33,7 @@ class Game {
     this.collisionsMap = this.make2dArrCollisions();
     this.boundaries = this.addBoundaries(this.collisionsMap);
 
+    this.framesPressed = 0; //will let us know how long a key is held down
     this.registerEventListeners();
 
     this.background = new Sprite({
@@ -64,16 +65,17 @@ class Game {
     //animates screen. will run infinietly and 'refresh' screen
     this.background.draw();
     this.drawBoundaries(); //disable when finished with game
-
-    this.bagon.draw();
+    this.bagon.movePokemonFollow(this.keys, true) //true means nothing rn
+    this.bagon.followPlayer(this.player);
     
     this.player.draw();
     let moving = true;
     //player.moving signals player should be moving bc wasd is pressed
     //moving signals if the conditions (rectangular collision) to move are true or false
-    // this.player.moving = false;
+    this.player.moving = false;
     //moving background with WASD
     Utils.movePlayer(this.player, this.keys, this.boundaries, this.moveables, this.lastkey, moving);
+    console.log(this.keys)
     window.requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -85,10 +87,10 @@ class Game {
 
   registerEventListeners() {
     this.keys = {
-      w:{ pressed: false},
-      a:{ pressed: false},
-      s:{ pressed: false},
-      d:{ pressed: false},
+      w:{ pressed: false, timePressed :0},
+      a:{ pressed: false, timePressed :0},
+      s:{ pressed: false, timePressed :0},
+      d:{ pressed: false, timePressed :0},
     }
     this.lastkey = 'something';
     
@@ -97,18 +99,22 @@ class Game {
       switch (e.key) {
         case "w":
           this.keys.w.pressed = true;
+          this.keys.w.timePressed+=1
           this.lastkey = "w";
           break;
         case "a":
           this.keys.a.pressed = true;
+          this.keys.a.timePressed+=1
           this.lastkey = "a";
           break;
         case "s":
           this.keys.s.pressed = true;
+          this.keys.s.timePressed+=1
           this.lastkey = "s";
           break;
         case "d":
           this.keys.d.pressed = true;
+          this.keys.d.timePressed+=1
           this.lastkey = "d";
           break;
       }
