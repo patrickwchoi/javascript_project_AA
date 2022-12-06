@@ -11,10 +11,18 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext("2d");
 ctx.fillRect(0,0,canvas.width, canvas.height);
 
+//Create Variables
+const map = new Image();
+map.src = '../img/tilemap4.png';
+const james = new Image();
+james.src = '../img/james_sprites.png';
+console.log('map width:'+ map.width);
+
 //iterate through collisions arr incrementing by width. Creates 2d arr of collisions
+let mapWidthTiles = map.width/16;
 const collisionsMap = [];
-for (let i=0; i<collisions.length; i+=125){ //do i do .length-1?
-  collisionsMap.push(collisions.slice(i, i+125))
+for (let i=0; i<collisions.length; i+=mapWidthTiles){ //do i do .length-1?
+  collisionsMap.push(collisions.slice(i, i+mapWidthTiles))
 }
 
 const boundaries = [];
@@ -30,12 +38,6 @@ collisionsMap.forEach((row, i) => {
     //pushing boundary object where i is row, j is coln in our collisions arr
   })
 })
-
-//Create Variables
-const map = new Image();
-map.src = '../img/tilemap3.png';
-const james = new Image();
-james.src = '../img/james_sprites.png';
 
 const background = new Sprite({pos: offset, image: map, ctx:ctx});
 const player = new Player({
