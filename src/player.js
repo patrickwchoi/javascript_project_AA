@@ -8,11 +8,8 @@ class Player extends Sprite{
     this.prevPos = this.pos
     this.stepsMoved = 0;
     this.posForPokemon = [this.pos[0]-25, this.pos[1]] //25 is guess for pokemons width
+    this.moving = false;
   }
-  prevPosition(){
-    if(!Utils.rectangularCollision(this.prevPos, this.pos)){
-      return
-    }
-  }
+  
 }
 module.exports = Player;

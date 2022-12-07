@@ -3,7 +3,11 @@
 //will get converted into main css
 // @import './styles/reset.css';
 
-#dialogue-box{
+*{
+	margin: 0;
+	padding: 0
+}
+#dialoguebox{
 	background-color: lightblue;
 	height: 140px;
 	position: absolute;
@@ -11,10 +15,11 @@
 	left: 0;
 	right: 0;
 	border-top: 4px black solid;
+	display: block;
 
 }
 
-#dialogue-text{
+#dialoguetext{
 	display: flex;
 	align-items: center;
 	justify-content: center;

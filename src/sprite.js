@@ -13,6 +13,7 @@ class Sprite{
     this.screenWidth = this.width*this.frames.zoom;
     this.screenHeight = this.height*this.frames.zoom;
     this.moving = false;
+    this.clicked=false
   }
   draw(){//draw image of sprite
     this.ctx.drawImage(this.image, 

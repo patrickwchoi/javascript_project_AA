@@ -30,23 +30,27 @@ class Pokemon extends Sprite{
     this.draw();
   }
 
-  movePokemonFollow(keys, moving){
-    if (keys.w.pressed) {
+  changePokemonDirection(keys, player){
+    if (keys.w.pressed && player.moving) {
       // player.moving = true;
       this.frames.yval = 3;
     }
-    else if (keys.s.pressed) {
+    else if (keys.s.pressed  && player.moving) {
       // player.moving = true;
       this.frames.yval = 0;
     }
-    else if (keys.a.pressed) {
+    else if (keys.a.pressed  && player.moving) {
       // player.moving = true;
       this.frames.yval = 1;
       }
-    else if (keys.d.pressed) {
+    else if (keys.d.pressed  && player.moving) {
       // player.moving = true;
       this.frames.yval = 2;
       }
+  }
+  clickedOn(){ //what happens when we click on bagon
+    console.log('bagon clickedOn method!')
+    this.clicked=true;
   }
 }
 
