@@ -14,7 +14,7 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	border-top: 4px black solid;
+	border-top: 4px white solid;
 	display: block;
 
 }
@@ -27,6 +27,7 @@
 
 /* CSS */
 .button-37 {
+  display: flex;
   background-color: #13aa52;
   border: 1px solid #13aa52;
   border-radius: 4px;

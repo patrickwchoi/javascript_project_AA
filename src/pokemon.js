@@ -2,6 +2,7 @@ const Sprite = require("./sprite.js");
 
 class Pokemon extends Sprite{
 
+  
   draw(){//draw image of sprite
     this.ctx.drawImage(this.image, 
       this.frames.xval*this.width, 
@@ -48,8 +49,10 @@ class Pokemon extends Sprite{
       this.frames.yval = 2;
       }
   }
-  clickedOn(){ //what happens when we click on bagon
+  clickedOn(htmlElems){ //what happens when we click on bagon
     console.log('bagon clickedOn method!')
+    htmlElems.dialogueText.innerHTML = this.dialogue.empty;
+
     this.clicked=true;
   }
 }

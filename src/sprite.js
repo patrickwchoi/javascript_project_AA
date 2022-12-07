@@ -14,6 +14,13 @@ class Sprite{
     this.screenHeight = this.height*this.frames.zoom;
     this.moving = false;
     this.clicked=false
+    this.dialogue = this.fillDialogue();
+  }
+  fillDialogue(){
+    return {empty: '...'}
+  }
+  clickedOn(htmlElems){
+    htmlElems.dialogueText.innerHTML = this.dialogue.empty;
   }
   draw(){//draw image of sprite
     this.ctx.drawImage(this.image, 

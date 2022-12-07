@@ -6,14 +6,14 @@ const Utils = require("./utils.js");
 const Pokemon = require("./pokemon.js");
 
 //Create Variables
-const dialogueBox = document.querySelector('#dialoguebox').style.display = "block";
-
+const dialogueBox = document.querySelector('#dialoguebox');
+const dialogueText = document.querySelector('#dialoguetext');
 
 const map = new Image();
 map.src = "./assets/tilemap8.png";
 map.width = 160*16; //MUST CHANGE MANUALLY WHEN CHANGING MAP DIMENSIONS
 map.height = 130*16;
-
+console.log(map)
 const james = new Image();
 james.src = "./assets/james_sprites.png";
 james.width = 16*3;
@@ -31,7 +31,7 @@ class Game {
     this.ctx.fillRect(0, 0, canvas.width, canvas.height);
     console.log(map)
     this.ctx.drawImage(map,0,0)
-    this.offset = [0, -80]; //default location of map at start
+    this.offset = [-700, -750]; //default location of map at start
 
     this.collisionsMap = this.make2dArrCollisions();
     this.boundaries = this.addBoundaries(this.collisionsMap);
@@ -86,8 +86,14 @@ class Game {
     //what happens when you click
   let mouseY = e.clientY - 36; //36 is font size of header1
   let mouseX = e.clientX
+  let  htmlElems = {
+    dialogueBox: dialogueBox, 
+    dialogueText:dialogueText} //might wanna make this class const
   if (Utils.isMouseOnRect([mouseX, mouseY], this.bagon)){
-      this.bagon.clickedOn();
+      this.bagon.clickedOn(htmlElems);
+  } else if (Utils.isMouseOnRect([mouseX, mouseY], this.player)){
+    this.player.clickedOn(htmlElems);
+
   }
   // dialogueBox.show();
   }
@@ -159,7 +165,7 @@ class Game {
     collisionsMap.forEach((row, i) => {
       row.forEach((symbol, j) => {
         // console.log('addingboundary')
-        if (symbol === 17281) {
+        if (symbol === 17281 || symbol === 2684371841 || symbol ===1610630017 || symbol === 3221242753) {
           //if pos on our collisions grid has collision, add boundaruy
           boundaries.push(
             new Boundary({
