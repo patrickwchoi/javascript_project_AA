@@ -10,9 +10,9 @@ const dialogueBox = document.querySelector('#dialoguebox').style.display = "bloc
 
 
 const map = new Image();
-map.src = "./assets/tilemap5.png";
-map.width = 2000; //MUST CHANGE MANUALLY WHEN CHANGING MAP DIMENSIONS
-map.height = 1400;
+map.src = "./assets/tilemap8.png";
+map.width = 160*16; //MUST CHANGE MANUALLY WHEN CHANGING MAP DIMENSIONS
+map.height = 130*16;
 
 const james = new Image();
 james.src = "./assets/james_sprites.png";
@@ -29,7 +29,7 @@ class Game {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.ctx.fillRect(0, 0, canvas.width, canvas.height);
-    // console.log(map)
+    console.log(map)
     this.ctx.drawImage(map,0,0)
     this.offset = [0, -80]; //default location of map at start
 
@@ -89,7 +89,7 @@ class Game {
   if (Utils.isMouseOnRect([mouseX, mouseY], this.bagon)){
       this.bagon.clickedOn();
   }
-  dialogueBox.show();
+  // dialogueBox.show();
   }
   registerEventListeners() {
 
@@ -178,7 +178,7 @@ class Game {
   }
   
   make2dArrCollisions() {
-    let mapWidthTiles = 125 //map.width / 16;
+    let mapWidthTiles = map.width / 16;
     const collisionsMap = [];
     console.log('mapWidthTiles:'+ mapWidthTiles) //check if mapwodthtiles is 0 and infinte loop
     for (let i = 0; i < collisions.length; i += mapWidthTiles) {
@@ -187,5 +187,7 @@ class Game {
     }
     return collisionsMap;
   }
+
 }
+
 module.exports = Game;
