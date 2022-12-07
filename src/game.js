@@ -8,6 +8,10 @@ const Pokemon = require("./pokemon.js");
 //Create Variables
 const dialogueBox = document.querySelector('#dialoguebox');
 const dialogueText = document.querySelector('#dialoguetext');
+const dialogueText2 = document.querySelector('#dialoguetext2');
+const option1 =  document.querySelector('#option1');
+const option2 =  document.querySelector('#option2');
+
 const menuButton = document.querySelector('#menuButton');
 const menu = document.querySelector('#menu');
 const beforeMenuContent = document.querySelectorAll('.beforeMenuContent');//object like array
@@ -15,10 +19,14 @@ const backToBeforeMenu = document.querySelector('#backToBeforeMenu');
 const instructionsButton = document.querySelector('#instructionsButton');
 const instructions = document.querySelector('#instructions');
 const menuContent = document.querySelectorAll('.menuContent');
+const mapButton = document.querySelector('#mapButton');
+const backToMenuButton = document.querySelector('#backToMenuButton');
 
 const  htmlElems = { //stuff I wanna pass in
   dialogueBox: dialogueBox, 
   dialogueText:dialogueText,
+  dialogueText2:dialogueText2,
+  option1:option1, option2:option2,
   menuButton:menuButton}
 const map = new Image();
 map.src = "./assets/tilemap8.png";
@@ -58,13 +66,14 @@ class Game {
       pos: [canvas.width / 2 - james.width/3, canvas.height/2 - james.height/4], //manually fixed pos based on james.png dim
       image: james,
       ctx: this.ctx,
-      frames: { dimx: 3, dimy: 4, zoom: 1.75 },
+      frames: { dimx: 3, dimy: 4, zoom: 1.8 },
     });
     this.bagon = new Pokemon({
       pos: [canvas.width / 2 , canvas.height / 2 ], //very rough pos, will fix later
       image: bagonImg,
       ctx: this.ctx,
-      frames: { dimx: 2, dimy: 4, zoom: 1.75 }});
+      frames: { dimx: 2, dimy: 4, zoom: 1.8 }});
+    this.bagon.setTrainer(this.player);
     this.moveables = [this.background, ...this.boundaries];
     // this.play();
   }
@@ -117,14 +126,14 @@ class Game {
       beforeMenuContent.forEach((button)=>button.classList.add('hidden'))
       backToBeforeMenu.classList.remove('hidden')
       menuContent.forEach((button)=>button.classList.remove('hidden'))
-
     })
     //Back To Before Menu Button
     backToBeforeMenu.addEventListener('click', ()=>{
-      //menu
+      //add back before menu content
       beforeMenuContent.forEach((button)=>button.classList.remove('hidden'))
+      //remove menu content
       menuContent.forEach((button)=>button.classList.add('hidden'))
-      //instructions
+      //remove instructions instructions
       instructions.classList.add('hidden');
       //both instructions and menu
       backToBeforeMenu.classList.add('hidden');
@@ -137,8 +146,21 @@ class Game {
       instructions.classList.remove('hidden');
     })
 
+    //map button
+    mapButton.addEventListener('click', ()=>{
+      document.querySelector('#map').classList.remove('hidden');
+      backToBeforeMenu.classList.add('hidden')
+      backToMenuButton.classList.remove('hidden')
+    })
 
+    //Back to Menu button
+    backToMenuButton.addEventListener('click', ()=>{
+      document.querySelectorAll('.map').forEach((el)=>{
+        el.classList.add('hidden')
+      })
+      menuContent.forEach((button)=>button.classList.remove('hidden'))
 
+    })
     this.keys = {
       w:{ pressed: false, startTime:0, timePressed :0},
       a:{ pressed: false, startTime:0, timePressed :0},

@@ -2,7 +2,14 @@ const Sprite = require("./sprite.js");
 
 class Pokemon extends Sprite{
 
-  
+  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}}){
+    super({pos, image, ctx, frames});
+    this.feelings = 'nervous :{'
+    this.friendshiplevel = 0;
+  }
+  setTrainer (player){
+    this.player = player
+  }
   draw(){//draw image of sprite
     this.ctx.drawImage(this.image, 
       this.frames.xval*this.width, 
@@ -24,7 +31,14 @@ class Pokemon extends Sprite{
       }
 
   }
-
+  fillDialogue(){
+    return {
+      empty: '...', 
+      roar: 'Rawr!! >:O',
+      eating: 'nomnomnom ^~^',
+      happy: 'Rawr!! :}'
+  }
+  }
   followPlayer(player){
     // let playerPrevPos = player.pos
     this.pos = player.posForPokemon
@@ -51,9 +65,24 @@ class Pokemon extends Sprite{
   }
   clickedOn(htmlElems){ //what happens when we click on bagon
     console.log('bagon clickedOn method!')
-    htmlElems.dialogueText.innerHTML = this.dialogue.empty;
-
-    this.clicked=true;
+    htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.roar;
+    htmlElems.dialogueText2.innerHTML = 'What would you like to do?'
+    this.defaultInteraction(htmlElems);
+    console.log('Friendship Level: '+this.friendshiplevel)
+  }
+  defaultInteraction(htmlElems){
+    htmlElems.option1.innerHTML = 'Give Bagon compliments';
+    htmlElems.option1.onclick = ()=>{
+      htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.happy;
+      htmlElems.dialogueText2.innerHTML = '*Giving Bagon pets*'
+      this.friendshiplevel+=1;
+    }
+    htmlElems.option2.innerHTML = 'Give Bagon treats';
+    htmlElems.option2.onclick = ()=>{
+      htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.eating;
+      htmlElems.dialogueText2.innerHTML = '*Giving Bagon treats*'
+      this.friendshiplevel+=1;
+    }
   }
 }
 

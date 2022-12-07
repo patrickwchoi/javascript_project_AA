@@ -24,7 +24,7 @@
 }
 
 /* CSS */
-.beforeMenuContent {
+button {
   display: flex;
   background-color: #13aa52;
   border: 1px solid #13aa52;
@@ -45,6 +45,7 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  border-color: darkslategrey;
 }
 
 .beforeMenuContent:hover {

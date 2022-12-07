@@ -19,6 +19,9 @@ class Sprite{
   fillDialogue(){
     return {empty: '...'}
   }
+  addDialogue(name,str){
+    this.dialogue[name] = str
+  }
   clickedOn(htmlElems){
     htmlElems.dialogueText.innerHTML = this.dialogue.empty;
   }
