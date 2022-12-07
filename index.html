@@ -10,18 +10,28 @@
   <title>PokeValley</title>
 </head>
 
-<body style="display: inline-block; position: relative; ">
-  <h1>Pokemon</h1>
-
-  <canvas id="canvas" height="600" width="900"> </canvas>
-  <div id="dialoguebox">
-    <button class="button-37" role="button">Menu</button>
-    <button class="option1"> Option 1</button>
-    <div id="dialoguetext" >
-      <h3></h3>
+<body>
+  <div id="left">
+    <h1>Pokemon</h1>
+    <canvas id="canvas" height="600" width="900"> </canvas>
+    <div id="dialoguebox">
+      <button class="option1"> Option 1</button>
+      <div id="dialoguetext" >
+        <h3></h3>
+      </div>
     </div>
   </div>
 
+  <div id="beforeMenu" > 
+    <ul><button id="menuButton" class="beforeMenuContent" >Menu</button></ul>
+    <ul><button id="instructionsButton" class="beforeMenuContent" >Instructions</button></ul>
+    <ul><button id="backToBeforeMenu" class="beforeMenuContent hidden" >Back</button></ul>
+    <div id="instructions" class="instructions hidden">Instructions: _____</div>
+  
+    <div id="menu">
+      <ul><button id="mapButton" class="menuContent hidden"> Map</button></ul>
+    </div>
+  </div>
   
 </body>
 </html>

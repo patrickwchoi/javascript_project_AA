@@ -8,7 +8,18 @@ const Pokemon = require("./pokemon.js");
 //Create Variables
 const dialogueBox = document.querySelector('#dialoguebox');
 const dialogueText = document.querySelector('#dialoguetext');
+const menuButton = document.querySelector('#menuButton');
+const menu = document.querySelector('#menu');
+const beforeMenuContent = document.querySelectorAll('.beforeMenuContent');//object like array
+const backToBeforeMenu = document.querySelector('#backToBeforeMenu');
+const instructionsButton = document.querySelector('#instructionsButton');
+const instructions = document.querySelector('#instructions');
+const menuContent = document.querySelectorAll('.menuContent');
 
+const  htmlElems = { //stuff I wanna pass in
+  dialogueBox: dialogueBox, 
+  dialogueText:dialogueText,
+  menuButton:menuButton}
 const map = new Image();
 map.src = "./assets/tilemap8.png";
 map.width = 160*16; //MUST CHANGE MANUALLY WHEN CHANGING MAP DIMENSIONS
@@ -63,7 +74,7 @@ class Game {
   animate() {
     //animates screen. will run infinietly and 'refresh' screen
     this.background.draw();
-    this.drawBoundaries(); //disable when finished with game
+    //this.drawBoundaries(); //disable when finished with game
     this.bagon.changePokemonDirection(this.keys, this.player) 
     this.bagon.followPlayer(this.player);
     this.player.draw();
@@ -72,7 +83,6 @@ class Game {
     //moving signals if the conditions (rectangular collision) to move are true or false
     //moving background with WASD
     Utils.movePlayer(this.player, this.keys, this.boundaries, this.moveables, this.lastkey, moving);
-    // console.log(this.keys)
     
     window.requestAnimationFrame(this.animate.bind(this));
   }
@@ -82,25 +92,52 @@ class Game {
       boundary.draw(); //animate our collisions
     });
   }
+
   click(e){
-    //what happens when you click
+    //what happens when you click on screen and not on specific html elem
   let mouseY = e.clientY - 36; //36 is font size of header1
   let mouseX = e.clientX
-  let  htmlElems = {
-    dialogueBox: dialogueBox, 
-    dialogueText:dialogueText} //might wanna make this class const
+  
   if (Utils.isMouseOnRect([mouseX, mouseY], this.bagon)){
       this.bagon.clickedOn(htmlElems);
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.player)){
     this.player.clickedOn(htmlElems);
+  } 
+  }
 
-  }
-  // dialogueBox.show();
-  }
   registerEventListeners() {
 
     this.boundClickHandler = this.click.bind(this);
     this.ctx.canvas.addEventListener("mousedown", this.boundClickHandler);
+
+    //Menu Button
+    menuButton.addEventListener('click', ()=>{
+      console.log('this is what runs when menu button is pressed');
+      // menuButton.classList.add('hidden')
+      beforeMenuContent.forEach((button)=>button.classList.add('hidden'))
+      backToBeforeMenu.classList.remove('hidden')
+      menuContent.forEach((button)=>button.classList.remove('hidden'))
+
+    })
+    //Back To Before Menu Button
+    backToBeforeMenu.addEventListener('click', ()=>{
+      //menu
+      beforeMenuContent.forEach((button)=>button.classList.remove('hidden'))
+      menuContent.forEach((button)=>button.classList.add('hidden'))
+      //instructions
+      instructions.classList.add('hidden');
+      //both instructions and menu
+      backToBeforeMenu.classList.add('hidden');
+
+    })
+    //Instructions Button
+    instructionsButton.addEventListener('click', ()=>{
+      beforeMenuContent.forEach((button)=>button.classList.add('hidden'));
+      backToBeforeMenu.classList.remove('hidden');
+      instructions.classList.remove('hidden');
+    })
+
+
 
     this.keys = {
       w:{ pressed: false, startTime:0, timePressed :0},

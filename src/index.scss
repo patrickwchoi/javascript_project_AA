@@ -26,7 +26,7 @@
 }
 
 /* CSS */
-.button-37 {
+.beforeMenuContent {
   display: flex;
   background-color: #13aa52;
   border: 1px solid #13aa52;
@@ -49,13 +49,25 @@
   touch-action: manipulation;
 }
 
-.button-37:hover {
+.beforeMenuContent:hover { //need to change to buttons, not all content
   box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
   transform: translateY(-2px);
 }
 
 @media (min-width: 768px) {
-  .button-37 {
+  .beforeMenuContent {
     padding: 10px 30px;
   }
+}
+.hidden{
+  display: none;
+}
+
+#beforeMenu{
+  background-color: lightgreen;
+  width: 400px;
+}
+
+body{
+  display: flex; 
 }
