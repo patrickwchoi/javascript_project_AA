@@ -178,8 +178,10 @@ class Game {
       document.querySelectorAll('#pokedexContent *').forEach((el)=>el.classList.remove('hidden'));
       backToBeforeMenu.classList.add('hidden')
       pokedexButton.classList.add('hidden')
+      document.querySelector('#mapButton').classList.add('hidden');
+
       backToMenuButton.classList.remove('hidden')
-      document.querySelector('#bagonfriendshiplevel').innerHTML = 'Friendship Level: '+this.bagon.friendshiplevel + '/'+this.bagon.friendshipmax
+      document.querySelector('#Bagonfriendshiplevel').innerHTML = 'Friendship Level: '+this.bagon.friendshiplevel + '/'+this.bagon.friendshipmax //not sure why id is capital, check why
     })
 
     //Back to Menu button

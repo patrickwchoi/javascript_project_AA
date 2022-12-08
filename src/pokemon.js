@@ -30,6 +30,7 @@ class Pokemon extends Sprite{
 
   incrementFriendship(){
     if (this.friendshiplevel===this.friendshipmax-1){ //return //trigger something for friendshipmaxed
+      this.friendshiplevel=this.friendshipmax
       document.querySelectorAll('#dialoguebox > *').forEach((el)=>el.classList.add('hidden'));
       document.querySelector('#dialogueAnnouncement').classList.remove('hidden');
       document.querySelector('#dialogueAnnouncement').innerHTML = `
@@ -111,7 +112,7 @@ class Pokemon extends Sprite{
     htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.roar;
     htmlElems.dialogueText2.innerHTML = 'What would you like to do?'
     this.defaultInteraction(htmlElems);
-    console.log('Friendship Level: '+this.friendshiplevel)
+    // console.log('Friendship Level: '+this.friendshiplevel)
   }
   defaultInteraction(htmlElems){
     this.showSelectorContent('.dialogueOption')

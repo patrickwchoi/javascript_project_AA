@@ -22,4 +22,5 @@ To do List:
   -Add animation for plot purposes
   -Add a start screen
   -Clean up interaction between logic and dialoguebox and menu
+  -Add some sort of DSA like finding the shortest path to me
 
