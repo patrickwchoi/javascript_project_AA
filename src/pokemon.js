@@ -36,6 +36,7 @@ class Pokemon extends Sprite{
         Bagon's friendship has been maxed! Bagon will now evolve into a Salamence! Congratulations!
       `
       this.updateSpriteSalamence();
+      this.name='Salamence'
     } else {
       this.friendshiplevel++
     }
@@ -106,7 +107,7 @@ class Pokemon extends Sprite{
       }
   }
   clickedOn(htmlElems){ //what happens when we click on bagon
-    console.log('bagon clickedOn method!')
+    // console.log('bagon clickedOn method!')
     htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.roar;
     htmlElems.dialogueText2.innerHTML = 'What would you like to do?'
     this.defaultInteraction(htmlElems);

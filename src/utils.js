@@ -22,7 +22,6 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
       //creating copy of boundary rectangle one step in future
       if (rectangularCollision(player, {...boundary,
         pos: [boundary.pos[0], boundary.pos[1]+8]})){
-          console.log('w')
           moving=false;
           break;
       }}
@@ -41,7 +40,6 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
       let boundary = boundaries[i]
       if (rectangularCollision(player, {...boundary,
         pos: [boundary.pos[0], boundary.pos[1]-8]})){
-          console.log('s')
           moving=false;
           break;
       }}
@@ -60,7 +58,6 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
       if (rectangularCollision(player, {...boundary,
         pos: [boundary.pos[0]+8, boundary.pos[1]]})){
           moving=false;
-          console.log('a')
           break;
       }}
     if (moving&& keys.a.timePressed>1){ 
@@ -77,7 +74,6 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
       if (rectangularCollision(player, {...boundary,
         pos: [boundary.pos[0]-8, boundary.pos[1]]})){
           moving=false;
-          console.log('d')
           break;
       }}
     if (moving&& keys.d.timePressed>1){ 

@@ -4,6 +4,7 @@ const Player = require("./player.js");
 const Boundary = require("./boundary.js");
 const Utils = require("./utils.js");
 const Pokemon = require("./pokemon.js");
+const Item = require("./item.js");
 
 //Create Variables
 const dialogueBox = document.querySelector('#dialoguebox');
@@ -36,7 +37,7 @@ const map = new Image();
 map.src = "./assets/tilemap8.png";
 map.width = 160*16; //MUST CHANGE MANUALLY WHEN CHANGING MAP DIMENSIONS
 map.height = 130*16;
-console.log(map)
+
 const james = new Image();
 james.src = "./assets/james_sprites.png";
 james.width = 16*3;
@@ -47,7 +48,10 @@ bagonImg.src = "./assets/bagon_sprites.png"
 bagonImg.width = 16*2;
 bagonImg.height = 21*4;
 
-
+const pokeballImg = new Image();
+pokeballImg.src = "./assets/pokeball.png"
+pokeballImg.width = 920;
+pokeballImg.height = 512;
 
 class Game {
   constructor(canvas) {
@@ -136,8 +140,6 @@ class Game {
 
     //Menu Button
     menuButton.addEventListener('click', ()=>{
-      console.log('this is what runs when menu button is pressed');
-      // menuButton.classList.add('hidden')
       beforeMenuContent.forEach((button)=>button.classList.add('hidden'))
       backToBeforeMenu.classList.remove('hidden')
       menuContent.forEach((button)=>button.classList.remove('hidden'))
@@ -270,7 +272,7 @@ class Game {
   make2dArrCollisions() {
     let mapWidthTiles = map.width / 16;
     const collisionsMap = [];
-    console.log('mapWidthTiles:'+ mapWidthTiles) //check if mapwodthtiles is 0 and infinte loop
+    // console.log('mapWidthTiles:'+ mapWidthTiles) //check if mapwodthtiles is 0 and infinte loop
     for (let i = 0; i < collisions.length; i += mapWidthTiles) {
       //do i do .length-1?
       collisionsMap.push(collisions.slice(i, i + mapWidthTiles));
