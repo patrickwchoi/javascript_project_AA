@@ -24,6 +24,16 @@
 }
 #dialogueButtons{
   width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
+  button {
+    background-color: #4b90e4;
+    border: 1px solid #042261;
+  }
 }
 #spaceforalldialoguetext{
   width: 60%;
@@ -74,8 +84,23 @@ button {
 
 
 #beforeMenu{
-  background-color: lightgreen;
+  background-color: rgb(156, 235, 156);
   width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#beforeMenu *{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #121f17;
+  border-radius: 2px;
 }
 
 body{

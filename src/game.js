@@ -165,6 +165,8 @@ class Game {
 
     //map button
     mapButton.addEventListener('click', ()=>{
+      document.querySelectorAll('#menu *').forEach((el)=>el.classList.add('hidden'));
+      document.querySelectorAll('#mapContent *').forEach((el)=>el.classList.remove('hidden'));
       document.querySelector('#mapContent').classList.remove('hidden');
       backToBeforeMenu.classList.add('hidden')
       backToMenuButton.classList.remove('hidden')
@@ -173,6 +175,7 @@ class Game {
     //pokedex button
     pokedexButton.addEventListener('click', ()=>{
       document.querySelector('#pokedexContent').classList.remove('hidden');
+      document.querySelectorAll('#pokedexContent *').forEach((el)=>el.classList.remove('hidden'));
       backToBeforeMenu.classList.add('hidden')
       pokedexButton.classList.add('hidden')
       backToMenuButton.classList.remove('hidden')

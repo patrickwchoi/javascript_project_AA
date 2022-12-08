@@ -2,7 +2,7 @@ Intro 12/8/2022: Today's version is still unfortunately largely  unfinished. I r
 
 Instructions: As a member of Team Rocket, you find yourself lost and separated from your crew after being blasted into space yet again. When you wake up, you find a friendly Bagon by your side. You realize that if you evolve this Bagon, you can use them to fly back home! 
 
-(Bolded) GOAL: Evolve Bagon by finding ways to increase your friendship level! You can check friendship level with the pokedex on the menu.
+GOAL: Evolve Bagon by finding ways to increase your friendship level! You can check friendship level with the pokedex on the menu.
 
 Controls: Use WASD to move, use your mouse to interact with things on screen.
 
