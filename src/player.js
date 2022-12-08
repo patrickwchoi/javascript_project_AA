@@ -11,5 +11,6 @@ class Player extends Sprite{
     this.moving = false;
   }
   
+  
 }
 module.exports = Player;

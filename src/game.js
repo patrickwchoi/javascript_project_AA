@@ -47,6 +47,8 @@ bagonImg.src = "./assets/bagon_sprites.png"
 bagonImg.width = 16*2;
 bagonImg.height = 21*4;
 
+
+
 class Game {
   constructor(canvas) {
     this.canvas = canvas;
@@ -75,7 +77,8 @@ class Game {
       pos: [canvas.width / 2 , canvas.height / 2 ], //very rough pos, will fix later
       image: bagonImg,
       ctx: this.ctx,
-      frames: { dimx: 2, dimy: 4, zoom: 1.8 }});
+      frames: { dimx: 2, dimy: 4, zoom: 1.8 }, 
+      name: 'bagon'});
     this.bagon.setTrainer(this.player);
     this.moveables = [this.background, ...this.boundaries];
     // this.play();
@@ -169,7 +172,9 @@ class Game {
     pokedexButton.addEventListener('click', ()=>{
       document.querySelector('#pokedexContent').classList.remove('hidden');
       backToBeforeMenu.classList.add('hidden')
+      pokedexButton.classList.add('hidden')
       backToMenuButton.classList.remove('hidden')
+      document.querySelector('#bagonfriendshiplevel').innerHTML = 'Friendship Level: '+this.bagon.friendshiplevel
     })
 
     //Back to Menu button

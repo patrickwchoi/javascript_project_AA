@@ -1,19 +1,53 @@
 const Sprite = require("./sprite.js");
 
+const salamenceSprite = new Image();
+salamenceSprite.src = './assets/salamence_sprites_31x28.png'
+salamenceSprite.width = 31*2;
+salamenceSprite.height = 28*4;
+
 class Pokemon extends Sprite{
 
-  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}}){
+  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}, pokedexpic, name}){
     super({pos, image, ctx, frames});
+    this.name = name
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
-    let tag = document.createElement("br");
-    let pokedexname = document.createTextNode('Bagon:');
-
-    let pokedexentry = document.createTextNode('Friendship Level: '+this.friendshiplevel);
-    document.querySelector('#pokedexContent').appendChild(pokedexname);
-    document.querySelector('#pokedexContent').appendChild(tag);
+    this.friendshipmax = 1;
+    //convert to function later
+    let pokedexentry = document.createElement("div");
+    pokedexentry.id = name+'Pokedex'; //ex. id-"bagonPokedex"
+    let br = document.createElement("br");
+    let pokedexname = document.createTextNode(name+': ');
+    let friendship = document.createElement('div')
+    friendship.innerHTML = 'Friendship Level: '+this.friendshiplevel;
+    friendship.id = name+'friendshiplevel' //#bagonfriendshiplevel
+    pokedexentry.appendChild(pokedexname)
+    pokedexentry.appendChild(br)
+    pokedexentry.appendChild(friendship)
     document.querySelector('#pokedexContent').appendChild(pokedexentry);
 
+  }
+
+  incrementFriendship(){
+    if (this.friendshiplevel===this.friendshipmax){ //return //trigger something for friendshipmaxed
+      document.querySelectorAll('#dialoguebox > *').forEach((el)=>el.classList.add('hidden'));
+      document.querySelector('#dialogueAnnouncement').classList.remove('hidden');
+      document.querySelector('#dialogueAnnouncement').innerHTML = `
+        Bagon's friendship has been maxed! Bagon will now evolve into a Salamence! Congratulations!
+      `
+      this.updateSpriteSalamence();
+    } else {
+      this.friendshiplevel++
+    }
+  }
+  updateSpriteSalamence(){
+    this.image = salamenceSprite;
+    this.zoom = .7;
+    this.width = this.image.width/this.frames.dimx
+    this.height = this.image.height/this.frames.dimy
+      //these are dim of actual single sprite based on the png
+    this.screenWidth = this.width*this.frames.zoom;
+    this.screenHeight = this.height*this.frames.zoom;
   }
   setTrainer (player){
     this.player = player
@@ -88,14 +122,14 @@ class Pokemon extends Sprite{
       this.hideSelectorContent('.dialogueOption')
       htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.happy;
       htmlElems.dialogueText2.innerHTML = '*Giving Bagon pets*'
-      this.friendshiplevel+=1;
+      this.incrementFriendship();
     }
     htmlElems.option2.innerHTML = 'Give Bagon treats';
     htmlElems.option2.onclick = ()=>{
       this.hideSelectorContent('.dialogueOption')
       htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.eating;
       htmlElems.dialogueText2.innerHTML = '*Giving Bagon treats*'
-      this.friendshiplevel+=1;
+      this.incrementFriendship();
     }
   }
 
