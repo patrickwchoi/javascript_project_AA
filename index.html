@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="./dist/main.css" />
   <script src="./dist/main.js" type="application/javascript" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>PokeValley</title>
 </head>
 
@@ -31,18 +32,23 @@
   </div>
 
   <div id="beforeMenu" > 
-    <ul><button id="menuButton" class="beforeMenuContent" >Menu</button></ul>
+    <ul><button id="menuButton" class="beforeMenuContent" > <i class="fa fa-bars"></i>  Menu</button></ul>
     <ul><button id="instructionsButton" class="beforeMenuContent" >Instructions</button></ul>
-    <ul><button id="backToBeforeMenu" class="beforeMenuContent hidden" >Back</button></ul>
+    <ul><button id="backToBeforeMenu" class="beforeMenuContent hidden backButton" >Back</button></ul>
     <div id="instructions" class="instructions hidden">Instructions: _____</div>
   
     <div id="menu">
       <button id="mapButton" class="menuContent hidden"> Map</button>
-      <button id="backToMenuButton" class="hidden" >Back To Menu</button>
-      <div id="mapContent" class="hidden">
-        <h2>Map</h2>
-        <img src="./assets/tilemap8_clean_img.png" class="map" id="map" height="300px" width="400px">
-      </div>
+        <div id="mapContent" class="hidden">
+          <h2>Map</h2>
+          <img src="./assets/tilemap8_clean_img.png" class="map" id="map" height="300px" width="400px">
+        </div>
+
+      <button id="pokedexButton" class="menuContent hidden"> Pokedex </button>
+        <div id="pokedexContent" class="hidden">
+        </div>
+      <button id="backToMenuButton" class="hidden backButton">Back To Menu</button>
+
     </div>
   </div>
   

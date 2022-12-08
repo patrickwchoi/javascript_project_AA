@@ -21,6 +21,10 @@ const instructions = document.querySelector('#instructions');
 const menuContent = document.querySelectorAll('.menuContent');
 const mapButton = document.querySelector('#mapButton');
 const backToMenuButton = document.querySelector('#backToMenuButton');
+const pokedex = document.querySelector('#pokedexContent');
+const pokedexButton = document.querySelector('#pokedexButton');
+
+
 
 const  htmlElems = { //stuff I wanna pass in
   dialogueBox: dialogueBox, 
@@ -157,6 +161,13 @@ class Game {
     //map button
     mapButton.addEventListener('click', ()=>{
       document.querySelector('#mapContent').classList.remove('hidden');
+      backToBeforeMenu.classList.add('hidden')
+      backToMenuButton.classList.remove('hidden')
+    })
+
+    //pokedex button
+    pokedexButton.addEventListener('click', ()=>{
+      document.querySelector('#pokedexContent').classList.remove('hidden');
       backToBeforeMenu.classList.add('hidden')
       backToMenuButton.classList.remove('hidden')
     })

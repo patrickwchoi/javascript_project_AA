@@ -81,6 +81,11 @@ body {
   display: flex;
 }
 
+.backButton {
+  background-color: #345f2f;
+  top: 0;
+}
+
 .hidden {
-  display: none;
+  display: none !important;
 }

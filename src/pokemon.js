@@ -6,6 +6,14 @@ class Pokemon extends Sprite{
     super({pos, image, ctx, frames});
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
+    let tag = document.createElement("br");
+    let pokedexname = document.createTextNode('Bagon:');
+
+    let pokedexentry = document.createTextNode('Friendship Level: '+this.friendshiplevel);
+    document.querySelector('#pokedexContent').appendChild(pokedexname);
+    document.querySelector('#pokedexContent').appendChild(tag);
+    document.querySelector('#pokedexContent').appendChild(pokedexentry);
+
   }
   setTrainer (player){
     this.player = player
