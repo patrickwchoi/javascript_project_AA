@@ -5,7 +5,8 @@
 
 *{
 	margin: 0;
-	padding: 0
+	padding: 0;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 #dialoguebox{
 	background-color: lightblue;
@@ -15,10 +16,20 @@
 	left: 0;
 	right: 0;
 	border-top: 4px white solid;
-	display: block;
+	display: flex;
 
+  button{
+    height: 50px;
+  }
 }
-
+#dialogueButtons{
+  width: 20%;
+}
+#spaceforalldialoguetext{
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
 #dialoguetext{
 	display: flex;
 	align-items: center;
@@ -60,9 +71,7 @@ button {
     padding: 10px 30px;
   }
 }
-.hidden{
-  display: none;
-}
+
 
 #beforeMenu{
   background-color: lightgreen;
@@ -71,4 +80,7 @@ button {
 
 body{
   display: flex; 
+}
+.hidden{
+  display: none;
 }

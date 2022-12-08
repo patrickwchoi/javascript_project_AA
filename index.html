@@ -15,14 +15,17 @@
     <h1>Pokemon</h1>
     <canvas id="canvas" height="600" width="900"> </canvas>
     <div id="dialoguebox">
-      <button id="option1">option 1</button>
-      <button id="option2">option 2</button>
-      <div id="dialoguetext" >
-        <h3></h3>
+      <div id="spaceforalldialoguetext">
+        <div id="dialoguetext" class="dialogueContent">
+        </div>
+        <div id="dialoguetext2" >
+        </div>
       </div>
-      <div id="dialoguetext2" >
-        <h3></h3>
+      <div id="dialogueButtons">
+        <button id="option1" class="dialogueOption hidden">option 1</button>
+        <button id="option2" class="dialogueOption hidden">option 2</button>
       </div>
+      <img src="./assets/bagon_face.png" class="hidden" id="bagon_face" height="100px" width="100px">
 
     </div>
   </div>
@@ -34,10 +37,12 @@
     <div id="instructions" class="instructions hidden">Instructions: _____</div>
   
     <div id="menu">
-      <ul><button id="mapButton" class="menuContent hidden"> Map</button></ul>
-      <ul><button id="backToMenuButton" class="hidden" >Back To Menu</button></ul>
-
-      <img src="./assets/tilemap8.png" class="map hidden" id="map" height="200px" width="300px">
+      <button id="mapButton" class="menuContent hidden"> Map</button>
+      <button id="backToMenuButton" class="hidden" >Back To Menu</button>
+      <div id="mapContent" class="hidden">
+        <h2>Map</h2>
+        <img src="./assets/tilemap8_clean_img.png" class="map" id="map" height="300px" width="400px">
+      </div>
     </div>
   </div>
   

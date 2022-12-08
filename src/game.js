@@ -48,7 +48,6 @@ class Game {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.ctx.fillRect(0, 0, canvas.width, canvas.height);
-    console.log(map)
     this.ctx.drawImage(map,0,0)
     this.offset = [-700, -750]; //default location of map at start
 
@@ -111,9 +110,18 @@ class Game {
       this.bagon.clickedOn(htmlElems);
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.player)){
     this.player.clickedOn(htmlElems);
-  } 
+  } else{
+    //return dialogue to game state if empty part of canvas is clicked on
+    this.resetDialogue();
   }
-
+  }
+  resetDialogue(){
+    document.querySelectorAll('#dialoguebox *').forEach(
+      (button)=>{
+      // if (!button.classList.contains('hidden')) 
+      button.classList.add('hidden')
+      })
+  }
   registerEventListeners() {
 
     this.boundClickHandler = this.click.bind(this);
@@ -148,18 +156,21 @@ class Game {
 
     //map button
     mapButton.addEventListener('click', ()=>{
-      document.querySelector('#map').classList.remove('hidden');
+      document.querySelector('#mapContent').classList.remove('hidden');
       backToBeforeMenu.classList.add('hidden')
       backToMenuButton.classList.remove('hidden')
     })
 
     //Back to Menu button
     backToMenuButton.addEventListener('click', ()=>{
-      document.querySelectorAll('.map').forEach((el)=>{
+      document.querySelectorAll('#menu > *').forEach((el)=>{
         el.classList.add('hidden')
       })
-      menuContent.forEach((button)=>button.classList.remove('hidden'))
-
+      // menuContent.forEach((button)=>button.classList.remove('hidden'))
+      document.querySelectorAll('#menu > .menuContent').forEach((el)=>{
+        el.classList.remove('hidden')
+      })
+      backToBeforeMenu.classList.remove('hidden')
     })
     this.keys = {
       w:{ pressed: false, startTime:0, timePressed :0},
@@ -176,7 +187,6 @@ class Game {
           if (this.keys.w.pressed===false){this.keys.w.startTime = e.timeStamp} 
           this.keys.w.pressed = true;
           this.keys.w.timePressed=e.timeStamp-this.keys.w.startTime
-          console.log(e)
           this.lastkey = "w";
           break;
         case "a":
@@ -223,7 +233,6 @@ class Game {
     let boundaries = [];
     collisionsMap.forEach((row, i) => {
       row.forEach((symbol, j) => {
-        // console.log('addingboundary')
         if (symbol === 17281 || symbol === 2684371841 || symbol ===1610630017 || symbol === 3221242753) {
           //if pos on our collisions grid has collision, add boundaruy
           boundaries.push(

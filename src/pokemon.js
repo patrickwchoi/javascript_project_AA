@@ -71,18 +71,36 @@ class Pokemon extends Sprite{
     console.log('Friendship Level: '+this.friendshiplevel)
   }
   defaultInteraction(htmlElems){
+    this.showSelectorContent('.dialogueOption')
+    this.showSelectorContent('#dialogueButtons')
+
     htmlElems.option1.innerHTML = 'Give Bagon compliments';
+    document.querySelector('#bagon_face').classList.remove('hidden')
     htmlElems.option1.onclick = ()=>{
+      this.hideSelectorContent('.dialogueOption')
       htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.happy;
       htmlElems.dialogueText2.innerHTML = '*Giving Bagon pets*'
       this.friendshiplevel+=1;
     }
     htmlElems.option2.innerHTML = 'Give Bagon treats';
     htmlElems.option2.onclick = ()=>{
+      this.hideSelectorContent('.dialogueOption')
       htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.eating;
       htmlElems.dialogueText2.innerHTML = '*Giving Bagon treats*'
       this.friendshiplevel+=1;
     }
+  }
+
+  hideSelectorContent(selector){//move this to sprite class
+    document.querySelectorAll(selector).forEach((el)=>{
+      el.classList.add('hidden')
+    })
+  }
+
+  showSelectorContent(selector){//move this to sprite class
+    document.querySelectorAll(selector).forEach((el)=>{
+      el.classList.remove('hidden')
+    })
   }
 }
 
