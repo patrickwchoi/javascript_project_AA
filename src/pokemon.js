@@ -12,7 +12,7 @@ class Pokemon extends Sprite{
     this.name = name
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
-    this.friendshipmax = 1;
+    this.friendshipmax = 2;
     //convert to function later
     let pokedexentry = document.createElement("div");
     pokedexentry.id = name+'Pokedex'; //ex. id-"bagonPokedex"
@@ -29,7 +29,7 @@ class Pokemon extends Sprite{
   }
 
   incrementFriendship(){
-    if (this.friendshiplevel===this.friendshipmax){ //return //trigger something for friendshipmaxed
+    if (this.friendshiplevel===this.friendshipmax-1){ //return //trigger something for friendshipmaxed
       document.querySelectorAll('#dialoguebox > *').forEach((el)=>el.classList.add('hidden'));
       document.querySelector('#dialogueAnnouncement').classList.remove('hidden');
       document.querySelector('#dialogueAnnouncement').innerHTML = `
@@ -108,7 +108,7 @@ class Pokemon extends Sprite{
   }
   clickedOn(htmlElems){ //what happens when we click on bagon
     // console.log('bagon clickedOn method!')
-    htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.roar;
+    htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.roar;
     htmlElems.dialogueText2.innerHTML = 'What would you like to do?'
     this.defaultInteraction(htmlElems);
     console.log('Friendship Level: '+this.friendshiplevel)
@@ -117,19 +117,21 @@ class Pokemon extends Sprite{
     this.showSelectorContent('.dialogueOption')
     this.showSelectorContent('#dialogueButtons')
 
-    htmlElems.option1.innerHTML = 'Give Bagon compliments';
+    this.showSelectorContent('#spaceforalldialoguetext') //new
+
+    htmlElems.option1.innerHTML = 'Give '+this.name+' compliments';
     document.querySelector('#bagon_face').classList.remove('hidden')
     htmlElems.option1.onclick = ()=>{
       this.hideSelectorContent('.dialogueOption')
-      htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.happy;
-      htmlElems.dialogueText2.innerHTML = '*Giving Bagon pets*'
+      htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.happy;
+      htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' pets*'
       this.incrementFriendship();
     }
-    htmlElems.option2.innerHTML = 'Give Bagon treats';
+    htmlElems.option2.innerHTML = 'Give '+this.name+' treats';
     htmlElems.option2.onclick = ()=>{
       this.hideSelectorContent('.dialogueOption')
-      htmlElems.dialogueText.innerHTML = 'Bagon: '+ this.dialogue.eating;
-      htmlElems.dialogueText2.innerHTML = '*Giving Bagon treats*'
+      htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.eating;
+      htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' treats*'
       this.incrementFriendship();
     }
   }

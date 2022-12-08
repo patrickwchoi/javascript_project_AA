@@ -82,7 +82,7 @@ class Game {
       image: bagonImg,
       ctx: this.ctx,
       frames: { dimx: 2, dimy: 4, zoom: 1.8 }, 
-      name: 'bagon'});
+      name: 'Bagon'});
     this.bagon.setTrainer(this.player);
     this.moveables = [this.background, ...this.boundaries];
     // this.play();
@@ -127,10 +127,10 @@ class Game {
   }
   }
   resetDialogue(){
-    document.querySelectorAll('#dialoguebox *').forEach(
-      (button)=>{
+    document.querySelectorAll('#dialoguebox > *').forEach(
+      (el)=>{
       // if (!button.classList.contains('hidden')) 
-      button.classList.add('hidden')
+      el.classList.add('hidden')
       })
   }
   registerEventListeners() {
@@ -179,7 +179,7 @@ class Game {
       backToBeforeMenu.classList.add('hidden')
       pokedexButton.classList.add('hidden')
       backToMenuButton.classList.remove('hidden')
-      document.querySelector('#bagonfriendshiplevel').innerHTML = 'Friendship Level: '+this.bagon.friendshiplevel
+      document.querySelector('#bagonfriendshiplevel').innerHTML = 'Friendship Level: '+this.bagon.friendshiplevel + '/'+this.bagon.friendshipmax
     })
 
     //Back to Menu button
