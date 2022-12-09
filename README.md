@@ -1,8 +1,8 @@
-Patrick's Pokemon Game (name will be updated)
+<h2>Patrick's Pokemon Game (name will be updated)</h2>
 
 Link: https://patrickwchoi.github.io/javascript_project_AA/ 
 
-Overview:
+<h3>Overview:</h3>
 Instructions: As a member of Team Rocket, you find yourself lost and separated from your crew after being blasted into space yet again. When you wake up, you find a friendly Bagon by your side. You realize that if you evolve this Bagon, you can use them to fly back home! 
 <hr>
 
@@ -10,7 +10,7 @@ GOAL: Evolve Bagon by finding ways to increase your friendship level! You can ch
 
 Controls: Use WASD to move, use your mouse to interact with things on screen.
 
-Features: 
+<h3>Features: </h3>
 
 <li>Moving a background image with WASD on canvas to simulate movement. </li>
 <li>Adding collision detection where relevant on my map </li>
@@ -23,14 +23,14 @@ Features:
 
 <hr>
 
-NB: 
+<h3>NB: </h3>
 Today's version is still unfortunately largely  unfinished. I realized my project would take a lot longer to fully complete in terms of content. I was able to establish a lot of the base logic such as movement, collisions, interaction with the dialogue box/menu/canvas, as well as how to make/find my relevant assets like the map I built. But there is still a lot more content I need to push into my game, partly due to the nature of my game being an RPG driven by plot. 
 <hr>
 
 Technologies: Mostly HTML Canvas. The rest is all JS/CSS/HTML. Used Tiled to build a gridded map that I exported as a PNG, as well as an array so I could have the coordinates of all my collision blocks to add. 
 <hr>
 
-Implementation: 
+<h3>Implementation: </h3>
 
 My first step was setting up my background. On tiled, I made a map that I exported as a png. I also exported the collisions layer as an array filled with red tiles for where I want my collisions. In my code, I use convert this array into 2d so the indices match their positions. Then, I generate an array of Boundary objects with the corresponding position for each collision tile. This boundaries array is moved along with my background x amount of pixels everytime I walk a direction. Before I move, I check the distance I'd move to see if a boundary exists. If it does, then I prevent movement(aka I don't move my background).
 
@@ -44,7 +44,7 @@ To draw out my sprites, I used the drawImage() function for canvas and used all 
 A lot of my other logic came from OOP and defining objects and how to interact between them. Something dificult was having my code interact and update HTML elements because of how much code I felt like I had to write for very simple tasks. 
 
 <hr>
-To do List:
+<h3>To do List:</h3>
   -Fix up visuals for my evolved pokemon
   -Improve overall CSS styling of dialogue box and menu
   -Add other pokemon that I can interact with. They will help me evolve my pokemon
