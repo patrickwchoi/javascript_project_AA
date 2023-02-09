@@ -13,20 +13,33 @@ class Pokemon extends Sprite{
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
     this.friendshipmax = 2;
-    //convert to function later
+    
+    // let pokedexentry = document.createElement("div");
+    // pokedexentry.id = name+'Pokedex'; //ex. id-"bagonPokedex"
+    // // let br = document.createElement("br");
+    // let pokedexname = document.createTextNode(name+': ');
+    // let friendship = document.createElement('div')
+    // friendship.innerHTML = 'Friendship Level: '+this.friendshiplevel;
+    // friendship.id = name+'friendshiplevel' //#bagonfriendshiplevel
+    // pokedexentry.appendChild(pokedexname)
+    // // pokedexentry.appendChild(br)
+    // pokedexentry.appendChild(friendship)
+    // document.querySelector('#pokedexContent').appendChild(pokedexentry);
+  }
+  addToPokedex(){
     let pokedexentry = document.createElement("div");
     pokedexentry.id = name+'Pokedex'; //ex. id-"bagonPokedex"
-    let br = document.createElement("br");
+    // let br = document.createElement("br");
     let pokedexname = document.createTextNode(name+': ');
     let friendship = document.createElement('div')
     friendship.innerHTML = 'Friendship Level: '+this.friendshiplevel;
     friendship.id = name+'friendshiplevel' //#bagonfriendshiplevel
     pokedexentry.appendChild(pokedexname)
-    pokedexentry.appendChild(br)
+    // pokedexentry.appendChild(br)
     pokedexentry.appendChild(friendship)
     document.querySelector('#pokedexContent').appendChild(pokedexentry);
   }
-
+  
   incrementFriendship(){
     if (this.friendshiplevel===this.friendshipmax-1){ //return //trigger something for friendshipmaxed
       this.friendshiplevel=this.friendshipmax
@@ -40,18 +53,7 @@ class Pokemon extends Sprite{
       this.friendshiplevel++
     }
   }
-  updateSpriteSalamence(){
-    this.image = salamenceSprite;
-    this.zoom = .7;
-    this.width = this.image.width/this.frames.dimx
-    this.height = this.image.height/this.frames.dimy
-      //these are dim of actual single sprite based on the png
-    this.screenWidth = this.width*this.frames.zoom;
-    this.screenHeight = this.height*this.frames.zoom;
-  }
-  setTrainer (player){
-    this.player = player
-  }
+
   draw(){//draw image of sprite
     this.ctx.drawImage(this.image, 
       this.frames.xval*this.width, 
@@ -71,7 +73,6 @@ class Pokemon extends Sprite{
         if (this.frames.xval < this.frames.dimx-1) this.frames.xval++
         else this.frames.xval=0;
       }
-
   }
   fillDialogue(){
     return {
@@ -80,11 +81,6 @@ class Pokemon extends Sprite{
       eating: 'nomnomnom ^~^',
       happy: 'Rawr!! :}'
   }
-  }
-  followPlayer(player){
-    // let playerPrevPos = player.pos
-    this.pos = player.posForPokemon
-    this.draw();
   }
 
   clickedOn(htmlElems){ //what happens when we click on bagon

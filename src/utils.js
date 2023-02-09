@@ -127,8 +127,22 @@ function showElements(selector) {
     element.classList.remove("hidden");
   });
 }
-
+function changeInnerHTML(selector, newHTML) {
+  const elements = document.querySelectorAll(selector);
+  elements.forEach(element => {
+    element.innerHTML = newHTML;
+  });
+}
+function changeDialogueText(newHTML){
+  const dialogue = document.getElementById("dialoguetext");
+  dialogue.innerHTML = newHTML;
+}
+function changeDialogueText2(newHTML){
+  const dialogue = document.getElementById("dialoguetext2");
+  dialogue.innerHTML = newHTML;
+}
 
 module.exports = {
-  rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, hideElements, showElements
+  rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, 
+  hideElements, showElements, changeInnerHTML, changeDialogueText, changeDialogueText2
 };
