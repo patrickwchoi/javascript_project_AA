@@ -25,7 +25,6 @@ class Pokemon extends Sprite{
     pokedexentry.appendChild(br)
     pokedexentry.appendChild(friendship)
     document.querySelector('#pokedexContent').appendChild(pokedexentry);
-
   }
 
   incrementFriendship(){
@@ -33,9 +32,8 @@ class Pokemon extends Sprite{
       this.friendshiplevel=this.friendshipmax
       document.querySelectorAll('#dialoguebox > *').forEach((el)=>el.classList.add('hidden'));
       document.querySelector('#dialogueAnnouncement').classList.remove('hidden');
-      document.querySelector('#dialogueAnnouncement').innerHTML = `
-        Bagon's friendship has been maxed! Bagon will now evolve into a Salamence! Congratulations!
-      `
+      document.querySelector('#dialogueAnnouncement').innerHTML = 
+      `Bagon's friendship has been maxed! Bagon will now evolve into a Salamence! Congratulations!`
       this.updateSpriteSalamence();
       this.name='Salamence'
     } else {
@@ -89,65 +87,36 @@ class Pokemon extends Sprite{
     this.draw();
   }
 
-  changePokemonDirection(keys, player){
-    if (keys.w.pressed && player.moving) {
-      // player.moving = true;
-      this.frames.yval = 3;
-    }
-    else if (keys.s.pressed  && player.moving) {
-      // player.moving = true;
-      this.frames.yval = 0;
-    }
-    else if (keys.a.pressed  && player.moving) {
-      // player.moving = true;
-      this.frames.yval = 1;
-      }
-    else if (keys.d.pressed  && player.moving) {
-      // player.moving = true;
-      this.frames.yval = 2;
-      }
-  }
   clickedOn(htmlElems){ //what happens when we click on bagon
     // console.log('bagon clickedOn method!')
-    htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.roar;
-    htmlElems.dialogueText2.innerHTML = 'What would you like to do?'
-    this.defaultInteraction(htmlElems);
+    // htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.roar;
+    // htmlElems.dialogueText2.innerHTML = 'What would you like to do?'
+    // this.defaultInteraction(htmlElems);
     // console.log('Friendship Level: '+this.friendshiplevel)
   }
   defaultInteraction(htmlElems){
-    this.showSelectorContent('.dialogueOption')
-    this.showSelectorContent('#dialogueButtons')
+  //   this.showSelectorContent('.dialogueOption')
+  //   this.showSelectorContent('#dialogueButtons')
 
-    this.showSelectorContent('#spaceforalldialoguetext') //new
+  //   this.showSelectorContent('#spaceforalldialoguetext') //new
 
-    htmlElems.option1.innerHTML = 'Give '+this.name+' compliments';
-    document.querySelector('#bagon_face').classList.remove('hidden')
-    htmlElems.option1.onclick = ()=>{
-      this.hideSelectorContent('.dialogueOption')
-      htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.happy;
-      htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' pets*'
-      this.incrementFriendship();
-    }
-    htmlElems.option2.innerHTML = 'Give '+this.name+' treats';
-    htmlElems.option2.onclick = ()=>{
-      this.hideSelectorContent('.dialogueOption')
-      htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.eating;
-      htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' treats*'
-      this.incrementFriendship();
-    }
+  //   htmlElems.option1.innerHTML = 'Give '+this.name+' compliments';
+  //   document.querySelector('#bagon_face').classList.remove('hidden')
+  //   htmlElems.option1.onclick = ()=>{
+  //     this.hideSelectorContent('.dialogueOption')
+  //     htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.happy;
+  //     htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' pets*'
+  //     this.incrementFriendship();
+  //   }
+  //   htmlElems.option2.innerHTML = 'Give '+this.name+' treats';
+  //   htmlElems.option2.onclick = ()=>{
+  //     this.hideSelectorContent('.dialogueOption')
+  //     htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.eating;
+  //     htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' treats*'
+  //     this.incrementFriendship();
+  //   }
   }
 
-  hideSelectorContent(selector){//move this to sprite class
-    document.querySelectorAll(selector).forEach((el)=>{
-      el.classList.add('hidden')
-    })
-  }
-
-  showSelectorContent(selector){//move this to sprite class
-    document.querySelectorAll(selector).forEach((el)=>{
-      el.classList.remove('hidden')
-    })
-  }
 }
 
 module.exports = Pokemon;

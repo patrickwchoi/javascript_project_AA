@@ -48,7 +48,17 @@ class Sprite{
         // if (this.frames.yval < this.frames.height) this.frames.yval++
         // else this.frames.yval=0;
       }
+  }
 
+  hideSelectorContent(selector){//move this to sprite class
+    document.querySelectorAll(selector).forEach((el)=>{
+      el.classList.add('hidden')
+    })
+  }
+  showSelectorContent(selector){//move this to sprite class
+    document.querySelectorAll(selector).forEach((el)=>{
+      el.classList.remove('hidden')
+    })
   }
 }
 

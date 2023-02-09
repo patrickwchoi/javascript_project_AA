@@ -1,3 +1,5 @@
+const Boundary = require("./Map/boundary.js");
+
 function rectangularCollision(rec1, rec2){
   let r1zoom = rec1.frames.zoom;
   let r2zoom = rec2.frames.zoom;
@@ -91,6 +93,42 @@ function isMouseOnRect(mousePos, rec1){
   (mousePos[1]>rec1.pos[1] && mousePos[1]<(rec1.pos[1]+rec1.screenHeight))
   )
 }
+
+function addBoundaries({collisionsMap, offset}) {
+  let boundaries = [];
+  collisionsMap.forEach((row, i) => {
+    row.forEach((symbol, j) => {
+      if (symbol === 17281 || symbol === 2684371841 || symbol ===1610630017 || symbol === 3221242753) {
+        //if pos on our collisions grid has collision, add boundaruy
+        boundaries.push(
+          new Boundary({
+            ctx: this.ctx,
+            pos: [
+              j * Boundary.width + offset[0],
+              i * Boundary.height + offset[1],
+            ],
+          })
+        );
+      }
+      //pushing boundary object where i is row, j is coln in our collisions arr
+    });
+  });
+  return boundaries;
+}
+function hideElements(selector) {
+  const elements = document.querySelectorAll(selector);
+  elements.forEach(element => {
+    element.classList.add("hidden");
+  });
+}
+function showElements(selector) {
+  const elements = document.querySelectorAll(selector);
+  elements.forEach(element => {
+    element.classList.remove("hidden");
+  });
+}
+
+
 module.exports = {
-  rectangularCollision, movePlayer, isMouseOnRect
+  rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, hideElements, showElements
 };

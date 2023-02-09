@@ -1,10 +1,11 @@
-const collisions = require("./collisions.js");
-const Sprite = require("./sprite.js");
-const Player = require("./player.js");
-const Boundary = require("./boundary.js");
+const collisions = require("./Map/collisions.js");
+const Sprite = require("./Sprites/sprite.js");
+const Player = require("./Sprites/player.js");
+const Boundary = require("./Map/boundary.js");
 const Utils = require("./utils.js");
-const Pokemon = require("./pokemon.js");
-const Item = require("./item.js");
+const Pokemon = require("./Sprites/pokemon.js");
+const TrainerPokemon = require("./Sprites/trainerpokemon.js");
+const Item = require("./Sprites/item.js");
 
 //Create Variables
 const dialogueBox = document.querySelector('#dialoguebox');
@@ -25,14 +26,13 @@ const backToMenuButton = document.querySelector('#backToMenuButton');
 const pokedex = document.querySelector('#pokedexContent');
 const pokedexButton = document.querySelector('#pokedexButton');
 
-
-
 const  htmlElems = { //stuff I wanna pass in
   dialogueBox: dialogueBox, 
   dialogueText:dialogueText,
   dialogueText2:dialogueText2,
   option1:option1, option2:option2,
   menuButton:menuButton}
+
 const map = new Image();
 map.src = "./assets/tilemap8.png";
 map.width = 160*16; //MUST CHANGE MANUALLY WHEN CHANGING MAP DIMENSIONS
@@ -62,7 +62,7 @@ class Game {
     this.offset = [-700, -750]; //default location of map at start
 
     this.collisionsMap = this.make2dArrCollisions();
-    this.boundaries = this.addBoundaries(this.collisionsMap);
+    this.boundaries = Utils.addBoundaries({collisionsMap: this.collisionsMap, offset: this.offset});
     this.framesPressed = 0; //will let us know how long a key is held down
     this.registerEventListeners();
 
@@ -77,7 +77,7 @@ class Game {
       ctx: this.ctx,
       frames: { dimx: 3, dimy: 4, zoom: 1.8 },
     });
-    this.bagon = new Pokemon({
+    this.bagon = new TrainerPokemon({
       pos: [canvas.width / 2 , canvas.height / 2 ], //very rough pos, will fix later
       image: bagonImg,
       ctx: this.ctx,
@@ -250,28 +250,6 @@ class Game {
           break;
       }
     });
-  }
-
-  addBoundaries(collisionsMap) {
-    let boundaries = [];
-    collisionsMap.forEach((row, i) => {
-      row.forEach((symbol, j) => {
-        if (symbol === 17281 || symbol === 2684371841 || symbol ===1610630017 || symbol === 3221242753) {
-          //if pos on our collisions grid has collision, add boundaruy
-          boundaries.push(
-            new Boundary({
-              ctx: this.ctx,
-              pos: [
-                j * Boundary.width + this.offset[0],
-                i * Boundary.height + this.offset[1],
-              ],
-            })
-          );
-        }
-        //pushing boundary object where i is row, j is coln in our collisions arr
-      });
-    });
-    return boundaries;
   }
   
   make2dArrCollisions() {
