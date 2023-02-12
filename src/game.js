@@ -2,6 +2,7 @@ const collisions = require("./Map/collisions.js");
 const Sprite = require("./Sprites/sprite.js");
 const Player = require("./Sprites/player.js");
 const Boundary = require("./Map/boundary.js");
+// import Boundary from './Map/boundary.js';
 const Utils = require("./utils.js");
 const Pokemon = require("./Sprites/pokemon.js");
 const TrainerPokemon = require("./Sprites/trainerpokemon.js");

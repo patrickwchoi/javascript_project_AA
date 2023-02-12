@@ -133,11 +133,11 @@ function changeInnerHTML(selector, newHTML) {
     element.innerHTML = newHTML;
   });
 }
-function changeDialogueText(newHTML){
+function changeDialogueText(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext");
   dialogue.innerHTML = newHTML;
 }
-function changeDialogueText2(newHTML){
+function changeDialogueText2(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext2");
   dialogue.innerHTML = newHTML;
 }
