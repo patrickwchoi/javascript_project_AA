@@ -1,4 +1,5 @@
 const Boundary = require("./Map/boundary.js");
+// import Boundary from './Map/boundary.js';
 
 function rectangularCollision(rec1, rec2){
   let r1zoom = rec1.frames.zoom;
@@ -94,18 +95,20 @@ function isMouseOnRect(mousePos, rec1){
   )
 }
 
-function addBoundaries({collisionsMap, offset}) {
+function addBoundaries({collisionsMap, ctx, offset}) {
   let boundaries = [];
   collisionsMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
       if (symbol === 17281 || symbol === 2684371841 || symbol ===1610630017 || symbol === 3221242753) {
         //if pos on our collisions grid has collision, add boundaruy
         boundaries.push(
+          
           new Boundary({
-            ctx: this.ctx,
+            ctx: ctx,
             pos: [
-              j * Boundary.width + offset[0],
-              i * Boundary.height + offset[1],
+              j * 16 + offset[0],
+              i * 16 + offset[1]
+              // We multiply by 16 bc this is for our standard boundary tile from Tiled
             ],
           })
         );
@@ -115,6 +118,23 @@ function addBoundaries({collisionsMap, offset}) {
   });
   return boundaries;
 }
+function addSpriteBoundaries({boundaries, ctx, sprite}) { //for adding sprite to boundaries array
+  boundaries.push(
+    new Boundary({
+      ctx: ctx,
+      pos: [
+        sprite.pos[0] ,
+        sprite.pos[1] ,
+      ],
+      width: sprite.screenWidth,
+      height: sprite.screenHeight,
+    })
+  );
+  console.log(boundaries[boundaries.length-1])
+  console.log(sprite.pos)
+  return boundaries;
+}
+
 function hideElements(selector) {
   const elements = document.querySelectorAll(selector);
   elements.forEach(element => {
@@ -143,6 +163,6 @@ function changeDialogueText2(newHTML){ //Bottom dialogue box
 }
 
 module.exports = {
-  rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, 
+  rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, addSpriteBoundaries,
   hideElements, showElements, changeInnerHTML, changeDialogueText, changeDialogueText2
 };

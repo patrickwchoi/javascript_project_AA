@@ -7,9 +7,13 @@ snorlaxSprite.width = 29*2;
 snorlaxSprite.height = 29*4;
 
 class Snorlax extends Pokemon{
-  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}, pokedexpic, name}){
-    super({pos, image, ctx, frames});
-    this.name = name
+  constructor({pos, image, ctx, frames = {dimx:2, dimy:4, zoom:2}, pokedexpic, name}){
+    image = snorlaxSprite;
+    frames = frames;
+    super({pos, ctx, image, frames});
+    // this.pos = pos;
+    // this.ctx = ctx;
+    this.name = name;
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
     this.friendshipmax = 1;
@@ -31,3 +35,4 @@ class Snorlax extends Pokemon{
   }
 
 }
+module.exports = Snorlax;

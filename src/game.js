@@ -7,6 +7,7 @@ const Utils = require("./utils.js");
 const Pokemon = require("./Sprites/pokemon.js");
 const TrainerPokemon = require("./Sprites/trainerpokemon.js");
 const Item = require("./Sprites/item.js");
+const Snorlax = require("./Sprites/snorlax.js");
 
 //Create Variables
 const dialogueBox = document.querySelector('#dialoguebox');
@@ -63,7 +64,9 @@ class Game {
     this.offset = [-700, -750]; //default location of map at start
 
     this.collisionsMap = this.make2dArrCollisions();
-    this.boundaries = Utils.addBoundaries({collisionsMap: this.collisionsMap, offset: this.offset});
+    this.boundaries = Utils.addBoundaries({
+      collisionsMap: this.collisionsMap, ctx: this.ctx, offset: this.offset
+    });
     this.framesPressed = 0; //will let us know how long a key is held down
     this.registerEventListeners();
 
@@ -85,7 +88,17 @@ class Game {
       frames: { dimx: 2, dimy: 4, zoom: 1.8 }, 
       name: 'Bagon'});
     this.bagon.setTrainer(this.player);
-    this.moveables = [this.background, ...this.boundaries];
+    this.snorlax = new Snorlax({
+      pos: [canvas.width / 2 +50, canvas.height / 2 +50], 
+      ctx: this.ctx,
+      name: 'Snorlax'});
+
+    this.boundaries = Utils.addSpriteBoundaries({
+      boundaries: this.boundaries, ctx: this.ctx, sprite: this.snorlax, 
+    });
+
+    
+    this.moveables = [this.background, ...this.boundaries, this.snorlax];
     // this.play();
   }
 
@@ -94,10 +107,11 @@ class Game {
   animate() {
     //animates screen. will run infinietly and 'refresh' screen
     this.background.draw();
-    //this.drawBoundaries(); //disable when finished with game
+    this.drawBoundaries(); //disable when finished with game
     this.bagon.changePokemonDirection(this.keys, this.player) 
     this.bagon.followPlayer(this.player);
     this.player.draw();
+    this.snorlax.draw();
     let moving = true;
     //player.moving signals player should be moving bc wasd is pressed
     //moving signals if the conditions (rectangular collision) to move are true or false
