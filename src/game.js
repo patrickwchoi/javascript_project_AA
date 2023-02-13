@@ -11,7 +11,7 @@ const Snorlax = require("./Sprites/snorlax.js");
 
 //Create Variables
 const dialogueBox = document.querySelector('#dialoguebox');
-const dialogueText = document.querySelector('#dialoguetext');
+const dialogueText1 = document.querySelector('#dialoguetext1');
 const dialogueText2 = document.querySelector('#dialoguetext2');
 const option1 =  document.querySelector('#option1');
 const option2 =  document.querySelector('#option2');
@@ -30,7 +30,7 @@ const pokedexButton = document.querySelector('#pokedexButton');
 
 const  htmlElems = { //stuff I wanna pass in
   dialogueBox: dialogueBox, 
-  dialogueText:dialogueText,
+  dialogueText1:dialogueText1,
   dialogueText2:dialogueText2,
   option1:option1, option2:option2,
   menuButton:menuButton}
@@ -102,7 +102,10 @@ class Game {
     // this.play();
   }
 
-  play() {this.animate();}
+  play() {
+    this.animate();
+    console.log("play")
+  }
 
   animate() {
     //animates screen. will run infinietly and 'refresh' screen
@@ -115,7 +118,6 @@ class Game {
     let moving = true;
     //player.moving signals player should be moving bc wasd is pressed
     //moving signals if the conditions (rectangular collision) to move are true or false
-    //moving background with WASD
     Utils.movePlayer(this.player, this.keys, this.boundaries, this.moveables, this.lastkey, moving);
     
     window.requestAnimationFrame(this.animate.bind(this));
@@ -136,7 +138,10 @@ class Game {
       this.bagon.clickedOn(htmlElems);
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.player)){
     this.player.clickedOn(htmlElems);
-  } else{
+  } else if (Utils.isMouseOnRect([mouseX, mouseY], this.snorlax)){
+    this.snorlax.clickedOn(htmlElems);
+  }
+    else{
     //return dialogue to game state if empty part of canvas is clicked on
     this.resetDialogue();
   }

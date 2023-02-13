@@ -153,16 +153,25 @@ function changeInnerHTML(selector, newHTML) {
     element.innerHTML = newHTML;
   });
 }
-function changeDialogueText(newHTML){ //Bottom dialogue box
-  const dialogue = document.getElementById("dialoguetext");
+function changeDialogueText1(newHTML){ //Bottom dialogue box
+  const dialogue = document.getElementById("dialoguetext1");
   dialogue.innerHTML = newHTML;
 }
 function changeDialogueText2(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext2");
   dialogue.innerHTML = newHTML;
 }
+function changeButtonText1(newHTML){ //Bottom button box 1
+  const dialogue = document.getElementById("option1");
+  dialogue.innerHTML = newHTML;
+}
+function changeButtonText2(newHTML){ //Bottom button box 2
+  const dialogue = document.getElementById("option2");
+  dialogue.innerHTML = newHTML;
+}
 
 module.exports = {
   rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, addSpriteBoundaries,
-  hideElements, showElements, changeInnerHTML, changeDialogueText, changeDialogueText2
+  hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, 
+  changeButtonText1, changeButtonText2
 };

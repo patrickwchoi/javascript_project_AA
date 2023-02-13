@@ -19,18 +19,36 @@ class Snorlax extends Pokemon{
     this.friendshipmax = 1;
     this.encountered = false;
   }
-  interact(){
+  clickedOn(){
+    console.log('clicked on snorlax')
+    switch(this.friendshiplevel) {
+      case 0:
+        this.interactBeforeFriendship();
+        break;
+      case 1:
+        // code block
+        break;
+      default:
+        // code block
+    }
+  }
+  interactBeforeFriendship(){
+    // hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, changeButtonText1, changeButtonText2
     if (this.encountered===false){
       this.encountered = true;
-      document.querySelectorAll('#dialoguebox > *').forEach((el)=>el.classList.add('hidden'));
-      document.querySelector('#dialogueAnnouncement').classList.remove('hidden');
-      document.querySelector('#dialogueAnnouncement').innerHTML = 
-      `You encountered a Snorlax! Snorlax is sleeping...`
+      Utils.changeDialogueText1('Snorlax: Zzz... -_-')
+      Utils.changeDialogueText2('You encountered a Snorlax! Snorlax is sleeping...')
+      Utils.changeButtonText1('Wake up Snorlax')
+
+
+      // Utils.hideElements('#dialoguebox > *');
+      // document.querySelectorAll('#dialoguebox > *').forEach((el)=>el.classList.add('hidden'));
+      // document.querySelector('#dialogueAnnouncement').classList.remove('hidden');
+      // document.querySelector('#dialogueAnnouncement').innerHTML = `You encountered a Snorlax! Snorlax is sleeping...`
     } else {
-      document.querySelectorAll('#dialoguebox > *').forEach((el)=>el.classList.add('hidden'));
-      document.querySelector('#dialogueAnnouncement').classList.remove('hidden');
-      document.querySelector('#dialogueAnnouncement').innerHTML = 
-      `Snorlax is still sleeping...`
+      this.encountered = true;
+      Utils.changeDialogueText1('Snorlax: Zzz... -_-')
+      Utils.changeDialogueText2('Snorlax is still sleeping...')
     }
   }
 

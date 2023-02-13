@@ -35,12 +35,12 @@
     border: 1px solid #042261;
   }
 }
-#spaceforalldialoguetext{
+#dialogue-text-container{
   width: 60%;
   display: flex;
   justify-content: center;
 }
-#dialoguetext{
+#dialoguetext1{
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -101,7 +101,7 @@ button {
   gap: 10px;
   border-radius: 2px;
 }
-#spaceforalldialoguetext{
+#dialogue-text-container{
   display: flex;
   // justify-content: center;
   flex-direction: column;
@@ -116,7 +116,7 @@ button {
 }
 
 
-#spaceforalldialoguetext *{
+#dialogue-text-container *{
   background-color: #a3c7eb;
   border: 5px ;
   border-color: darkslategrey;

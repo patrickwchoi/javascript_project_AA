@@ -85,7 +85,7 @@ class Pokemon extends Sprite{
 
   clickedOn(htmlElems){ //what happens when we click on bagon
     // console.log('bagon clickedOn method!')
-    // htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.roar;
+    // htmlElems.dialogueText1.innerHTML = this.name+': '+ this.dialogue.roar;
     // htmlElems.dialogueText2.innerHTML = 'What would you like to do?'
     // this.defaultInteraction(htmlElems);
     // console.log('Friendship Level: '+this.friendshiplevel)
@@ -94,13 +94,13 @@ class Pokemon extends Sprite{
   //   this.showSelectorContent('.dialogueOption')
   //   this.showSelectorContent('#dialogueButtons')
 
-  //   this.showSelectorContent('#spaceforalldialoguetext') //new
+  //   this.showSelectorContent('#dialogue-text-container') //new
 
   //   htmlElems.option1.innerHTML = 'Give '+this.name+' compliments';
   //   document.querySelector('#bagon_face').classList.remove('hidden')
   //   htmlElems.option1.onclick = ()=>{
   //     this.hideSelectorContent('.dialogueOption')
-  //     htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.happy;
+  //     htmlElems.dialogueText1.innerHTML = this.name+': '+ this.dialogue.happy;
   //     htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' pets*'
   //     this.incrementFriendship();
   //   }

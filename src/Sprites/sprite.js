@@ -23,7 +23,7 @@ class Sprite{
     this.dialogue[name] = str
   }
   clickedOn(htmlElems){
-    htmlElems.dialogueText.innerHTML = this.dialogue.empty;
+    htmlElems.dialogueText1.innerHTML = this.dialogue.empty;
   }
   draw(){//draw image of sprite
     this.ctx.drawImage(this.image, 
