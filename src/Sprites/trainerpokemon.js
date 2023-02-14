@@ -12,18 +12,23 @@ class TrainerPokemon extends Pokemon{
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
     this.friendshipmax = 2;
+    //friendship variables: booleans for if tasks that increase friendship have been completed
+    this.friendship = {
+      'fed': false,
+      'complimented': false,
+    }
     //convert to function later
     let pokedexentry = document.createElement("div");
     pokedexentry.id = name+'Pokedex'; //ex. id-"bagonPokedex"
-    // let br = document.createElement("br");
     let pokedexname = document.createTextNode(name+': ');
     let friendship = document.createElement('div')
     friendship.innerHTML = 'Friendship Level: '+this.friendshiplevel;
     friendship.id = name+'friendshiplevel' //#bagonfriendshiplevel
     pokedexentry.appendChild(pokedexname)
-    // pokedexentry.appendChild(br)
     pokedexentry.appendChild(friendship)
     document.querySelector('#pokedexContent').appendChild(pokedexentry);
+
+
   }
   
   incrementFriendship(){
@@ -110,7 +115,7 @@ class TrainerPokemon extends Pokemon{
     // console.log('Friendship Level: '+this.friendshiplevel)
   }
   defaultInteraction(htmlElems){
-    this.showSelectorContent('.dialogueOption')
+    this.showSelectorContent('.dialogueButtonOption')
     this.showSelectorContent('#dialogueButtons')
 
     this.showSelectorContent('#dialogue-text-container') //new
@@ -118,14 +123,14 @@ class TrainerPokemon extends Pokemon{
     htmlElems.option1.innerHTML = 'Give '+this.name+' compliments';
     document.querySelector('#bagon_face').classList.remove('hidden')
     htmlElems.option1.onclick = ()=>{
-      this.hideSelectorContent('.dialogueOption')
+      this.hideSelectorContent('.dialogueButtonOption')
       htmlElems.dialogueText1.innerHTML = this.name+': '+ this.dialogue.happy;
       htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' pets*'
       this.incrementFriendship();
     }
     htmlElems.option2.innerHTML = 'Give '+this.name+' treats';
     htmlElems.option2.onclick = ()=>{
-      this.hideSelectorContent('.dialogueOption')
+      this.hideSelectorContent('.dialogueButtonOption')
       htmlElems.dialogueText1.innerHTML = this.name+': '+ this.dialogue.eating;
       htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' treats*'
       this.incrementFriendship();

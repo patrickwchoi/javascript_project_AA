@@ -161,17 +161,35 @@ function changeDialogueText2(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext2");
   dialogue.innerHTML = newHTML;
 }
-function changeButtonText1(newHTML){ //Bottom button box 1
-  const dialogue = document.getElementById("option1");
-  dialogue.innerHTML = newHTML;
+function changeButton1({newHTML, onClick, bold=false}){ //Bottom button box 1
+  const button = document.getElementById("option1");
+  showElements("#option1");
+  if (newHTML){
+    button.innerHTML = newHTML;
+  }
+  if (onClick){
+    button.onclick = onClick;
+  }
+  if (bold){
+    button.style.fontWeight = 'bold';
+  }
 }
-function changeButtonText2(newHTML){ //Bottom button box 2
-  const dialogue = document.getElementById("option2");
-  dialogue.innerHTML = newHTML;
+function changeButton2({newHTML, onClick, bold=false}){ //Bottom button box 2
+  const button = document.getElementById("option2");
+  showElements("#option2");
+  if (newHTML){
+    button.innerHTML = newHTML;
+  }
+  if (onClick){
+    button.onclick = onClick;
+  }
+  if (bold){
+    button.style.fontWeight = 'bold';
+  }
 }
 
 module.exports = {
   rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, addSpriteBoundaries,
   hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, 
-  changeButtonText1, changeButtonText2
+  changeButton1, changeButton2
 };

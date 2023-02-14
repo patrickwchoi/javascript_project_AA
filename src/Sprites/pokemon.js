@@ -91,7 +91,7 @@ class Pokemon extends Sprite{
     // console.log('Friendship Level: '+this.friendshiplevel)
   }
   defaultInteraction(htmlElems){
-  //   this.showSelectorContent('.dialogueOption')
+  //   this.showSelectorContent('.dialogueButtonOption')
   //   this.showSelectorContent('#dialogueButtons')
 
   //   this.showSelectorContent('#dialogue-text-container') //new
@@ -99,14 +99,14 @@ class Pokemon extends Sprite{
   //   htmlElems.option1.innerHTML = 'Give '+this.name+' compliments';
   //   document.querySelector('#bagon_face').classList.remove('hidden')
   //   htmlElems.option1.onclick = ()=>{
-  //     this.hideSelectorContent('.dialogueOption')
+  //     this.hideSelectorContent('.dialogueButtonOption')
   //     htmlElems.dialogueText1.innerHTML = this.name+': '+ this.dialogue.happy;
   //     htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' pets*'
   //     this.incrementFriendship();
   //   }
   //   htmlElems.option2.innerHTML = 'Give '+this.name+' treats';
   //   htmlElems.option2.onclick = ()=>{
-  //     this.hideSelectorContent('.dialogueOption')
+  //     this.hideSelectorContent('.dialogueButtonOption')
   //     htmlElems.dialogueText.innerHTML = this.name+': '+ this.dialogue.eating;
   //     htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' treats*'
   //     this.incrementFriendship();

@@ -16,8 +16,12 @@ class Snorlax extends Pokemon{
     this.name = name;
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
-    this.friendshipmax = 1;
+    this.friendshipmax = 2;
     this.encountered = false;
+    this.friendship = {
+      'woke up': false,
+      'fed': false,
+    }
   }
   clickedOn(){
     console.log('clicked on snorlax')
@@ -28,17 +32,17 @@ class Snorlax extends Pokemon{
       case 1:
         // code block
         break;
-      default:
+      case 2:
         // code block
     }
   }
   interactBeforeFriendship(){
-    // hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, changeButtonText1, changeButtonText2
+    // hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, changeButton1, changeButton2
     if (this.encountered===false){
       this.encountered = true;
       Utils.changeDialogueText1('Snorlax: Zzz... -_-')
       Utils.changeDialogueText2('You encountered a Snorlax! Snorlax is sleeping...')
-      Utils.changeButtonText1('Wake up Snorlax')
+      Utils.changeButton1({newHTML: 'Wake up Snorlax', onClick: ()=>{console.log('clicked on option 1')}, bold:true})
 
 
       // Utils.hideElements('#dialoguebox > *');
