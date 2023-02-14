@@ -155,15 +155,20 @@ function changeInnerHTML(selector, newHTML) {
 }
 function changeDialogueText1(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext1");
+  showElements("#dialoguetext1");
+  showElements("#dialogue-text-container");
   dialogue.innerHTML = newHTML;
 }
 function changeDialogueText2(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext2");
+  showElements("#dialoguetext2");
+  showElements("#dialogue-text-container");
   dialogue.innerHTML = newHTML;
 }
 function changeButton1({newHTML, onClick, bold=false}){ //Bottom button box 1
   const button = document.getElementById("option1");
   showElements("#option1");
+  showElements("#dialogueButtons");
   if (newHTML){
     button.innerHTML = newHTML;
   }
@@ -177,6 +182,7 @@ function changeButton1({newHTML, onClick, bold=false}){ //Bottom button box 1
 function changeButton2({newHTML, onClick, bold=false}){ //Bottom button box 2
   const button = document.getElementById("option2");
   showElements("#option2");
+  showElements("#dialogueButtons");
   if (newHTML){
     button.innerHTML = newHTML;
   }

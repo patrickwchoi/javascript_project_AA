@@ -50,12 +50,12 @@ class Sprite{
       }
   }
 
-  hideSelectorContent(selector){//move this to sprite class
+  hideSelectorContent(selector){
     document.querySelectorAll(selector).forEach((el)=>{
       el.classList.add('hidden')
     })
   }
-  showSelectorContent(selector){//move this to sprite class
+  showSelectorContent(selector){
     document.querySelectorAll(selector).forEach((el)=>{
       el.classList.remove('hidden')
     })
