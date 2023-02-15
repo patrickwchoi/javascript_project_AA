@@ -135,11 +135,11 @@ class Game {
   let mouseX = e.clientX
   
   if (Utils.isMouseOnRect([mouseX, mouseY], this.bagon)){
-      this.bagon.clickedOn(htmlElems);
+      this.bagon.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.player)){
-    this.player.clickedOn(htmlElems);
+    this.player.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.snorlax)){
-    this.snorlax.clickedOn(htmlElems);
+    this.snorlax.clickedOn();
   }
     else{
     //return dialogue to game state if empty part of canvas is clicked on

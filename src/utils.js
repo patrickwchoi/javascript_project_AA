@@ -177,7 +177,10 @@ function changeButton1({newHTML, onClick, bold=false}){ //Bottom button box 1
   }
   if (bold){
     button.style.fontWeight = 'bold';
+  } else{
+    button.style.fontWeight = 'normal';
   }
+  console.log(bold)
 }
 function changeButton2({newHTML, onClick, bold=false}){ //Bottom button box 2
   const button = document.getElementById("option2");
@@ -191,6 +194,8 @@ function changeButton2({newHTML, onClick, bold=false}){ //Bottom button box 2
   }
   if (bold){
     button.style.fontWeight = 'bold';
+  } else{
+    button.style.fontWeight = 'normal';
   }
 }
 

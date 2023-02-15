@@ -109,61 +109,39 @@ class TrainerPokemon extends Pokemon{
       this.frames.yval = 2;
     }
   }
-  clickedOn(htmlElems){ //what happens when we click on bagon
-    // console.log('bagon clickedOn method!')
-    // htmlElems.dialogueText1.innerHTML = this.name+': '+ this.dialogue.roar;
-    // htmlElems.dialogueText2.innerHTML = 'What would you like to do?'
+  clickedOn(){ //what happens when we click on bagon
     console.log('bagon clickedOn method!')
     Utils.changeDialogueText1(`${this.name}: ${this.dialogue.roar}`);
     Utils.changeDialogueText2(`What would you like to do?`);
-    this.defaultInteraction(htmlElems);
+    this.defaultInteraction();
     // console.log('Friendship Level: '+this.friendshiplevel)
   }
 
-  defaultInteraction(htmlElems){
-    // this.showSelectorContent('.dialogueButtonOption')
-    // this.showSelectorContent('#dialogueButtons')
-    // this.showSelectorContent('#dialogue-text-container') //new
-
-    // htmlElems.option1.innerHTML = 'Give '+this.name+' compliments';
+  defaultInteraction(){
+    document.querySelector('#bagon_face').classList.remove('hidden')
     Utils.changeButton1({
-      newHTML: `Give ${this.name} compliments`,
+      newHTML: `Give ${this.name} compliments${this.friendship.complimented ? ` again`: ``}`,
       onClick: ()=>{
-        // this.hideSelectorContent('.dialogueButtonOption')
         Utils.hideElements('.dialogueButtonOption')
-        // htmlElems.dialogueText1.innerHTML = this.name+': '+ this.dialogue.happy;
-        // htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' compliments*'
         Utils.changeDialogueText1(`${this.name}: ${this.dialogue.happy}`);
         Utils.changeDialogueText2(`*Giving ${this.name} compliments*`);
+        this.friendship.complimented = true;
         this.incrementFriendship();
-      }
+      }, 
+      bold: !this.friendship.complimented //if they didnt compliment yet, make it bold
     });
-    document.querySelector('#bagon_face').classList.remove('hidden')
-    // htmlElems.option1.onclick = ()=>{
-    //   this.hideSelectorContent('.dialogueButtonOption')
-    //   htmlElems.dialogueText1.innerHTML = this.name+': '+ this.dialogue.happy;
-    //   htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' pets*'
-    //   this.incrementFriendship();
-    // }
+
     Utils.changeButton2({
       newHTML: `Give ${this.name} treats`,
       onClick: ()=>{
         Utils.hideElements('.dialogueButtonOption')
-        // htmlElems.dialogueText1.innerHTML = this.name+': '+ this.dialogue.eating;
-        // htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' treats*'
         Utils.changeDialogueText1(`${this.name}: ${this.dialogue.eating}`);
         Utils.changeDialogueText2(`*Giving ${this.name} treats*`);
+        this.friendship.fed = true;
         this.incrementFriendship();
-      }
+      },
+      bold: !this.friendship.fed
     });
-
-    // htmlElems.option2.innerHTML = 'Give '+this.name+' treats';
-    // htmlElems.option2.onclick = ()=>{
-    //   this.hideSelectorContent('.dialogueButtonOption')
-    //   htmlElems.dialogueText1.innerHTML = this.name+': '+ this.dialogue.eating;
-    //   htmlElems.dialogueText2.innerHTML = '*Giving '+this.name+' treats*'
-    //   this.incrementFriendship();
-    // }
   }
 }
 
