@@ -18,6 +18,7 @@ class Player extends Sprite{
     } else {
       this.inventory[item.name] = 1
     }
+    item.pickedup = true;
     Utils.changeDialogueText2(`Picked up an ${item.name}`)
   }
   removeItem(item){

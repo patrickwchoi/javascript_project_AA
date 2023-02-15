@@ -11,8 +11,6 @@ class Snorlax extends Pokemon{
     image = snorlaxSprite;
     frames = frames;
     super({pos, ctx, image, frames});
-    // this.pos = pos;
-    // this.ctx = ctx;
     this.name = name;
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;

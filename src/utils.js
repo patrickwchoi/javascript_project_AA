@@ -118,20 +118,21 @@ function addBoundaries({collisionsMap, ctx, offset}) {
   });
   return boundaries;
 }
-function addSpriteBoundaries({boundaries, ctx, sprite}) { //for adding sprite to boundaries array
-  boundaries.push(
-    new Boundary({
-      ctx: ctx,
-      pos: [
-        sprite.pos[0] ,
-        sprite.pos[1] ,
-      ],
-      width: sprite.screenWidth,
-      height: sprite.screenHeight,
-    })
-  );
-  console.log(boundaries[boundaries.length-1])
-  console.log(sprite.pos)
+function addSpriteBoundaries({boundaries, ctx, sprites}) { //for adding sprites in sprite array to boundaries array
+  console.log(sprites)
+  sprites.forEach((sprite) => {
+    boundaries.push(
+      new Boundary({
+        ctx: ctx,
+        pos: [
+          sprite.pos[0] ,
+          sprite.pos[1] ,
+        ],
+        width: sprite.screenWidth,
+        height: sprite.screenHeight,
+      })
+    );
+  });
   return boundaries;
 }
 

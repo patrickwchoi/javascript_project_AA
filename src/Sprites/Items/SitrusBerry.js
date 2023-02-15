@@ -10,8 +10,9 @@ class SitrusBerry extends Item{
     }
 
     clickedOn(){
+      console.log('sitrusberry clicked on')
       this.player.pickupItem(this)
       Utils.changeDialogueText2(`Picked up a Sitrus Berry`)
     }
 }
-module.exports = Item;
+module.exports = SitrusBerry;

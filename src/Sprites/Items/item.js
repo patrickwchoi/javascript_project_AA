@@ -11,11 +11,7 @@ class Item extends Sprite{
       super({pos, image, ctx, frames})
       this.name = name
       this.player = player;
-    }
-
-    pickupItem(){ //not sure if i need this
-      this.player.pickupItem(this)
-      this.player.removeItem(this)
+      this.pickedup=false
     }
 }
 module.exports = Item;

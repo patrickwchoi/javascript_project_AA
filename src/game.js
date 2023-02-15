@@ -90,19 +90,26 @@ class Game {
       name: 'Snorlax',
       player: this.player});
     this.sitrusberry = new SitrusBerry({
-      pos: [canvas.width / 2 +50, canvas.height / 2 +50],
+      pos: [canvas.width / 2 +60, canvas.height / 2 +10],
       ctx: this.ctx,
       player: this.player,
     })
+    this.staticSpritesArr = [this.snorlax, this.sitrusberry]
     this.boundaries = Utils.addSpriteBoundaries({
-      boundaries: this.boundaries, ctx: this.ctx, sprite: this.snorlax, 
+      boundaries: this.boundaries, ctx: this.ctx, sprites: this.staticSpritesArr
     });
-
-    
-    this.moveables = [this.background, ...this.boundaries, this.snorlax];
+    this.moveables = [this.background, ...this.boundaries, ...this.staticSpritesArr];
     // this.play();
   }
+  removeSpriteFromMap(sprite){
+    // this.moveables = this.moveables.filter((moveable) => moveable !== sprite);
+    this.staticSpritesArr = this.staticSpritesArr.filter((staticSprite) => staticSprite !== sprite);
+    this.boundaries = Utils.addSpriteBoundaries({
+      boundaries: this.boundaries, ctx: this.ctx, sprites: this.staticSpritesArr
+    });
+    this.moveables = [this.background, ...this.boundaries, ...this.staticSpritesArr];
 
+  }
   play() {
     this.animate();
     console.log("play")
@@ -115,11 +122,20 @@ class Game {
     this.bagon.changePokemonDirection(this.keys, this.player) 
     this.bagon.followPlayer(this.player);
     this.player.draw();
-    this.snorlax.draw();
+    // this.snorlax.draw();
     if (this.snorlax.moving){
       this.snorlax.moveOutOfWay();
     }
-    this.sitrusberry.draw();
+    // if (!this.sitrusberry.pickedup){
+    //   this.sitrusberry.draw()
+    // };
+    this.staticSpritesArr.forEach((sprite) => {
+      if (sprite.pickedup){
+        this.removeSpriteFromMap(sprite)
+      } else{
+        sprite.draw();
+      }
+    })
     let moving = true;
     //player.moving signals player should be moving bc wasd is pressed
     //moving signals if the conditions (rectangular collision) to move are true or false
@@ -145,6 +161,8 @@ class Game {
     this.player.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.snorlax)){
     this.snorlax.clickedOn();
+  } else if (Utils.isMouseOnRect([mouseX, mouseY], this.sitrusberry)){
+    this.sitrusberry.clickedOn();
   }
     else{
     //return dialogue to game state if empty part of canvas is clicked on
