@@ -7,7 +7,7 @@ snorlaxSprite.width = 29*2;
 snorlaxSprite.height = 29*4;
 
 class Snorlax extends Pokemon{
-  constructor({pos, image, ctx, frames = {dimx:2, dimy:4, zoom:2}, pokedexpic, name}){
+  constructor({pos, image, ctx, frames = {dimx:2, dimy:4, zoom:2}, pokedexpic, name, player}){
     image = snorlaxSprite;
     frames = frames;
     super({pos, ctx, image, frames});
@@ -23,9 +23,11 @@ class Snorlax extends Pokemon{
       'fed': false,
     }
     this.moving=false;
+    this.player=player;
   }
   clickedOn(){
-    console.log('clicked on snorlax')
+    console.log(this.pos)
+    // this.moving=true;
     switch(this.friendshiplevel) {
       case 0:
         this.interactBeforeFriendship();
@@ -54,38 +56,38 @@ class Snorlax extends Pokemon{
     } else {
       this.encountered = true;
       Utils.changeDialogueText1('Snorlax: Zzz... -_-')
-      Utils.changeDialogueText2('Snorlax is still sleeping...')
-      // if (player has the berry){
-      //   Utils.changeButton1({
-      //     newHTML: 'Pull our the Sitrus Berry', 
-      //     onClick: ()=>{
-      //       Utils.changeDialogueText1('Snorlax: Zzz?? -_-')
-      //       Utils.changeDialogueText2(`Snorlax smelled the berry and woke up!`)
-      //       Utils.changeButton1({
-      //         newHTML: 'Feed Snorlax the Sitrus Berry',
-      //         onClick: ()=>{
-      //           Utils.changeDialogueText1('Snorlax: Nomnomnomnom! ^~^')
-      //           Utils.changeDialogueText2(`Snorlax is eating the berry!`)
-                  // Utils.changeButton1({
-                  //   newHTML: 'Continue',
-                  //   onClick: ()=>{
-                  //     this.incrementFriendship();
-                  //   },
-                  //   bold:true
-                  // })
-      //         },
-      //         bold:true
-      //       })
-      //     }, 
-      //     bold:true})
-      // }
+      Utils.changeDialogueText2('Snorlax is still sleeping... Is there anything around us that could help?')
+      if (this.player.inventory['Sitrus Berry'] > 0){
+        Utils.changeButton1({
+          newHTML: 'Pull out the Sitrus Berry', 
+          onClick: ()=>{
+            Utils.changeDialogueText1('Snorlax: Zzz?? -_-')
+            Utils.changeDialogueText2(`Snorlax smelled the berry and woke up!`)
+            Utils.changeButton1({
+              newHTML: 'Feed Snorlax the Sitrus Berry',
+              onClick: ()=>{
+                Utils.changeDialogueText1('Snorlax: Nomnomnomnom! ^~^')
+                Utils.changeDialogueText2(`Snorlax is eating the berry!`)
+                  Utils.changeButton1({
+                    newHTML: 'Continue',
+                    onClick: ()=>{
+                      this.incrementFriendship();
+                    },
+                    bold:true
+                  })
+              },
+              bold:true
+            })
+          }, 
+          bold:true})
+      }
     }
   }
   incrementFriendship(){
     if (this.friendshiplevel === this.friendshipmax-1){
       this.friendshiplevel +=1;
       Utils.changeDialogueText2(`Snorlax's friendship level is now maxed!`)
-      this.moving=true;
+      this.moving=true; //trigger moving animation in animation cycle
     } else {
       console.log('cannot increment friendship')
     }
@@ -93,14 +95,12 @@ class Snorlax extends Pokemon{
   moveOutOfWay(){ 
     console.log('snorlax moving out of the way')
     //move snorlax position one step at a time
-    this.pos
-
-    // if (snorlax is in rigt position){
-    //   this.moving = false;
-    // }
+    if (this.pos[0] === 400){ ///set up where you want snorlax to stop moving
+      this.moving=false;
+    } else{
+      this.pos[0] -= 1;
+    }
   }
-
-
 
 
 }

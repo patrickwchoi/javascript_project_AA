@@ -1,9 +1,12 @@
 const Item = require("./item.js");
 const Utils = require("../../utils.js");
 
+
+
 class SitrusBerry extends Item{
     constructor(...args){
       super(...args);
+      this.name='Sitrus Berry'
     }
 
     clickedOn(){

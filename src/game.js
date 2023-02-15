@@ -8,6 +8,7 @@ const Pokemon = require("./Sprites/pokemon.js");
 const TrainerPokemon = require("./Sprites/trainerpokemon.js");
 const Item = require("./Sprites/Items/item.js");
 const Snorlax = require("./Sprites/snorlax.js");
+const SitrusBerry = require("./Sprites/Items/SitrusBerry.js");
 
 //Create Variables
 const dialogueBox = document.querySelector('#dialoguebox');
@@ -28,13 +29,6 @@ const backToMenuButton = document.querySelector('#backToMenuButton');
 const pokedex = document.querySelector('#pokedexContent');
 const pokedexButton = document.querySelector('#pokedexButton');
 
-const  htmlElems = { //stuff I wanna pass in
-  dialogueBox: dialogueBox, 
-  dialogueText1:dialogueText1,
-  dialogueText2:dialogueText2,
-  option1:option1, option2:option2,
-  menuButton:menuButton}
-
 const map = new Image();
 map.src = "./assets/tilemap8.png";
 map.width = 160*16; //MUST CHANGE MANUALLY WHEN CHANGING MAP DIMENSIONS
@@ -52,8 +46,10 @@ bagonImg.height = 21*4;
 
 const pokeballImg = new Image();
 pokeballImg.src = "./assets/pokeball.png"
-pokeballImg.width = 920;
-pokeballImg.height = 512;
+// pokeballImg.width = 920;
+// pokeballImg.height = 512;
+pokeballImg.width = 920/100;
+pokeballImg.height = 512/100;
 
 class Game {
   constructor(canvas) {
@@ -91,8 +87,13 @@ class Game {
     this.snorlax = new Snorlax({
       pos: [canvas.width / 2 +50, canvas.height / 2 +50], 
       ctx: this.ctx,
-      name: 'Snorlax'});
-
+      name: 'Snorlax',
+      player: this.player});
+    this.sitrusberry = new SitrusBerry({
+      pos: [canvas.width / 2 +50, canvas.height / 2 +50],
+      ctx: this.ctx,
+      player: this.player,
+    })
     this.boundaries = Utils.addSpriteBoundaries({
       boundaries: this.boundaries, ctx: this.ctx, sprite: this.snorlax, 
     });
@@ -118,6 +119,7 @@ class Game {
     if (this.snorlax.moving){
       this.snorlax.moveOutOfWay();
     }
+    this.sitrusberry.draw();
     let moving = true;
     //player.moving signals player should be moving bc wasd is pressed
     //moving signals if the conditions (rectangular collision) to move are true or false
@@ -156,6 +158,7 @@ class Game {
       el.classList.add('hidden')
       })
   }
+
   registerEventListeners() {
 
     this.boundClickHandler = this.click.bind(this);
