@@ -42,17 +42,27 @@ class Snorlax extends Pokemon{
       this.encountered = true;
       Utils.changeDialogueText1('Snorlax: Zzz... -_-')
       Utils.changeDialogueText2('You encountered a Snorlax! Snorlax is sleeping...')
-      Utils.changeButton1({newHTML: 'Wake up Snorlax', onClick: ()=>{console.log('clicked on option 1')}, bold:true})
-
-
-      // Utils.hideElements('#dialoguebox > *');
-      // document.querySelectorAll('#dialoguebox > *').forEach((el)=>el.classList.add('hidden'));
-      // document.querySelector('#dialogueAnnouncement').classList.remove('hidden');
-      // document.querySelector('#dialogueAnnouncement').innerHTML = `You encountered a Snorlax! Snorlax is sleeping...`
+      Utils.changeButton1({
+        newHTML: 'Wake up Snorlax', 
+        onClick: ()=>{
+          console.log('clicked on option 1');
+          Utils.changeDialogueText1('Snorlax: Zzz Zzz... -_-')
+          Utils.changeDialogueText2(`Snorlax isn't waking up. Is there anything around us that could help?`)
+        }, 
+        bold:false})
     } else {
       this.encountered = true;
       Utils.changeDialogueText1('Snorlax: Zzz... -_-')
       Utils.changeDialogueText2('Snorlax is still sleeping...')
+      // if (player has the berry){
+      //   Utils.changeButton1({
+      //     newHTML: 'Feed Snorlax the Oran Berry', 
+      //     onClick: ()=>{
+      //       Utils.changeDialogueText1('Snorlax: Zzz?? Nomnomnom...')
+      //       Utils.changeDialogueText2(`Snorlax smelled the berry and woke up!`)
+      //     }, 
+      //     bold:true})
+      // }
     }
   }
 

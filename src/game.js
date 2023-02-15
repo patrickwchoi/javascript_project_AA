@@ -75,18 +75,18 @@ class Game {
       image: map,
       ctx: this.ctx,
     });
-    this.player = new Player({
-      pos: [canvas.width / 2 - james.width/3, canvas.height/2 - james.height/4], //manually fixed pos based on james.png dim
-      image: james,
-      ctx: this.ctx,
-      frames: { dimx: 3, dimy: 4, zoom: 1.8 },
-    });
     this.bagon = new TrainerPokemon({
       pos: [canvas.width / 2 , canvas.height / 2 ], //very rough pos, will fix later
       image: bagonImg,
       ctx: this.ctx,
       frames: { dimx: 2, dimy: 4, zoom: 1.8 }, 
       name: 'Bagon'});
+    this.player = new Player({
+      pos: [canvas.width / 2 - james.width/3, canvas.height/2 - james.height/4], //manually fixed pos based on james.png dim
+      image: james,
+      ctx: this.ctx,
+      frames: { dimx: 3, dimy: 4, zoom: 1.8 },
+    });
     this.bagon.setTrainer(this.player);
     this.snorlax = new Snorlax({
       pos: [canvas.width / 2 +50, canvas.height / 2 +50], 

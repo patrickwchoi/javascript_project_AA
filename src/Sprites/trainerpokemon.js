@@ -132,7 +132,7 @@ class TrainerPokemon extends Pokemon{
     });
 
     Utils.changeButton2({
-      newHTML: `Give ${this.name} treats`,
+      newHTML: `Give ${this.name} treats${this.friendship.fed ? ` again`: ``}`,
       onClick: ()=>{
         Utils.hideElements('.dialogueButtonOption')
         Utils.changeDialogueText1(`${this.name}: ${this.dialogue.eating}`);
