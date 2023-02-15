@@ -6,7 +6,7 @@ const Boundary = require("./Map/boundary.js");
 const Utils = require("./utils.js");
 const Pokemon = require("./Sprites/pokemon.js");
 const TrainerPokemon = require("./Sprites/trainerpokemon.js");
-const Item = require("./Sprites/item.js");
+const Item = require("./Sprites/Items/item.js");
 const Snorlax = require("./Sprites/snorlax.js");
 
 //Create Variables
@@ -115,6 +115,9 @@ class Game {
     this.bagon.followPlayer(this.player);
     this.player.draw();
     this.snorlax.draw();
+    if (this.snorlax.moving){
+      this.snorlax.moveOutOfWay();
+    }
     let moving = true;
     //player.moving signals player should be moving bc wasd is pressed
     //moving signals if the conditions (rectangular collision) to move are true or false

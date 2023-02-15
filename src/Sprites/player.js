@@ -12,7 +12,21 @@ class Player extends Sprite{
     this.inventory={};
     // this.pokemon = bagon
   }
-  
+  pickupItem(item){
+    if (this.inventory[item.name]){
+      this.inventory[item.name] += 1
+    } else {
+      this.inventory[item.name] = 1
+    }
+    Utils.changeDialogueText2(`Picked up an ${item.name}`)
+  }
+  removeItem(item){
+    if (this.inventory[item.name]){
+      this.inventory[item.name] -= 1
+    } else{
+      Utils.changeDialogueText2(`You don't have an ${item.name}!`)
+    }
+  }
   
 }
 module.exports = Player;
