@@ -10,10 +10,17 @@ class SitrusBerry extends Item{
     }
 
     clickedOn(){
-      console.log('sitrusberry clicked on')
-      this.player.pickupItem(this);
-      Utils.changeDialogueText2(`Picked up a Sitrus Berry`);
-      this.removeItemFromMap();
+      Utils.changeDialogueText2(`It's a Sitrus Berry`);
+      Utils.changeButton1({
+        newHTML: 'Pick up',
+        onClick: ()=>{
+          this.player.pickupItem(this);
+          Utils.changeDialogueText2(`Picked up a Sitrus Berry!`);
+          this.removeItemFromMap();
+          Utils.hideElements(['#option1'])
+        },
+        bold: false
+      })
     }
   
 

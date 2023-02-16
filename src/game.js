@@ -57,7 +57,7 @@ class Game {
     this.ctx = canvas.getContext("2d");
     this.ctx.fillRect(0, 0, canvas.width, canvas.height);
     this.ctx.drawImage(map,0,0)
-    this.offset = [-1400, -1350]; //default location of map at start
+    this.offset = [-1400, -1200]; //default location of map at start
 
     this.collisionsMap = this.make2dArrCollisions();
  
@@ -82,16 +82,16 @@ class Game {
     console.log([canvas.width / 2 +50, canvas.height / 2 +50])
     this.snorlax = new Snorlax({
       // pos: [canvas.width / 2 +50, canvas.height / 2 +50], 
-      pos: [345,0],
+      pos: [345,150],
       ctx: this.ctx,
       name: 'Snorlax',
       player: this.player, game:this
     });
     this.sitrusberry = new SitrusBerry({
-      pos: [canvas.width / 2 -120, canvas.height / 2 -50],
+      pos: [canvas.width / 2 -120, canvas.height / 2 +50],
       ctx: this.ctx,
       player: this.player, game:this
-    })
+    });
     this.pokemonArr = [this.snorlax]; //arr for pokemon with boundaries
     this.itemsArr = [this.sitrusberry]; //arr for items with boundaries. Split to two arrs so we can remove only items from map
     this.remakeBoundaries();
