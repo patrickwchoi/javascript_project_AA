@@ -23,6 +23,8 @@ class Snorlax extends Pokemon{
     this.moving=false;
     this.player=player;
     this.inNewPos = false;
+    this.distmovedX = 0; //we'll edit these so he moves X pixels left and Y pixels up
+    this.distmovedY = 0;
   }
   clickedOn(){
     console.log(this.pos)
@@ -50,6 +52,7 @@ class Snorlax extends Pokemon{
           console.log('clicked on option 1');
           Utils.changeDialogueText1('Snorlax: Zzz Zzz... -_-')
           Utils.changeDialogueText2(`Snorlax isn't waking up. Is there anything around us that could help?`)
+          Utils.hideElements(['#option1'])
         }, 
         bold:false})
     } else {
@@ -93,15 +96,19 @@ class Snorlax extends Pokemon{
     }
   }
   moveOutOfWay(){ 
-    console.log('snorlax moving out of the way')
-    //move snorlax position one step at a time
-    if (this.pos[0] === 400){ ///set up where you want snorlax to stop moving
-      this.inNewPos=true;
-      this.game.remakeBoundaries();
-      this.moving=false;
-      // this.game.
+    //move snorlax position one step at a time. First in Y direction, then in X
+    if (this.distmovedY ===150 ){ 
+      if (this.distmovedX === 80){///set up where you want snorlax to stop moving
+        this.inNewPos=true;
+        this.game.remakeBoundaries();
+        this.moving=false;
+      } else{
+        this.pos[0] += 1;
+        this.distmovedX += 1;
+      }
     } else{
-      this.pos[0] -= 1;
+      this.pos[1] -= 1;
+      this.distmovedY += 1;
     }
   }
 
