@@ -98,8 +98,8 @@ class Snorlax extends Pokemon{
     if (this.pos[0] === 400){ ///set up where you want snorlax to stop moving
       this.inNewPos=true;
       this.moving=false;
+      // this.game.
     } else{
-      console.log(this.pos)
       this.pos[0] -= 1;
     }
   }

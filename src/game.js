@@ -88,31 +88,31 @@ class Game {
       pos: [canvas.width / 2 +50, canvas.height / 2 +50], 
       ctx: this.ctx,
       name: 'Snorlax',
-      player: this.player});
+      player: this.player, game:this});
     this.sitrusberry = new SitrusBerry({
       pos: [canvas.width / 2 +60, canvas.height / 2 +10],
       ctx: this.ctx,
-      player: this.player,
+      player: this.player, game:this
     })
+    this.pokemonArr = [this.snorlax]; //arr for pokemon with boundaries
+    this.itemsArr = [this.sitrusberry]; //arr for items with boundaries. Split to two arrs so we can remove only items from map
     this.staticSpritesArr = [this.snorlax, this.sitrusberry]
     this.boundaries = Utils.addSpriteBoundaries({
-      boundaries: this.boundaries, ctx: this.ctx, sprites: this.staticSpritesArr
+      boundaries: this.boundaries, ctx: this.ctx, sprites: this.pokemonArr.concat(this.itemsArr)
     });
-    this.moveables = [this.background, ...this.boundaries, ...this.staticSpritesArr];
-    // this.play();
+    this.moveables = [this.background, ...this.boundaries, ...this.pokemonArr.concat(this.itemsArr)];
   }
-  removeSpriteFromMap(sprite){
-    // this.moveables = this.moveables.filter((moveable) => moveable !== sprite);
-    this.staticSpritesArr = this.staticSpritesArr.filter((staticSprite) => staticSprite !== sprite);
+  removeSpriteFromMap(sprite){ //removes sprite from map. so just meant for items
+    this.itemsArr = this.itemsArr.filter((item) => item !== sprite);
     this.boundaries = Utils.addBoundaries({
       collisionsMap: this.collisionsMap, ctx: this.ctx, offset: this.offset
     });
     this.boundaries = Utils.addSpriteBoundaries({
-      boundaries: this.boundaries, ctx: this.ctx, sprites: this.staticSpritesArr
+      boundaries: this.boundaries, ctx: this.ctx, sprites: this.pokemonArr.concat(this.itemsArr)
     }); //remake our boundaries so we get rid of sprite's boundaries. kind of inefficient, but we only run it when item is removed
-    this.moveables = [this.background, ...this.boundaries, ...this.staticSpritesArr];
-
+    this.moveables = [this.background, ...this.boundaries, ...this.pokemonArr.concat(this.itemsArr)];
   }
+
   play() {
     this.animate();
     console.log("play")
@@ -127,15 +127,21 @@ class Game {
     this.player.draw();
     if (this.snorlax.moving){
       this.snorlax.moveOutOfWay();
-    } else if (this.snorlax.inNewPos){
-      this.removeSpriteFromMap(this.snorlax);
-    }
-    this.staticSpritesArr.forEach((sprite) => { //draw sprite if its not picked up
-      if (sprite.pickedup){
-        this.removeSpriteFromMap(sprite)
-      } else{
-        sprite.draw();
-      }
+    } 
+    // else if (this.snorlax.inNewPos){
+    //   this.removeSpriteFromMap(this.snorlax);
+    //   this.snorlax.moving=false; 
+    // }
+    this.pokemonArr.forEach((sprite) => { //draw sprite if its not picked up
+      // if (sprite.pickedup){
+      //   this.removeSpriteFromMap(sprite)
+      // } else{
+      //   sprite.draw();
+      // }
+      sprite.draw();
+    })
+    this.itemsArr.forEach((sprite) => { 
+      sprite.draw();
     })
     let moving = true;
     //player.moving signals player should be moving bc wasd is pressed

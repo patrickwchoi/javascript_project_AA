@@ -7,11 +7,14 @@ pokeballImg.width = 23;
 pokeballImg.height = 23;
 
 class Item extends Sprite{
-    constructor({pos, image=pokeballImg, ctx, frames = {dimx:1, dimy:1, zoom:1}, player, name}){
-      super({pos, image, ctx, frames})
+    constructor({pos, image=pokeballImg, ctx, frames = {dimx:1, dimy:1, zoom:1}, player, name, game}){
+      super({pos, image, ctx, frames, game})
       this.name = name
       this.player = player;
       this.pickedup=false
+    }
+    removeItemFromMap(){
+      this.game.removeSpriteFromMap(this)
     }
 }
 module.exports = Item;
