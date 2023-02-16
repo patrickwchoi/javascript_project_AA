@@ -1,6 +1,16 @@
 const Sprite = require("./sprite.js");
 const Utils = require("../utils.js");
 
+const james = new Image();
+james.src = "../../assets/james_sprites.png";
+james.width = 16*3;
+james.height = 20*4;
+
+const jessie = new Image();
+jessie.src = "../../assets/Jessie_16x20.png";
+jessie.width = 16*3;
+jessie.height = 20*4;
+
 class Player extends Sprite{
 
   constructor(...args){
@@ -11,6 +21,13 @@ class Player extends Sprite{
     this.moving = false;
     this.inventory={};
     // this.pokemon = bagon
+  }
+
+  changeToJessie(){
+    this.image = jessie;
+  }
+  changeToJames(){
+    this.image = james;
   }
   pickupItem(item){
     if (this.inventory[item.name]){
