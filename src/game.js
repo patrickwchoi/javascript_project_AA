@@ -60,17 +60,12 @@ class Game {
     this.offset = [-700, -750]; //default location of map at start
 
     this.collisionsMap = this.make2dArrCollisions();
-    this.boundaries = Utils.addBoundaries({
-      collisionsMap: this.collisionsMap, ctx: this.ctx, offset: this.offset
-    });
+ 
     this.framesPressed = 0; //will let us know how long a key is held down
     this.registerEventListeners();
 
     this.background = new Sprite({
-      pos: this.offset,
-      image: map,
-      ctx: this.ctx,
-    });
+      pos: this.offset, image: map, ctx: this.ctx, });
     this.bagon = new TrainerPokemon({
       pos: [canvas.width / 2 , canvas.height / 2 ], //very rough pos, will fix later
       image: bagonImg,
@@ -88,7 +83,8 @@ class Game {
       pos: [canvas.width / 2 +50, canvas.height / 2 +50], 
       ctx: this.ctx,
       name: 'Snorlax',
-      player: this.player, game:this});
+      player: this.player, game:this
+    });
     this.sitrusberry = new SitrusBerry({
       pos: [canvas.width / 2 +60, canvas.height / 2 +10],
       ctx: this.ctx,
@@ -97,27 +93,15 @@ class Game {
     this.pokemonArr = [this.snorlax]; //arr for pokemon with boundaries
     this.itemsArr = [this.sitrusberry]; //arr for items with boundaries. Split to two arrs so we can remove only items from map
     this.staticSpritesArr = [this.snorlax, this.sitrusberry]
-    this.boundaries = Utils.addSpriteBoundaries({
-      boundaries: this.boundaries, ctx: this.ctx, sprites: this.pokemonArr.concat(this.itemsArr)
-    });
-    this.moveables = [this.background, ...this.boundaries, ...this.pokemonArr.concat(this.itemsArr)];
-  }
-  removeSpriteFromMap(sprite){ //removes sprite from map. so just meant for items
-    this.itemsArr = this.itemsArr.filter((item) => item !== sprite);
-    this.boundaries = Utils.addBoundaries({
-      collisionsMap: this.collisionsMap, ctx: this.ctx, offset: this.offset
-    });
-    this.boundaries = Utils.addSpriteBoundaries({
-      boundaries: this.boundaries, ctx: this.ctx, sprites: this.pokemonArr.concat(this.itemsArr)
-    }); //remake our boundaries so we get rid of sprite's boundaries. kind of inefficient, but we only run it when item is removed
-    this.moveables = [this.background, ...this.boundaries, ...this.pokemonArr.concat(this.itemsArr)];
+    this.remakeBoundaries();
   }
 
+  
   play() {
     this.animate();
     console.log("play")
   }
-
+  
   animate() {
     //animates screen. will run infinietly and 'refresh' screen
     this.background.draw();
@@ -129,14 +113,15 @@ class Game {
       this.snorlax.moveOutOfWay();
     } 
     // else if (this.snorlax.inNewPos){
-    //   this.removeSpriteFromMap(this.snorlax);
-    //   this.snorlax.moving=false; 
-    // }
-    this.pokemonArr.forEach((sprite) => { //draw sprite if its not picked up
-      // if (sprite.pickedup){
-      //   this.removeSpriteFromMap(sprite)
-      // } else{
-      //   sprite.draw();
+      //   this.removeItemFromMap(this.snorlax);
+      //   this.snorlax.moving=false; 
+      // }
+      this.pokemonArr.forEach((sprite) => { //draw sprite if its not picked up
+        // if (sprite.pickedup){
+          //   this.removeItemFromMap(sprite)
+          // } else{
+            //   sprite.draw();
+            
       // }
       sprite.draw();
     })
@@ -149,6 +134,19 @@ class Game {
     Utils.movePlayer(this.player, this.keys, this.boundaries, this.moveables, this.lastkey, moving);
     
     window.requestAnimationFrame(this.animate.bind(this));
+  }
+  
+  removeItemFromMap(sprite){ //removes sprite from map. so just meant for items
+    this.itemsArr = this.itemsArr.filter((item) => item !== sprite);
+    this.remakeBoundaries();
+  }
+  remakeBoundaries(){ //requires this.pokemonArr and this.itemsArr to be set to correct values
+    this.boundaries = Utils.addBoundaries({
+      collisionsMap: this.collisionsMap, ctx: this.ctx, offset: this.offset});
+    this.boundaries = Utils.addSpriteBoundaries({
+      boundaries: this.boundaries, ctx: this.ctx, sprites: this.pokemonArr.concat(this.itemsArr)});
+
+    this.moveables = [this.background, ...this.boundaries, ...this.pokemonArr.concat(this.itemsArr)];
   }
 
   drawBoundaries(){
@@ -172,20 +170,14 @@ class Game {
     this.sitrusberry.clickedOn();
   }
     else{
-    //return dialogue to game state if empty part of canvas is clicked on
     this.resetDialogue();
-  }
+    }
   }
   resetDialogue(){
-    document.querySelectorAll('#dialoguebox > *').forEach(
-      (el)=>{
-      // if (!button.classList.contains('hidden')) 
-      el.classList.add('hidden')
-      })
+      Utils.hideElements('#dialoguebox > *')
   }
 
   registerEventListeners() {
-
     this.boundClickHandler = this.click.bind(this);
     this.ctx.canvas.addEventListener("mousedown", this.boundClickHandler);
 

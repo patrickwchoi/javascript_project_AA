@@ -14,7 +14,7 @@ class Item extends Sprite{
       this.pickedup=false
     }
     removeItemFromMap(){
-      this.game.removeSpriteFromMap(this)
+      this.game.removeItemFromMap(this)
     }
 }
 module.exports = Item;

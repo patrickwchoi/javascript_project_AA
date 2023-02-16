@@ -7,8 +7,8 @@ salamenceSprite.height = 28*4;
 
 class Pokemon extends Sprite{
 
-  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}, pokedexpic, name}){
-    super({pos, image, ctx, frames});
+  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}, pokedexpic, name, game}){
+    super({pos, image, ctx, frames, game});
     this.name = name
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;

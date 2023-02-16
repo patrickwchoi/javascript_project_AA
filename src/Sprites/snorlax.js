@@ -7,10 +7,10 @@ snorlaxSprite.width = 29*2;
 snorlaxSprite.height = 29*4;
 
 class Snorlax extends Pokemon{
-  constructor({pos, image, ctx, frames = {dimx:2, dimy:4, zoom:2}, pokedexpic, name, player}){
+  constructor({pos, image, ctx, frames = {dimx:2, dimy:4, zoom:2}, pokedexpic, name, player, game}){
     image = snorlaxSprite;
     frames = frames;
-    super({pos, ctx, image, frames});
+    super({pos, ctx, image, frames, game});
     this.name = name;
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
@@ -97,6 +97,7 @@ class Snorlax extends Pokemon{
     //move snorlax position one step at a time
     if (this.pos[0] === 400){ ///set up where you want snorlax to stop moving
       this.inNewPos=true;
+      this.game.remakeBoundaries();
       this.moving=false;
       // this.game.
     } else{
