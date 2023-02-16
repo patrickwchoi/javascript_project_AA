@@ -104,9 +104,12 @@ class Game {
   removeSpriteFromMap(sprite){
     // this.moveables = this.moveables.filter((moveable) => moveable !== sprite);
     this.staticSpritesArr = this.staticSpritesArr.filter((staticSprite) => staticSprite !== sprite);
+    this.boundaries = Utils.addBoundaries({
+      collisionsMap: this.collisionsMap, ctx: this.ctx, offset: this.offset
+    });
     this.boundaries = Utils.addSpriteBoundaries({
       boundaries: this.boundaries, ctx: this.ctx, sprites: this.staticSpritesArr
-    });
+    }); //remake our boundaries so we get rid of sprite's boundaries. kind of inefficient, but we only run it when item is removed
     this.moveables = [this.background, ...this.boundaries, ...this.staticSpritesArr];
 
   }
@@ -122,14 +125,12 @@ class Game {
     this.bagon.changePokemonDirection(this.keys, this.player) 
     this.bagon.followPlayer(this.player);
     this.player.draw();
-    // this.snorlax.draw();
     if (this.snorlax.moving){
       this.snorlax.moveOutOfWay();
+    } else if (this.snorlax.inNewPos){
+      this.removeSpriteFromMap(this.snorlax);
     }
-    // if (!this.sitrusberry.pickedup){
-    //   this.sitrusberry.draw()
-    // };
-    this.staticSpritesArr.forEach((sprite) => {
+    this.staticSpritesArr.forEach((sprite) => { //draw sprite if its not picked up
       if (sprite.pickedup){
         this.removeSpriteFromMap(sprite)
       } else{

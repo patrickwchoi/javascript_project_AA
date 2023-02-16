@@ -14,7 +14,7 @@ class Snorlax extends Pokemon{
     this.name = name;
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
-    this.friendshipmax = 2;
+    this.friendshipmax = 1;
     this.encountered = false;
     this.friendship = {
       'woke up': false,
@@ -22,6 +22,7 @@ class Snorlax extends Pokemon{
     }
     this.moving=false;
     this.player=player;
+    this.inNewPos = false;
   }
   clickedOn(){
     console.log(this.pos)
@@ -83,6 +84,7 @@ class Snorlax extends Pokemon{
   }
   incrementFriendship(){
     if (this.friendshiplevel === this.friendshipmax-1){
+      console.log('friendship getting maxed')
       this.friendshiplevel +=1;
       Utils.changeDialogueText2(`Snorlax's friendship level is now maxed!`)
       this.moving=true; //trigger moving animation in animation cycle
@@ -94,8 +96,10 @@ class Snorlax extends Pokemon{
     console.log('snorlax moving out of the way')
     //move snorlax position one step at a time
     if (this.pos[0] === 400){ ///set up where you want snorlax to stop moving
+      this.inNewPos=true;
       this.moving=false;
     } else{
+      console.log(this.pos)
       this.pos[0] -= 1;
     }
   }
