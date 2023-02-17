@@ -217,11 +217,13 @@ function clearRightContent(){
 }
 function defaultScreenRight() {
   clearRightContent();
-  showElements("#rightside-container > *");
+  showElements(".default-content-right");
 }
+
 
 module.exports = {
   rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, addSpriteBoundaries,
   hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, 
-  changeButton1, changeButton2, showPokedexPicInBottom
+  changeButton1, changeButton2, showPokedexPicInBottom,
+   defaultScreenRight, clearRightContent
 };

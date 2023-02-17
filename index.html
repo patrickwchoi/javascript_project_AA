@@ -37,22 +37,35 @@
 
 
 
-    <button id="menuButton" class="beforeMenuContent" > <i class="fa fa-bars"></i>  Menu</button>
-    <button id="inventoryButton" class="beforeMenuContent" >Inventory</button>
-    <button id="instructionsButton" class="beforeMenuContent" >Instructions</button>
-    <button id="backToBeforeMenu" class="beforeMenuContent hidden backButton" >Back</button>
+    <button id="menuButton" class="default-content-right" > <i class="fa fa-bars"></i>  Menu</button>
+    <button id="inventoryButton" class="default-content-right" >Inventory</button>
+    <button id="instructionsButton" class="default-content-right" >Instructions</button>
+    <button id="backToBeforeMenu" class="default-content-right hidden backButton" >Back</button>
     
     <div id="inventory-container" class="hidden">
       <h2>Inventory</h2>
-      <ul>
-        
-      </ul>
+      <button id="inventory-backToDefault" class="backButton backToDefault">Back</button>
     </div>
-    <!-- <div id="instructions" class="instructions hidden">
+
+    <div id="pokedex-container" class="hidden">
+      <!-- <div id="bagon-pokedex-item" class="pokedex-item">
+        <div class="pokedex-item-initial-content">
+          <img src="./assets/bagon_face.png" height="50px" width="50px">
+          <div class="pokedex-friendship-container">
+            <h2 class="pokedex-name">Bagon</h2>
+            <p class="pokedex-friendshiplevel">Friendship Level: 0/2</p>
+          </div>
+        </div>
+        <div class="pokedex-extra-content"></div>
+      </div> -->
+      <button id="backToDefault" class="backButton">Back</button>
+    </div>
+
+    <div id="instructions" class="instructions hidden">
       Instructions: As a member of Team Rocket, you find yourself lost and separated from your crew after being blasted into space yet again. When you wake up, you find a friendly Bagon by your side. You realize that if you evolve this Bagon, you can use them to fly back home! 
       GOAL: Evolve Bagon by finding ways to increase your friendship level! You can check friendship level with the pokedex on the menu.
       Controls: Use WASD to move, use your mouse to interact with things on screen.
-    </div> -->
+    </div>
   
     <div id="menu">
       <button id="backToMenuButton" class="hidden backButton">Back To Menu</button>
@@ -64,18 +77,6 @@
 
       <button id="pokedexButton" class="menuContent hidden"> Pokedex </button>
       
-      <div id="pokedex-container" class="hidden">
-        <!-- <div id="bagon-pokedex-item" class="pokedex-item">
-          <div class="pokedex-item-initial-content">
-            <img src="./assets/bagon_face.png" height="50px" width="50px">
-            <div class="pokedex-friendship-container">
-              <h2 class="pokedex-name">Bagon</h2>
-              <p class="pokedex-friendshiplevel">Friendship Level: 0/2</p>
-            </div>
-          </div>
-          <div class="pokedex-extra-content"></div>
-        </div> -->
-      </div>
 
     </div>
   </div>

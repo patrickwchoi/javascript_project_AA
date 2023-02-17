@@ -19,7 +19,7 @@ const option2 =  document.querySelector('#option2');
 
 const menuButton = document.querySelector('#menuButton');
 const menu = document.querySelector('#menu');
-const beforeMenuContent = document.querySelectorAll('.beforeMenuContent');//object like array
+const defaultContentRight = document.querySelectorAll('.default-content-right');//object like array
 const backToBeforeMenu = document.querySelector('#backToBeforeMenu');
 const instructionsButton = document.querySelector('#instructionsButton');
 const instructions = document.querySelector('#instructions');
@@ -172,16 +172,33 @@ class Game {
     this.boundClickHandler = this.click.bind(this);
     this.ctx.canvas.addEventListener("mousedown", this.boundClickHandler);
 
+    //start of refactored functions
+
+    const backToDefaultButtons = document.querySelectorAll('.backToDefault');
+    backToDefaultButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        Utils.defaultScreenRight();
+      });
+    });
+
+    const inventoryButton = document.getElementById('inventoryButton');
+    inventoryButton.addEventListener('click', function() {
+      Utils.clearRightContent();
+      Utils.showElements('#inventory-container');
+      Utils.showElements('#inventory-container > *');
+    });
+    //end of refactored functions
+
     //Menu Button
     menuButton.addEventListener('click', ()=>{
-      beforeMenuContent.forEach((button)=>button.classList.add('hidden'))
+      defaultContentRight.forEach((button)=>button.classList.add('hidden'))
       backToBeforeMenu.classList.remove('hidden')
       menuContent.forEach((button)=>button.classList.remove('hidden'))
     })
     //Back To Before Menu Button
     backToBeforeMenu.addEventListener('click', ()=>{
       //add back before menu content
-      beforeMenuContent.forEach((button)=>button.classList.remove('hidden'))
+      defaultContentRight.forEach((button)=>button.classList.remove('hidden'))
       //remove menu content
       menuContent.forEach((button)=>button.classList.add('hidden'))
       //remove instructions instructions
@@ -192,7 +209,7 @@ class Game {
     })
     //Instructions Button
     instructionsButton.addEventListener('click', ()=>{
-      beforeMenuContent.forEach((button)=>button.classList.add('hidden'));
+      defaultContentRight.forEach((button)=>button.classList.add('hidden'));
       backToBeforeMenu.classList.remove('hidden');
       instructions.classList.remove('hidden');
     })

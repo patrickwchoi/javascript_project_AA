@@ -80,13 +80,13 @@ button {
   border-color: darkslategrey;
 }
 
-.beforeMenuContent:hover { //need to change to buttons, not all content
+.default-content-right:hover { //need to change to buttons, not all content
   box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
   transform: translateY(-2px);
 }
 
 @media (min-width: 768px) {
-  .beforeMenuContent {
+  .default-content-right {
     padding: 10px 30px;
   }
 }
