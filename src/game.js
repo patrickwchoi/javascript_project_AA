@@ -26,7 +26,6 @@ const instructions = document.querySelector('#instructions');
 const menuContent = document.querySelectorAll('.menuContent');
 const mapButton = document.querySelector('#mapButton');
 const backToMenuButton = document.querySelector('#backToMenuButton');
-const pokedex = document.querySelector('#pokedexContent');
 const pokedexButton = document.querySelector('#pokedexButton');
 
 const map = new Image();
@@ -210,8 +209,8 @@ class Game {
 
     //pokedex button
     pokedexButton.addEventListener('click', ()=>{
-      document.querySelector('#pokedexContent').classList.remove('hidden');
-      document.querySelectorAll('#pokedexContent *').forEach((el)=>el.classList.remove('hidden'));
+      document.querySelector('#pokedex-container').classList.remove('hidden');
+      document.querySelectorAll('#pokedex-container *').forEach((el)=>el.classList.remove('hidden'));
       backToBeforeMenu.classList.add('hidden')
       pokedexButton.classList.add('hidden')
       document.querySelector('#mapButton').classList.add('hidden');

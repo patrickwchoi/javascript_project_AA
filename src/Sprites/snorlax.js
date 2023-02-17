@@ -41,10 +41,14 @@ class Snorlax extends Pokemon{
         break;
       case 1:
         // code block
+        this.interactAfterFriendshipMax();
         break;
-      case 2:
-        // code block
     }
+  }
+  interactAfterFriendshipMax(){
+    Utils.changeDialogueText1('Snorlax: Zzz... -_-')
+    Utils.changeDialogueText2(`Snorlax is now your friend! But he's sleeping again...`)
+    
   }
   interactBeforeFriendship(){
     // hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, changeButton1, changeButton2
@@ -92,9 +96,9 @@ class Snorlax extends Pokemon{
   }
   incrementFriendship(){
     if (this.friendshiplevel === this.friendshipmax-1){
-      console.log('friendship getting maxed')
       this.friendshiplevel +=1;
       Utils.changeDialogueText2(`Snorlax's friendship level is now maxed!`)
+      Utils.hideElements(['#option1']);
       this.moving=true; //trigger moving animation in animation cycle
     } else {
       console.log('cannot increment friendship')

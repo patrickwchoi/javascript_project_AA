@@ -31,7 +31,7 @@ class TrainerPokemon extends Pokemon{
     friendship.id = name+'friendshiplevel' //#bagonfriendshiplevel
     pokedexentry.appendChild(pokedexname)
     pokedexentry.appendChild(friendship)
-    document.querySelector('#pokedexContent').appendChild(pokedexentry);
+    document.querySelector('#pokedex-container').appendChild(pokedexentry);
 
 
   }
