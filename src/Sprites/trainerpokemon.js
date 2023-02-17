@@ -5,10 +5,15 @@ salamenceSprite.src = './assets/salamence_sprites_31x28.png'
 salamenceSprite.width = 31*2;
 salamenceSprite.height = 28*4;
 
+const bagon_pokedexpic = new Image();
+bagon_pokedexpic.src = './assets/bagon_face.png';
+const salamence_pokedexpic = new Image();
+salamence_pokedexpic.src = './assets/salamence_pokedexpic.png';
 class TrainerPokemon extends Pokemon{
-  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}, pokedexpic, name}){
+  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}, pokedexpic}){
     super({pos, image, ctx, frames});
-    this.name = name
+    this.pokedexpic = bagon_pokedexpic;
+    this.name = 'Bagon'
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
     this.friendshipmax = 2;
@@ -48,6 +53,7 @@ class TrainerPokemon extends Pokemon{
   }
   updateSpriteSalamence(){
     this.image = salamenceSprite;
+    this.pokedexpic = salamence_pokedexpic;
     this.zoom = .7;
     this.width = this.image.width/this.frames.dimx
     this.height = this.image.height/this.frames.dimy
@@ -109,16 +115,16 @@ class TrainerPokemon extends Pokemon{
       this.frames.yval = 2;
     }
   }
+
   clickedOn(){ //what happens when we click on bagon
-    console.log('bagon clickedOn method!')
     Utils.changeDialogueText1(`${this.name}: ${this.dialogue.roar}`);
     Utils.changeDialogueText2(`What would you like to do?`);
     this.defaultInteraction();
-    // console.log('Friendship Level: '+this.friendshiplevel)
   }
 
   defaultInteraction(){
-    document.querySelector('#bagon_face').classList.remove('hidden')
+    // document.querySelector('#bagon_face').classList.remove('hidden')
+    Utils.showPokedexPicInBottom(this.pokedexpic.src)
     Utils.changeButton1({
       newHTML: `Give ${this.name} compliments${this.friendship.complimented ? ` again`: ``}`,
       onClick: ()=>{

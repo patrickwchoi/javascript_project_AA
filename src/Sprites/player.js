@@ -13,14 +13,14 @@ jessie.height = 20*4;
 
 class Player extends Sprite{
 
-  constructor(...args){
-    super(...args)
+  constructor({pos, image, ctx, frames, game, pokemon}){
+    super({pos, image, ctx, frames, game})
+    this.pokemon = pokemon;
     this.prevPos = this.pos
     this.stepsMoved = 0;
-    this.posForPokemon = [this.pos[0]-25, this.pos[1]] //25 is guess for pokemons width
+    this.posForPokemon = [this.pos[0]-this.pokemon.width*2, this.pos[1]] //25 is guess for pokemons width
     this.moving = false;
     this.inventory={};
-    // this.pokemon = bagon
   }
 
   changeToJessie(){

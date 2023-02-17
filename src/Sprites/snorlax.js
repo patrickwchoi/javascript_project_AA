@@ -6,8 +6,13 @@ snorlaxSprite.src = './assets/snorlax_spritesheet_29x29.png'
 snorlaxSprite.width = 29*2;
 snorlaxSprite.height = 29*4;
 
+const snorlax_pokedexpic = new Image();
+snorlax_pokedexpic.src = './assets/snorlax_pokedex.png'
+// snorlax_pokedexpic.width = 20;
+// snorlax_pokedexpic.height = 20;
+
 class Snorlax extends Pokemon{
-  constructor({pos, image, ctx, frames = {dimx:2, dimy:4, zoom:2}, pokedexpic, name, player, game}){
+  constructor({pos, image, ctx, frames = {dimx:2, dimy:4, zoom:2}, name, player, game}){
     image = snorlaxSprite;
     frames = frames;
     super({pos, ctx, image, frames, game});
@@ -20,6 +25,7 @@ class Snorlax extends Pokemon{
       'woke up': false,
       'fed': false,
     }
+    this.pokedexpic = snorlax_pokedexpic;
     this.moving=false;
     this.player=player;
     this.inNewPos = false;
@@ -27,8 +33,8 @@ class Snorlax extends Pokemon{
     this.distmovedY = 0;
   }
   clickedOn(){
-    console.log(this.pos)
-    // this.moving=true;
+    // Utils.hideElements
+    Utils.showPokedexPicInBottom(this.pokedexpic.src)
     switch(this.friendshiplevel) {
       case 0:
         this.interactBeforeFriendship();
@@ -56,7 +62,6 @@ class Snorlax extends Pokemon{
         }, 
         bold:false})
     } else {
-      this.encountered = true;
       Utils.changeDialogueText1('Snorlax: Zzz... -_-')
       Utils.changeDialogueText2('Snorlax is still sleeping... Is there anything around us that could help?')
       if (this.player.inventory['Sitrus Berry'] > 0){

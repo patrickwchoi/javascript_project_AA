@@ -17,7 +17,13 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
   keys.a.timePressed = 10;
   keys.s.timePressed = 10;
   keys.d.timePressed = 10; //remove this if yu want a delay for where you are facing
-
+  let offsetForPokemonX=0
+  let offsetForPokemonY=0
+  if (player.pokemon.name==="Salamence"){
+    console.log('hello')
+    offsetForPokemonX = -12
+    offsetForPokemonY = -10
+  }
   if (keys.w.pressed && lastkey) {
     player.frames.yval = 3;
     for (let i=0; i<boundaries.length; i++){
@@ -33,7 +39,7 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
       player.moving = true;
       moveables.forEach((moveable) => moveable.pos[1]+=4) 
       // update pokemons position to follow you
-      player.posForPokemon = [player.pos[0], player.pos[1]+ 35] //35 is roughly pokemons height
+      player.posForPokemon = [player.pos[0]+offsetForPokemonX, player.pos[1]+ 35] //35 is roughly pokemons height
     }
     }
       
@@ -49,7 +55,7 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
     if (moving&& keys.s.timePressed>1){ 
       player.moving = true;
       moveables.forEach((moveable) => moveable.pos[1]-=4) 
-      player.posForPokemon = [player.pos[0], player.pos[1]- 35]
+      player.posForPokemon = [player.pos[0]+offsetForPokemonX, player.pos[1]- player.pokemon.screenHeight]
     }
        
     }
@@ -66,7 +72,7 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
     if (moving&& keys.a.timePressed>1){ 
       player.moving = true;
       moveables.forEach((moveable) => moveable.pos[0]+=4) 
-      player.posForPokemon = [player.pos[0]+30, player.pos[1]] 
+      player.posForPokemon = [player.pos[0]+ 30, player.pos[1] + offsetForPokemonY] 
     }
     }
 
@@ -82,7 +88,7 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
     if (moving&& keys.d.timePressed>1){ 
       player.moving = true;
       moveables.forEach((moveable) => moveable.pos[0]-=4) 
-      player.posForPokemon = [player.pos[0]-30, player.pos[1]] 
+      player.posForPokemon = [player.pos[0]-player.pokemon.screenWidth, player.pos[1] + offsetForPokemonY] 
     }
     } else player.moving = false;
 
@@ -199,9 +205,13 @@ function changeButton2({newHTML, onClick, bold=false}){ //Bottom button box 2
     button.style.fontWeight = 'normal';
   }
 }
-
+function showPokedexPicInBottom(pokedexpic) {
+  const pic = document.getElementById("pokedex_pic_bottom")
+  pic.src = pokedexpic;
+  showElements("#pokedex_pic_bottom");
+}
 module.exports = {
   rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, addSpriteBoundaries,
   hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, 
-  changeButton1, changeButton2
+  changeButton1, changeButton2, showPokedexPicInBottom
 };

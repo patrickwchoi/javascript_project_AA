@@ -70,13 +70,14 @@ class Game {
       pos: [canvas.width / 2 , canvas.height / 2 ], //very rough pos, will fix later
       image: bagonImg,
       ctx: this.ctx,
-      frames: { dimx: 2, dimy: 4, zoom: 1.8 }, 
-      name: 'Bagon'});
+      frames: { dimx: 2, dimy: 4, zoom: 1.8 }
+      });
     this.player = new Player({
       pos: [canvas.width / 2 - james.width/3, canvas.height/2 - james.height/4], //manually fixed pos based on james.png dim
       image: james,
       ctx: this.ctx,
       frames: { dimx: 3, dimy: 4, zoom: 1.8 },
+      pokemon: this.bagon,
     });
     this.bagon.setTrainer(this.player);
     console.log([canvas.width / 2 +50, canvas.height / 2 +50])
@@ -150,7 +151,8 @@ class Game {
     //what happens when you click on screen and not on specific html elem
   let mouseY = e.clientY - 36; //36 is font size of header1
   let mouseX = e.clientX
-  
+
+  this.resetDialogue();
   if (Utils.isMouseOnRect([mouseX, mouseY], this.bagon)){
       this.bagon.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.player)){
@@ -165,7 +167,7 @@ class Game {
     }
   }
   resetDialogue(){
-      Utils.hideElements('#dialoguebox > *')
+      Utils.hideElements('#dialoguebox *')
   }
 
   registerEventListeners() {

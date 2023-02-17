@@ -51,16 +51,16 @@ class Sprite{
       }
   }
 
-  hideSelectorContent(selector){
-    document.querySelectorAll(selector).forEach((el)=>{
-      el.classList.add('hidden')
-    })
-  }
-  showSelectorContent(selector){
-    document.querySelectorAll(selector).forEach((el)=>{
-      el.classList.remove('hidden')
-    })
-  }
+  // hideSelectorContent(selector){
+  //   document.querySelectorAll(selector).forEach((el)=>{
+  //     el.classList.add('hidden')
+  //   })
+  // }
+  // showSelectorContent(selector){
+  //   document.querySelectorAll(selector).forEach((el)=>{
+  //     el.classList.remove('hidden')
+  //   })
+  // }
 }
 
 module.exports = Sprite;
