@@ -210,6 +210,16 @@ function showPokedexPicInBottom(pokedexpic) {
   pic.src = pokedexpic;
   showElements("#pokedex_pic_bottom");
 }
+
+//functions for right side (#rightside-container)
+function clearRightContent(){
+  hideElements("#rightside-container > *");
+}
+function defaultScreenRight() {
+  clearRightContent();
+  showElements("#rightside-container > *");
+}
+
 module.exports = {
   rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, addSpriteBoundaries,
   hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, 

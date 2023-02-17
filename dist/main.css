@@ -88,7 +88,7 @@ button {
     padding: 10px 30px;
   }
 }
-#beforeMenu {
+#rightside-container {
   background-color: rgb(156, 235, 156);
   width: 400px;
   display: flex;
@@ -98,7 +98,7 @@ button {
   gap: 10px;
 }
 
-#beforeMenu * {
+#rightside-container * {
   display: flex;
   align-items: center;
   justify-content: center;
