@@ -17,6 +17,7 @@ class SitrusBerry extends Item{
     }
 
     clickedOn(){
+      Utils.showPokedexPicInBottom(this.pokedexpic.src)
       Utils.changeDialogueText2(`It's a Sitrus Berry`);
       Utils.changeButton1({
         newHTML: 'Pick up',

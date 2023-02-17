@@ -97,8 +97,8 @@ class Pokemon extends Sprite{
   }
 
   clickedOn(){ 
-    console.log(`${this.name} clickedOn method!`)
-  }
+    console.log(`pokemon class clickedOn method!`)
+    } 
   defaultInteraction(){
   }
 

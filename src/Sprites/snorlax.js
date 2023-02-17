@@ -8,8 +8,7 @@ snorlaxSprite.height = 29*4;
 
 const snorlax_pokedexpic = new Image();
 snorlax_pokedexpic.src = './assets/snorlax_pokedex.png'
-// snorlax_pokedexpic.width = 20;
-// snorlax_pokedexpic.height = 20;
+
 
 class Snorlax extends Pokemon{
   constructor({pos, image, ctx, frames = {dimx:2, dimy:4, zoom:2}, name, player, game}){
