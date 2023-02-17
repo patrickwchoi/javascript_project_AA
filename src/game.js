@@ -84,7 +84,6 @@ class Game {
       // pos: [canvas.width / 2 +50, canvas.height / 2 +50], 
       pos: [345,150],
       ctx: this.ctx,
-      name: 'Snorlax',
       player: this.player, game:this
     });
     this.sitrusberry = new SitrusBerry({
@@ -210,13 +209,13 @@ class Game {
     //pokedex button
     pokedexButton.addEventListener('click', ()=>{
       document.querySelector('#pokedex-container').classList.remove('hidden');
-      document.querySelectorAll('#pokedex-container *').forEach((el)=>el.classList.remove('hidden'));
+      // document.querySelectorAll('#pokedex-container *').forEach((el)=>el.classList.remove('hidden'));
       backToBeforeMenu.classList.add('hidden')
       pokedexButton.classList.add('hidden')
       document.querySelector('#mapButton').classList.add('hidden');
 
       backToMenuButton.classList.remove('hidden')
-      document.querySelector('#Bagonfriendshiplevel').innerHTML = 'Friendship Level: '+this.bagon.friendshiplevel + '/'+this.bagon.friendshipmax //not sure why id is capital, check why
+      // document.querySelector('#Bagonfriendshiplevel').innerHTML = 'Friendship Level: '+this.bagon.friendshiplevel + '/'+this.bagon.friendshipmax //not sure why id is capital, check why
     })
 
     //Back to Menu button

@@ -9,11 +9,12 @@ const bagon_pokedexpic = new Image();
 bagon_pokedexpic.src = './assets/bagon_face.png';
 const salamence_pokedexpic = new Image();
 salamence_pokedexpic.src = './assets/salamence_pokedexpic.png';
+
 class TrainerPokemon extends Pokemon{
   constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}, pokedexpic}){
     super({pos, image, ctx, frames});
     this.pokedexpic = bagon_pokedexpic;
-    this.name = 'Bagon'
+    this.name = 'bagon'
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
     this.friendshipmax = 2;
@@ -22,20 +23,12 @@ class TrainerPokemon extends Pokemon{
       'fed': false,
       'complimented': false,
     }
-    //convert to function later
-    let pokedexentry = document.createElement("div");
-    pokedexentry.id = name+'Pokedex'; //ex. id-"bagonPokedex"
-    let pokedexname = document.createTextNode(name+': ');
-    let friendship = document.createElement('div')
-    friendship.innerHTML = 'Friendship Level: '+this.friendshiplevel;
-    friendship.id = name+'friendshiplevel' //#bagonfriendshiplevel
-    pokedexentry.appendChild(pokedexname)
-    pokedexentry.appendChild(friendship)
-    document.querySelector('#pokedex-container').appendChild(pokedexentry);
+    this.pokedexpic=bagon_pokedexpic;
 
-
+    this.addEntryToPokedex();
   }
-  
+
+
   incrementFriendship(){
     if (this.friendshiplevel===this.friendshipmax-1){ //return //trigger something for friendshipmaxed
       this.friendshiplevel=this.friendshipmax

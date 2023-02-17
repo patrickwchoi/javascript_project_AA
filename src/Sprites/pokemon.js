@@ -7,23 +7,61 @@ salamenceSprite.height = 28*4;
 
 class Pokemon extends Sprite{
 
-  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}, pokedexpic, name, game}){
+  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}, pokedexpic, game}){
     super({pos, image, ctx, frames, game});
-    this.name = name
+    this.name = ''
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
     this.friendshipmax = 2;
   }
-  addToPokedex(){
-    let pokedexentry = document.createElement("div");
-    pokedexentry.id = name+'Pokedex'; //ex. id-"bagonPokedex"
-    let pokedexname = document.createTextNode(name+': ');
-    let friendship = document.createElement('div')
-    friendship.innerHTML = 'Friendship Level: '+this.friendshiplevel;
-    friendship.id = name+'friendshiplevel' //#bagonfriendshiplevel
-    pokedexentry.appendChild(pokedexname)
-    pokedexentry.appendChild(friendship)
-    document.querySelector('#pokedex-container').appendChild(pokedexentry);
+  
+  addEntryToPokedex(){ 
+    // Get the parent container
+    const pokedexContainer = document.querySelector('#pokedex-container');
+
+    // Create a new Pokémon item
+    const pokemonItem = document.createElement(`div`);
+    pokemonItem.id = `${this.name}-pokedex-item`;
+    pokemonItem.classList.add(`pokedex-item`);
+
+    // Create the initial content for the Pokémon item
+    const initialContent = document.createElement(`div`);
+    initialContent.classList.add(`pokedex-item-initial-content`);
+
+    // Add the Pokémon`s image to the initial content
+    const pokemonImage = document.createElement(`img`);
+    // pokemonImage.src = `./assets/bagon_face.png`;
+    pokemonImage.src = this.pokedexpic.src;
+    pokemonImage.height = `50`;
+    pokemonImage.width = `50`;
+    pokemonImage.classList.add(`pokedex-img-right`);
+    console.log(pokemonImage)
+    initialContent.appendChild(pokemonImage);
+
+    // Add the friendship container to the initial content
+    const friendshipContainer = document.createElement(`div`);
+    friendshipContainer.classList.add(`pokedex-friendship-container`);
+
+    // Add the Pokémon`s name to the friendship container
+    const pokemonName = document.createElement(`h2`);
+    pokemonName.classList.add(`pokedex-name`);
+    pokemonName.textContent = `${this.name}`;
+    friendshipContainer.appendChild(pokemonName);
+
+    // Add the friendship level to the friendship container
+    const friendshipLevel = document.createElement(`p`);
+    friendshipLevel.classList.add(`pokedex-friendshiplevel`);
+    friendshipLevel.textContent = `Friendship Level: 0/2`;
+    friendshipContainer.appendChild(friendshipLevel);
+
+    // Add the friendship container to the initial content
+    initialContent.appendChild(friendshipContainer);
+
+    // Add the initial content to the Pokémon item
+    pokemonItem.appendChild(initialContent);
+
+    // Add the Pokémon item to the pokedex container
+    pokedexContainer.appendChild(pokemonItem);
   }
   
   incrementFriendship(){
