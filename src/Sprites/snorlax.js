@@ -77,6 +77,7 @@ class Snorlax extends Pokemon{
             Utils.changeButton1({
               newHTML: 'Feed Snorlax the Sitrus Berry',
               onClick: ()=>{
+                this.player.removeItem("Sitrus Berry")
                 Utils.changeDialogueText1('Snorlax: Nomnomnomnom! ^~^')
                 Utils.changeDialogueText2(`Snorlax is eating the berry!`)
                   Utils.changeButton1({

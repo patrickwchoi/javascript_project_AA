@@ -52,7 +52,7 @@ class Player extends Sprite{
     }
     
     const itemImage = document.createElement(`img`);
-    itemImage.src = item.image.src;
+    itemImage.src = item.pokedexpic.src;
     itemImage.height = `50`;
     itemImage.width = `50`;
     itemImage.classList.add(`inventory-img-right`);
@@ -71,11 +71,25 @@ class Player extends Sprite{
     inventory.appendChild(inventoryItem);
   }
 
-  removeItem(item){
-    if (this.inventory[item.name]){
-      this.inventory[item.name] -= 1
+  // updateInventoryRightScreen(){ //I realized this doesnt work bc player.inventory only carries strings and numbers, not the actual item objects
+  //   const inventory = document.getElementById('inventory-container');
+  //   inventory.innerHTML = '';
+  //   for (let item in this.inventory){
+  //     this.addItemToInventoryRight(item)
+  //   }
+  // }
+
+  removeItemFromRight(itemName){
+    const inventory = document.getElementById('inventory-container');
+    const item = document.getElementById(`${itemName}-inventory-element`);
+    inventory.removeChild(item);
+  }
+  removeItem(itemName){
+    if (this.inventory[itemName]){
+      this.inventory[itemName] -= 1
+      this.removeItemFromRight(itemName);
     } else{
-      Utils.changeDialogueText2(`You don't have an ${item.name}!`)
+      Utils.changeDialogueText2(`You don't have an ${itemName}!`)
     }
   }
   
