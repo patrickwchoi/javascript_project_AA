@@ -26,13 +26,6 @@ bagonImg.src = "./assets/bagon_sprites.png"
 bagonImg.width = 16*2;
 bagonImg.height = 21*4;
 
-const pokeballImg = new Image();
-pokeballImg.src = "./assets/pokeball.png"
-// pokeballImg.width = 920;
-// pokeballImg.height = 512;
-pokeballImg.width = 920/100;
-pokeballImg.height = 512/100;
-
 class Game {
   constructor(canvas) {
     this.canvas = canvas;

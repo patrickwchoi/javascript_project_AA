@@ -32,6 +32,7 @@ class TrainerPokemon extends Pokemon{
   incrementFriendship(){
     if (this.friendshiplevel===this.friendshipmax-1){ //return //trigger something for friendshipmaxed
       this.friendshiplevel=this.friendshipmax
+      this.updatePokedexFriendship();
       // document.querySelectorAll('#dialoguebox > *').forEach((el)=>el.classList.add('hidden'));
       // document.querySelector('#dialogueAnnouncement').classList.remove('hidden');
       // document.querySelector('#dialogueAnnouncement').innerHTML = 
@@ -42,6 +43,7 @@ class TrainerPokemon extends Pokemon{
       this.name='Salamence'
     } else {
       this.friendshiplevel++
+      this.updatePokedexFriendship();
     }
   }
   updateSpriteSalamence(){

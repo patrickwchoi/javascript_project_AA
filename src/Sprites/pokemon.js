@@ -95,6 +95,10 @@ class Pokemon extends Sprite{
       happy: 'Rawr!! :}'
   }
   }
+  updatePokedexFriendship(){
+    let pokedexFriendship = document.querySelector(`#${this.name}-pokedex-item .pokedex-friendshiplevel`);
+    pokedexFriendship.innerHTML = `Friendship level: ${this.friendshiplevel}/${this.friendshipmax}`
+  }
 
   clickedOn(){ 
     console.log(`pokemon class clickedOn method!`)

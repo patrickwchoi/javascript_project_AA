@@ -98,6 +98,7 @@ class Snorlax extends Pokemon{
   incrementFriendship(){
     if (this.friendshiplevel === this.friendshipmax-1){
       this.friendshiplevel +=1;
+      this.updatePokedexEntry();
       Utils.changeDialogueText2(`Snorlax's friendship level is now maxed!`)
       Utils.hideElements(['#option1']);
       this.moving=true; //trigger moving animation in animation cycle
@@ -105,6 +106,7 @@ class Snorlax extends Pokemon{
       console.log('cannot increment friendship')
     }
   }
+  
   moveOutOfWay(){ 
     //move snorlax position one step at a time. First in Y direction, then in X
     if (this.distmovedY ===150 ){ 
