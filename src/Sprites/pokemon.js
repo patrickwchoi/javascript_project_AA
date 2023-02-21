@@ -12,7 +12,7 @@ class Pokemon extends Sprite{
     this.name = ''
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
-    this.friendshipmax = 2;
+    this.friendshipmax = 1;
   }
   
   addEntryToPokedex(){ 
@@ -35,7 +35,6 @@ class Pokemon extends Sprite{
     pokemonImage.height = `50`;
     pokemonImage.width = `50`;
     pokemonImage.classList.add(`pokedex-img-right`);
-    console.log(pokemonImage)
     initialContent.appendChild(pokemonImage);
 
     // Add the friendship container to the initial content
@@ -51,7 +50,7 @@ class Pokemon extends Sprite{
     // Add the friendship level to the friendship container
     const friendshipLevel = document.createElement(`p`);
     friendshipLevel.classList.add(`pokedex-friendshiplevel`);
-    friendshipLevel.textContent = `Friendship Level: 0/2`;
+    friendshipLevel.textContent = `Friendship Level: 0/${this.friendshipmax}`;
     friendshipContainer.appendChild(friendshipLevel);
 
     // Add the friendship container to the initial content
@@ -63,8 +62,9 @@ class Pokemon extends Sprite{
     // Add the Pokémon item to the pokedex container
     pokedexContainer.appendChild(pokemonItem);
   }
-  
-  incrementFriendship(){
+  updatePokedexEntry(){
+    const friendshipLevel = document.querySelector(`#${this.name}-pokedex-item .pokedex-friendshiplevel`);
+    friendshipLevel.textContent = `Friendship Level: ${this.friendshiplevel}/${this.friendshipmax}`;
   }
 
   draw(){//draw image of sprite

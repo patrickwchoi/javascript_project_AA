@@ -10,23 +10,6 @@ const Item = require("./Sprites/Items/item.js");
 const Snorlax = require("./Sprites/snorlax.js");
 const SitrusBerry = require("./Sprites/Items/SitrusBerry.js");
 
-//Create Variables
-const dialogueBox = document.querySelector('#dialoguebox');
-const dialogueText1 = document.querySelector('#dialoguetext1');
-const dialogueText2 = document.querySelector('#dialoguetext2');
-const option1 =  document.querySelector('#option1');
-const option2 =  document.querySelector('#option2');
-
-const menuButton = document.querySelector('#menuButton');
-const menu = document.querySelector('#menu');
-const defaultContentRight = document.querySelectorAll('.default-content-right');//object like array
-const backToBeforeMenu = document.querySelector('#backToBeforeMenu');
-const instructionsButton = document.querySelector('#instructionsButton');
-const instructions = document.querySelector('#instructions');
-const menuContent = document.querySelectorAll('.menuContent');
-const mapButton = document.querySelector('#mapButton');
-const backToMenuButton = document.querySelector('#backToMenuButton');
-const pokedexButton = document.querySelector('#pokedexButton');
 
 const map = new Image();
 map.src = "./assets/tilemap8.png";
@@ -79,7 +62,7 @@ class Game {
       pokemon: this.bagon,
     });
     this.bagon.setTrainer(this.player);
-    console.log([canvas.width / 2 +50, canvas.height / 2 +50])
+    // console.log([canvas.width / 2 +50, canvas.height / 2 +50])
     this.snorlax = new Snorlax({
       // pos: [canvas.width / 2 +50, canvas.height / 2 +50], 
       pos: [345,150],
@@ -99,7 +82,6 @@ class Game {
   
   play() {
     this.animate();
-    console.log("play")
   }
   
   animate() {
@@ -173,7 +155,6 @@ class Game {
     this.ctx.canvas.addEventListener("mousedown", this.boundClickHandler);
 
     //start of refactored functions
-
     const backToDefaultButtons = document.querySelectorAll('.backToDefault');
     backToDefaultButtons.forEach(button => {
       button.addEventListener('click', function() {
@@ -183,69 +164,29 @@ class Game {
 
     const inventoryButton = document.getElementById('inventoryButton');
     inventoryButton.addEventListener('click', function() {
-      Utils.clearRightContent();
-      Utils.showElements('#inventory-container');
-      Utils.showElements('#inventory-container > *');
+      Utils.goToInventoryScreen();
     });
+
+    const pokedexButton = document.getElementById('pokedexButton');
+    pokedexButton.addEventListener('click', function() {
+      Utils.goToPokedexScreen();
+    });
+    const instructionsButton = document.getElementById('instructionsButton');
+    instructionsButton.addEventListener('click', function() {
+      Utils.clearRightContent();
+      Utils.showElements('#instructions-container');
+      Utils.showElements('#instructions-container > *');
+    });
+
+    const mapButton = document.getElementById('mapButton');
+    mapButton.addEventListener('click', function() {
+      Utils.clearRightContent();
+      Utils.showElements('#map-container');
+      Utils.showElements('#map-container > *');
+    });
+
     //end of refactored functions
 
-    //Menu Button
-    menuButton.addEventListener('click', ()=>{
-      defaultContentRight.forEach((button)=>button.classList.add('hidden'))
-      backToBeforeMenu.classList.remove('hidden')
-      menuContent.forEach((button)=>button.classList.remove('hidden'))
-    })
-    //Back To Before Menu Button
-    backToBeforeMenu.addEventListener('click', ()=>{
-      //add back before menu content
-      defaultContentRight.forEach((button)=>button.classList.remove('hidden'))
-      //remove menu content
-      menuContent.forEach((button)=>button.classList.add('hidden'))
-      //remove instructions instructions
-      instructions.classList.add('hidden');
-      //both instructions and menu
-      backToBeforeMenu.classList.add('hidden');
-
-    })
-    //Instructions Button
-    instructionsButton.addEventListener('click', ()=>{
-      defaultContentRight.forEach((button)=>button.classList.add('hidden'));
-      backToBeforeMenu.classList.remove('hidden');
-      instructions.classList.remove('hidden');
-    })
-
-    //map button
-    mapButton.addEventListener('click', ()=>{
-      document.querySelectorAll('#menu *').forEach((el)=>el.classList.add('hidden'));
-      document.querySelectorAll('#mapContent *').forEach((el)=>el.classList.remove('hidden'));
-      document.querySelector('#mapContent').classList.remove('hidden');
-      backToBeforeMenu.classList.add('hidden')
-      backToMenuButton.classList.remove('hidden')
-    })
-
-    //pokedex button
-    pokedexButton.addEventListener('click', ()=>{
-      document.querySelector('#pokedex-container').classList.remove('hidden');
-      // document.querySelectorAll('#pokedex-container *').forEach((el)=>el.classList.remove('hidden'));
-      backToBeforeMenu.classList.add('hidden')
-      pokedexButton.classList.add('hidden')
-      document.querySelector('#mapButton').classList.add('hidden');
-
-      backToMenuButton.classList.remove('hidden')
-      // document.querySelector('#Bagonfriendshiplevel').innerHTML = 'Friendship Level: '+this.bagon.friendshiplevel + '/'+this.bagon.friendshipmax //not sure why id is capital, check why
-    })
-
-    //Back to Menu button
-    backToMenuButton.addEventListener('click', ()=>{
-      document.querySelectorAll('#menu > *').forEach((el)=>{
-        el.classList.add('hidden')
-      })
-      // menuContent.forEach((button)=>button.classList.remove('hidden'))
-      document.querySelectorAll('#menu > .menuContent').forEach((el)=>{
-        el.classList.remove('hidden')
-      })
-      backToBeforeMenu.classList.remove('hidden')
-    })
     this.keys = {
       w:{ pressed: false, startTime:0, timePressed :0},
       a:{ pressed: false, startTime:0, timePressed :0},

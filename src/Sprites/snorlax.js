@@ -34,6 +34,7 @@ class Snorlax extends Pokemon{
   clickedOn(){
     // Utils.hideElements
     Utils.showPokedexPicInBottom(this.pokedexpic.src)
+    Utils.goToPokedexScreen();
     switch(this.friendshiplevel) {
       case 0:
         this.interactBeforeFriendship();
@@ -53,12 +54,12 @@ class Snorlax extends Pokemon{
     // hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, changeButton1, changeButton2
     if (this.encountered===false){
       this.encountered = true;
+      this.addEntryToPokedex();
       Utils.changeDialogueText1('Snorlax: Zzz... -_-')
       Utils.changeDialogueText2('You encountered a Snorlax! Snorlax is sleeping...')
       Utils.changeButton1({
         newHTML: 'Wake up Snorlax', 
         onClick: ()=>{
-          console.log('clicked on option 1');
           Utils.changeDialogueText1('Snorlax: Zzz Zzz... -_-')
           Utils.changeDialogueText2(`Snorlax isn't waking up. Is there anything around us that could help?`)
           Utils.hideElements(['#option1'])
@@ -110,6 +111,7 @@ class Snorlax extends Pokemon{
         this.inNewPos=true;
         this.game.remakeBoundaries();
         this.moving=false;
+        
       } else{
         this.pos[0] += 1;
         this.distmovedX += 1;

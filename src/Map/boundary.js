@@ -10,9 +10,6 @@ class Boundary {
     this.height = height  //dimensions of tiles after adjusting for zoom
   }
   draw() {
-    // console.log(this.pos)
-    // console.log(this.width)
-
     this.ctx.fillStyle = 'rgba(255,0,0,0.3)'; //last arg id opacity
     this.ctx.fillRect(this.pos[0], this.pos[1], this.width, this.height);
   }

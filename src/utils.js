@@ -20,7 +20,6 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
   let offsetForPokemonX=0
   let offsetForPokemonY=0
   if (player.pokemon.name==="Salamence"){
-    console.log('hello')
     offsetForPokemonX = -12
     offsetForPokemonY = -10
   }
@@ -125,7 +124,6 @@ function addBoundaries({collisionsMap, ctx, offset}) {
   return boundaries;
 }
 function addSpriteBoundaries({boundaries, ctx, sprites}) { //for adding sprites in sprite array to boundaries array
-  console.log(sprites)
   sprites.forEach((sprite) => {
     boundaries.push(
       new Boundary({
@@ -187,7 +185,6 @@ function changeButton1({newHTML, onClick, bold=false}){ //Bottom button box 1
   } else{
     button.style.fontWeight = 'normal';
   }
-  console.log(bold)
 }
 function changeButton2({newHTML, onClick, bold=false}){ //Bottom button box 2
   const button = document.getElementById("option2");
@@ -219,11 +216,20 @@ function defaultScreenRight() {
   clearRightContent();
   showElements(".default-content-right");
 }
-
+function goToPokedexScreen() {
+  clearRightContent();
+  showElements('#pokedex-container');
+  showElements('#pokedex-container > *');
+}
+function goToInventoryScreen(){
+  clearRightContent();
+  showElements('#inventory-container');
+  showElements('#inventory-container > *');
+}
 
 module.exports = {
   rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, addSpriteBoundaries,
   hideElements, showElements, changeInnerHTML, changeDialogueText1, changeDialogueText2, 
   changeButton1, changeButton2, showPokedexPicInBottom,
-   defaultScreenRight, clearRightContent
+   defaultScreenRight, clearRightContent, goToPokedexScreen, goToInventoryScreen
 };
