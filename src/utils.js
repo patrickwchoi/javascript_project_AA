@@ -36,6 +36,7 @@ function movePlayer(player, keys, boundaries, moveables, lastkey, moving){
 
     if (moving&& keys.w.timePressed>1){ //if we should be moving and if w is held down for more than x frames
       player.moving = true;
+      console.log(moveables.filter((moveable) => moveable.image))
       moveables.forEach((moveable) => moveable.pos[1]+=4) 
       // update pokemons position to follow you
       player.posForPokemon = [player.pos[0]+offsetForPokemonX, player.pos[1]+ 35] //35 is roughly pokemons height

@@ -28,6 +28,9 @@ class Pokemon extends Sprite{
     const initialContent = document.createElement(`div`);
     initialContent.classList.add(`pokedex-item-initial-content`);
 
+    const pokedexImageAndName = document.createElement(`div`);
+    pokedexImageAndName.classList.add(`pokedex-item-image-name`);
+
     // Add the Pokémon`s image to the initial content
     const pokemonImage = document.createElement(`img`);
     // pokemonImage.src = `./assets/bagon_face.png`;
@@ -35,7 +38,7 @@ class Pokemon extends Sprite{
     pokemonImage.height = `50`;
     pokemonImage.width = `50`;
     pokemonImage.classList.add(`pokedex-img-right`);
-    initialContent.appendChild(pokemonImage);
+    pokedexImageAndName.appendChild(pokemonImage);
 
     // Add the friendship container to the initial content
     const friendshipContainer = document.createElement(`div`);
@@ -45,8 +48,10 @@ class Pokemon extends Sprite{
     const pokemonName = document.createElement(`h2`);
     pokemonName.classList.add(`pokedex-name`);
     pokemonName.textContent = `${this.name}`;
-    friendshipContainer.appendChild(pokemonName);
+    pokedexImageAndName.appendChild(pokemonName);
 
+    initialContent.appendChild(pokedexImageAndName);
+    
     // Add the friendship level to the friendship container
     const friendshipLevel = document.createElement(`p`);
     friendshipLevel.classList.add(`pokedex-friendshiplevel`);

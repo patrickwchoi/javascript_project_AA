@@ -62,9 +62,13 @@
 #dialoguebox {
   display: flex;
   flex-direction: row;
-  padding: 10px;
+  padding: 20px;
   align-items: center;
   justify-content: space-around;
+}
+
+#dialoguebox img {
+  margin-right: 30px;
 }
 
 #dialogue-text-container {
@@ -103,15 +107,53 @@ button:hover {
   justify-content: center;
   flex-direction: column;
   gap: 10px;
+  border-radius: 10px;
 }
 
-#rightside-container * {
+#rightside-container button {
+  font-size: 20px;
+  padding: 15px 30px;
+}
+
+#rightside-container > * {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 10px;
   border-radius: 2px;
+}
+
+.pokedex-item-initial-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.pokedex-item-image-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  padding-right: 30px;
+}
+
+.pokedex-item-image-name h2 {
+  padding-top: 5px;
+}
+
+.pokedex-friendship-container {
+  width: 70%;
+}
+
+.pokedex-friendshiplevel {
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 #dialogue-text-container {
@@ -127,15 +169,51 @@ button:hover {
   margin: 5px;
 }
 
-#instructions {
-  padding: 15px;
+#instructions-container {
+  padding: 25px;
+}
+
+#instructions-container h2 {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+#instructions-container p {
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.25;
 }
 
 .backButton {
-  background-color: #345f2f;
+  background-color: #d9d9d9;
   top: 0;
 }
 
 .hidden {
   display: none !important;
+}
+
+#teamrocket-sprite-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#teamrocket-sprite-container button {
+  border: none;
+  background-color: transparent;
+  padding: 30px;
+}
+
+#jessie, #james {
+  width: 16px; /* set the width and height of the sprite */
+  height: 20px;
+  scale: 2;
+  object-fit: none;
+  object-position: left top;
 }

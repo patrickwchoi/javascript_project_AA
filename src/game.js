@@ -149,6 +149,12 @@ class Game {
       Utils.hideElements('#dialoguebox *')
   }
 
+  jessieButton(){
+    this.player.changeToJessie();
+  }
+  jamesButton(){
+    this.player.changeToJames();
+  }
   registerEventListeners() {
     this.boundClickHandler = this.click.bind(this);
     this.ctx.canvas.addEventListener("mousedown", this.boundClickHandler);
@@ -183,6 +189,11 @@ class Game {
       Utils.showElements('#map-container');
       Utils.showElements('#map-container > *');
     });
+
+    const jessieButton = document.getElementById('jessie-button');
+    jessieButton.addEventListener("click", () => this.jessieButton());
+    const jamesButton = document.getElementById('james-button');
+    jamesButton.addEventListener("click", () => this.jamesButton());
 
     //end of refactored functions
 
