@@ -131,9 +131,9 @@ class Game {
   let offsetX = canvasPosition.left;
   let offsetY = canvasPosition.top;
 
-  console.log(offsetX, offsetY)
-  // mouseX=e.x - offsetX 
-  // mouseY=e.y - offsetY
+  // console.log(offsetX, offsetY)
+  // mouseX= e.x - offsetX 
+  // mouseY= e.y - offsetY
 
   // console.log(e)
   // console.log(`mousex, mousey: ${[mouseX, mouseY]}`)
