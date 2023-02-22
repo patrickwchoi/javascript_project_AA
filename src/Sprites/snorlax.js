@@ -100,7 +100,18 @@ class Snorlax extends Pokemon{
       this.friendshiplevel +=1;
       this.updatePokedexEntry();
       Utils.changeDialogueText2(`Snorlax's friendship level is now maxed!`)
-      Utils.hideElements(['#option1']);
+      // Utils.hideElements(['#option1']);
+      Utils.changeButton1({
+        newHTML: 'Continue', 
+        onClick: ()=>{
+          this.player.pokemon.incrementFriendship(); //not sure if I should handle levelup dialogue in here or in trainerpokemon incrementFriendship()
+          this.player.pokemon.clickedOn();
+          Utils.changeDialogueText1('Bagon: Rawrr!!! ^u^')
+          Utils.changeDialogueText2(`Bagon leveled up after helping Snorlax! He's feeling happy`)
+          // Utils.hideElements(['#option1'])
+        }, 
+        bold:true})
+
       this.moving=true; //trigger moving animation in animation cycle
     } else {
       console.log('cannot increment friendship')

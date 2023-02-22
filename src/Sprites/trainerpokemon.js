@@ -17,7 +17,7 @@ class TrainerPokemon extends Pokemon{
     this.name = 'bagon'
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
-    this.friendshipmax = 2;
+    this.friendshipmax = 3;
     //friendship variables: booleans for if tasks that increase friendship have been completed
     this.friendship = {
       'fed': false,
