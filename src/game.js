@@ -124,18 +124,19 @@ class Game {
     //what happens when you click on screen and not on specific html elem
   // let mouseY = e.clientY - 26; //36 is font size of header1
   // let mouseX = e.clientX -20;
-  let mouseY = e.offsetY -22;
+  let mouseY = e.offsetY -12;
   let mouseX = e.offsetX -21;
 
   const canvasPosition = this.canvas.getBoundingClientRect();
   let offsetX = canvasPosition.left;
   let offsetY = canvasPosition.top;
-  // console.log(this.offsetX, this.offsetY)
-  mouseX=e.x - offsetX 
-  mouseY=e.y - offsetY
+
+  console.log(offsetX, offsetY)
+  // mouseX=e.x - offsetX 
+  // mouseY=e.y - offsetY
 
   // console.log(e)
-  console.log(`mousex, mousey: ${[mouseX, mouseY]}`)
+  // console.log(`mousex, mousey: ${[mouseX, mouseY]}`)
   // console.log(this.snorlax.pos)
   this.resetDialogue();
   if (Utils.isMouseOnRect([mouseX, mouseY], this.bagon)){
