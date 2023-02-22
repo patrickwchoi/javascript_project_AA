@@ -125,13 +125,11 @@ function addBoundaries({collisionsMap, ctx, offset}) {
 }
 function addSpriteBoundaries({boundaries, ctx, sprites}) { //for adding sprites in sprite array to boundaries array
   sprites.forEach((sprite) => {
+    console.log(sprite.pos)
     boundaries.push(
       new Boundary({
         ctx: ctx,
-        pos: [
-          sprite.pos[0] ,
-          sprite.pos[1] ,
-        ],
+        pos: sprite.pos,
         width: sprite.screenWidth,
         height: sprite.screenHeight,
       })

@@ -63,7 +63,7 @@ class Game {
       player: this.player, game:this
     });
     this.sitrusberry = new SitrusBerry({
-      pos: [canvas.width / 2 -120, canvas.height / 2 +50],
+      pos: [500 , 400],
       ctx: this.ctx,
       player: this.player, game:this
     });
@@ -122,17 +122,23 @@ class Game {
 
   click(e){
     //what happens when you click on screen and not on specific html elem
-  let mouseY = e.clientY - 36; //36 is font size of header1
-  let mouseX = e.clientX
-  console.log(e)
+  let mouseY = e.clientY - 40; //36 is font size of header1
+  let mouseX = e.clientX -10;
+  console.log(mouseX, mouseY)
+  // console.log(this.snorlax.pos)
   this.resetDialogue();
   if (Utils.isMouseOnRect([mouseX, mouseY], this.bagon)){
+    console.log(`bagon pos: ${this.bagon.pos}`)
+    console.log(`bagon screenwidth/height: ${[this.bagon.screenWidth, this.bagon.screenHeight]}`)
       this.bagon.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.player)){
     this.player.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.snorlax)){
+    console.log(this.snorlax.pos)
+    // console.log(this.snorlax.screenWidth)
     this.snorlax.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.sitrusberry)){
+    console.log(this.sitrusberry.pos)
     this.sitrusberry.clickedOn();
   }
     else{
