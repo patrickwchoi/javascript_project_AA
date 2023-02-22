@@ -12,70 +12,82 @@
   <title>Bagon Adventures</title>
 </head>
 
-<body>
-  <div id="left">
-    <h1 style="font-size:36px">Pokemon</h1>
-    <canvas id="canvas" height="600" width="900"> </canvas>
-    <div id="dialoguebox">
-      <div id="dialogueAnnouncement" class="hidden"></div>
-      <div id="dialogue-text-container">
-        <div id="dialoguetext1" class="dialogueContent"></div>
-        <!-- <span class="divider"></span> -->
-        <div id="dialoguetext2" class="dialogueContent"></div>
-      </div>
-      <div id="dialogueButtons">
-        <button id="option1" class="dialogueButtonOption hidden">option 1</button>
-        <button id="option2" class="dialogueButtonOption hidden">option 2</button>
-      </div>
-      <img src="./assets/bagon_face.png" class="hidden" id="pokedex_pic_bottom" height="100px" width="100px">
+<body id="body">
+  <div class="content-container">
+    <!-- <h1 style="font-size:36px">Bagon Adventures</h1> -->
 
-    </div>
-  </div>
-
-  <div id="rightside-container" > 
-
-
-
-
-    <button id="inventoryButton" class="default-content-right" >Inventory</button>
-    <button id="pokedexButton" class="default-content-right" >Pokedex</button>
-    <button id="instructionsButton" class="default-content-right" >Instructions</button>
-    <button id="mapButton" class="default-content-right"> Map</button>
-    <div id="inventory-container" class="hidden">
-      <h2>Inventory</h2>
-      <button id="inventory-backToDefault" class="backButton backToDefault">Back</button>
-    </div>
-
-    <div id="pokedex-container" class="hidden">
-      <h2>Pokedex</h2>
-      <!-- <div id="bagon-pokedex-item" class="pokedex-item">
-        <div class="pokedex-item-initial-content">
-          <img src="./assets/bagon_face.png" height="50px" width="50px">
-          <div class="pokedex-friendship-container">
-            <h2 class="pokedex-name">Bagon</h2>
-            <p class="pokedex-friendshiplevel">Friendship Level: 0/2</p>
-          </div>
+    <div id="left-container">
+      <canvas id="canvas" height="600" width="900"> </canvas>
+      <!-- <canvas id="canvas" height="600" width="1000"> </canvas> -->
+      <div id="dialoguebox">
+        <img src="./assets/bagon_face.png" class="hidden" id="pokedex_pic_bottom" height="100px" width="100px">
+        <!-- <div id="dialogueAnnouncement" class="hidden"></div> -->
+        <div id="dialogue-text-container">
+          <div id="dialoguetext1" class="dialogueContent"></div>
+          <!-- <span class="divider"></span> -->
+          <div id="dialoguetext2" class="dialogueContent"></div>
         </div>
-        <div class="pokedex-extra-content"></div>
-      </div> -->
-      <button id="backToDefault" class="backButton backToDefault">Back</button>
+        <div id="dialogueButtons">
+          <button id="option1" class="dialogueButtonOption hidden">option 1</button>
+          <button id="option2" class="dialogueButtonOption hidden">option 2</button>
+        </div>
+      </div>
     </div>
 
-    <div id="instructions-container" class="instructions hidden">
-      <p>
-        Instructions: As a member of Team Rocket, you find yourself lost and separated from your crew after being blasted into space yet again. When you wake up, you find a friendly Bagon by your side. You realize that if you evolve this Bagon, you can use them to fly back home!
-        GOAL: Evolve Bagon by finding ways to increase your friendship level! You can check friendship level with the pokedex on the menu.
-        Controls: Use WASD to move, use your mouse to interact with things on screen.
-      </p>
-      <button id="backToDefault" class="backButton backToDefault">Back</button>
+    <div id="rightside-container" >
+      <div id="teamrocket-sprite-container" class="default-content-right">
+        <button id="jessie-button"class="default-content-right">
+          <img id="jessie" src="./assets/Jessie_16x20.png"/>
+        </button>
+        <button id="james-button" class="default-content-right">
+          <img id="james" src="./assets/james_sprites.png"/>
+        </button>
+      </div>
+      <button id="inventoryButton" class="default-content-right" >Inventory</button>
+      <button id="pokedexButton" class="default-content-right" >Pokedex</button>
+      <button id="instructionsButton" class="default-content-right" >Instructions</button>
+      <button id="mapButton" class="default-content-right"> Map</button>
+      <div id="inventory-container" class="hidden">
+        <h2>Inventory</h2>
+        <button id="inventory-backToDefault" class="backButton backToDefault">Back</button>
+      </div>
+      <div id="pokedex-container" class="hidden">
+        <h2>Pokedex</h2>
+        <!-- <div id="bagon-pokedex-item" class="pokedex-item">
+          <div class="pokedex-item-initial-content">
+            <img src="./assets/bagon_face.png" height="50px" width="50px">
+            <div class="pokedex-friendship-container">
+              <h2 class="pokedex-name">Bagon</h2>
+              <p class="pokedex-friendshiplevel">Friendship Level: 0/2</p>
+            </div>
+          </div>
+          <div class="pokedex-extra-content"></div>
+        </div> -->
+        <button id="backToDefault" class="backButton backToDefault">Back</button>
+      </div>
+      <div id="instructions-container" class="instructions hidden">
+        <h2>Instructions</h2>
+        <p>
+          As a member of Team Rocket, you find yourself lost and separated from your crew after being blasted into space yet again. When you wake up, you find a friendly Bagon by your side. You realize that if you evolve this Bagon, you can use them to fly back home!
+        </p>
+        <p>
+          GOAL: Evolve Bagon by finding ways to increase your friendship level! You can check friendship level with the pokedex on the menu.
+        </p>
+        <p>
+          Controls: Use WASD to move, use your mouse to interact with things on screen.
+        </p>
+        <p>Start by clicking on Bagon!</p>
+        <button id="backToDefault" class="backButton backToDefault">Back</button>
+      </div>
+      <div id="map-container" class="hidden">
+        <h2>Map</h2>
+        <img src="./assets/tilemap8_clean_img.png" class="map" id="map" height="300px" width="400px">
+        <button id="backToDefault" class="backButton backToDefault">Back</button>
+      </div>
+      <div class="links-to-patrick">
+        
+      </div>
     </div>
-
-    <div id="map-container" class="hidden">
-      <h2>Map</h2>
-      <img src="./assets/tilemap8_clean_img.png" class="map" id="map" height="300px" width="400px">
-      <button id="backToDefault" class="backButton backToDefault">Back</button>
-    </div>
-
   </div>
   
 </body>
