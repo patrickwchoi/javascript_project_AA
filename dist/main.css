@@ -44,7 +44,7 @@
 #dialoguebox {
   background-color: lightblue;
   height: 30%;
-  width: 850px;
+  width: 900px;
   border-radius: 10px;
 }
 
@@ -214,4 +214,23 @@ button:hover {
   scale: 2;
   object-fit: none;
   object-position: left top;
+}
+
+#links-to-patrick {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+#links-to-patrick img {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+#links-to-patrick img:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
 }

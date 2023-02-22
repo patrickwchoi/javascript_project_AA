@@ -122,23 +122,34 @@ class Game {
 
   click(e){
     //what happens when you click on screen and not on specific html elem
-  let mouseY = e.clientY - 26; //36 is font size of header1
-  let mouseX = e.clientX -20;
-  console.log(mouseX, mouseY)
+  // let mouseY = e.clientY - 26; //36 is font size of header1
+  // let mouseX = e.clientX -20;
+  let mouseY = e.offsetY -22;
+  let mouseX = e.offsetX -21;
+
+  const canvasPosition = this.canvas.getBoundingClientRect();
+  let offsetX = canvasPosition.left;
+  let offsetY = canvasPosition.top;
+  // console.log(this.offsetX, this.offsetY)
+  mouseX=e.x - offsetX 
+  mouseY=e.y - offsetY
+
+  // console.log(e)
+  console.log(`mousex, mousey: ${[mouseX, mouseY]}`)
   // console.log(this.snorlax.pos)
   this.resetDialogue();
   if (Utils.isMouseOnRect([mouseX, mouseY], this.bagon)){
-    console.log(`bagon pos: ${this.bagon.pos}`)
-    console.log(`bagon screenwidth/height: ${[this.bagon.screenWidth, this.bagon.screenHeight]}`)
+    // console.log(`bagon pos: ${this.bagon.pos}`)
+    // console.log(`bagon screenwidth/height: ${[this.bagon.screenWidth, this.bagon.screenHeight]}`)
       this.bagon.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.player)){
     this.player.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.snorlax)){
-    console.log(this.snorlax.pos)
+    console.log(`snorlax pos: ${this.snorlax.pos}`)
     // console.log(this.snorlax.screenWidth)
     this.snorlax.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.sitrusberry)){
-    console.log(this.sitrusberry.pos)
+    // console.log(this.sitrusberry.pos)
     this.sitrusberry.clickedOn();
   }
     else{
