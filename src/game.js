@@ -124,7 +124,12 @@ class Game {
     //what happens when you click on screen and not on specific html elem
   let mouseY = e.clientY - 36; //36 is font size of header1
   let mouseX = e.clientX
+  const canvasPosition = this.canvas.getBoundingClientRect();
+  let offsetX = canvasPosition.left;
+  let offsetY = canvasPosition.top;
 
+  console.log(offsetX, offsetY)
+  
   this.resetDialogue();
   if (Utils.isMouseOnRect([mouseX, mouseY], this.bagon)){
       this.bagon.clickedOn();
