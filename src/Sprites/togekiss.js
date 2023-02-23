@@ -24,7 +24,7 @@ class Togekiss extends Pokemon{
     this.player=player;
     
     this.moving=true;
-    this.movingToTogepi = false;
+    this.movingToTogepi = false; //set to false when production ready
     this.distmovedX = 0; //we'll edit these so he moves X pixels left and Y pixels up
     this.distmovedY = 0;
     this.inNewPos = false;
@@ -62,7 +62,6 @@ class Togekiss extends Pokemon{
         bold:false})
     } 
   }
-
   handleTogepiQuestion(){
     Utils.changeButton1({
       newHTML: 'Tell her Togepi is by the waterfall',
@@ -80,21 +79,36 @@ class Togekiss extends Pokemon{
     })
   }
   moveToTogepi(){
-    if (this.distmovedY ===150 ){ 
-      if (this.distmovedX === 80){///set up where you want snorlax to stop moving
+    if (this.distmovedY ===190 ){ 
+      if (this.distmovedX === 770){///set up where you want snorlax to stop moving
         this.frames.yval = 0; //facing forward
         this.inNewPos=true;
+        this.friendshiplevel += 1;
+        this.game.togepi.foundTogekiss();
         this.game.remakeBoundaries();
         this.moving=false;
       } else{
-        this.frames.yval = 2;
-        this.pos[0] += 1;
+        this.frames.yval = 1;
+        this.pos[0] -= 1;
         this.distmovedX += 1;
       }
     } else{
-      this.pos[1] -= 1;
+      this.pos[1] += 1;
       this.distmovedY += 1;
     }
+  }
+  interactAfterFriendshipMax(){
+    Utils.changeDialogueText1('Togekiss: Togekiss!! :)')
+    Utils.changeDialogueText2('Togekiss looks so relieved! She thanks you and Bagon for your help!')
+    Utils.changeButton1({
+      newHTML: 'Continue', 
+      onClick: ()=>{
+        this.player.pokemon.incrementFriendship(); //not sure if I should handle levelup dialogue in here or in trainerpokemon incrementFriendship()
+        this.player.pokemon.clickedOn();
+        Utils.changeDialogueText1('Bagon: Rawrr!!! ^u^')
+        Utils.changeDialogueText2(`Bagon leveled up after helping Togekiss! He's feeling happy`)
+      }, 
+      bold:true})
   }
 }
 

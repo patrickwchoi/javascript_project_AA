@@ -68,12 +68,12 @@ class Game {
       player: this.player, game:this
     });
     this.togepi = new Togepi({
-      pos: [500 , -10],
+      pos: [-300 , -230],
       ctx: this.ctx,
       player: this.player, game:this
     });
     this.togekiss = new Togekiss({
-      pos: [300 , -10],
+      pos: [500 , -440],
       ctx: this.ctx,
       player: this.player, game:this
     });
