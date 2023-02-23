@@ -21,9 +21,13 @@ class Togekiss extends Pokemon{
     this.friendshipmax = 1;
     this.encountered = false;
     this.pokedexpic = togekiss_pokedex;
-    this.moving=true;
     this.player=player;
+    
+    this.moving=true;
     this.movingToTogepi = false;
+    this.distmovedX = 0; //we'll edit these so he moves X pixels left and Y pixels up
+    this.distmovedY = 0;
+    this.inNewPos = false;
   }
   clickedOn(){
     Utils.showPokedexPicInBottom(this.pokedexpic.src)
@@ -37,12 +41,12 @@ class Togekiss extends Pokemon{
         break;
     }
   }
-  async interactBeforeFriendshipMax(){
+  interactBeforeFriendshipMax(){
     this.player.metMom();
     if (this.encountered===false){
       this.encountered = true;
-      await Utils.changeDialogueText1('Togekiss: Togekiss? ;{')
-      await Utils.changeDialogueText2('You met Togekiss! Togekiss looks distraught... Is she looking for someone?')
+       Utils.changeDialogueText1('Togekiss: Togekiss? ;{')
+       Utils.changeDialogueText2('You met Togekiss! Togekiss looks distraught... Is she looking for someone?')
     } else {
       Utils.changeDialogueText1('Togekiss: Togekiss? ;{')
       Utils.changeDialogueText2('Togekiss still looks distraught... Is she looking for someone?')
@@ -76,7 +80,21 @@ class Togekiss extends Pokemon{
     })
   }
   moveToTogepi(){
-
+    if (this.distmovedY ===150 ){ 
+      if (this.distmovedX === 80){///set up where you want snorlax to stop moving
+        this.frames.yval = 0; //facing forward
+        this.inNewPos=true;
+        this.game.remakeBoundaries();
+        this.moving=false;
+      } else{
+        this.frames.yval = 2;
+        this.pos[0] += 1;
+        this.distmovedX += 1;
+      }
+    } else{
+      this.pos[1] -= 1;
+      this.distmovedY += 1;
+    }
   }
 }
 

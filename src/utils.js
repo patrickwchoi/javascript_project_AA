@@ -160,6 +160,7 @@ function changeInnerHTML(selector, newHTML) {
   });
 }
 function printLetterByLetter(destination, message, speed){
+  //there is an  error where when you click on another pokemon while this message is loading, it happens at same time
   let i = 0;
   let interval = setInterval(function(){
       document.getElementById(destination).innerHTML += message.charAt(i);
@@ -174,14 +175,15 @@ function changeDialogueText1(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext1");
   showElements("#dialoguetext1");
   showElements("#dialogue-text-container");
-  printLetterByLetter("dialoguetext1", newHTML, 70);
-  // dialogue.innerHTML = newHTML;
+  // printLetterByLetter("dialoguetext1", newHTML, 70);
+  dialogue.innerHTML = newHTML;
 }
 function changeDialogueText2(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext2");
   showElements("#dialoguetext2");
   showElements("#dialogue-text-container");
-  printLetterByLetter("dialoguetext2", newHTML, 70);
+  dialogue.innerHTML = "";
+  printLetterByLetter("dialoguetext2", newHTML, 40);
   // dialogue.innerHTML = newHTML;
 }
 function changeButton1({newHTML, onClick, bold=false}){ //Bottom button box 1
