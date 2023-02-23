@@ -77,7 +77,7 @@ class Game {
       ctx: this.ctx,
       player: this.player, game:this
     });
-    
+
     this.pokemonArr = [this.snorlax, this.togepi, this.togekiss]; //arr for pokemon with boundaries
     this.itemsArr = [this.sitrusberry]; //arr for items with boundaries. Split to two arrs so we can remove only items from map
     this.remakeBoundaries();
@@ -98,6 +98,9 @@ class Game {
     if (this.snorlax.moving){
       this.snorlax.moveOutOfWay();
     } 
+    if (this.togekiss.movingToTogepi){
+      this.togekiss.moveToTogepi();
+    }
     this.pokemonArr.forEach((sprite) => { //draw sprite if its not picked up
       sprite.draw();
     })
@@ -163,6 +166,8 @@ class Game {
     this.sitrusberry.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.togepi)){
     this.togepi.clickedOn();
+  } else if (Utils.isMouseOnRect([mouseX, mouseY], this.togekiss)){
+    this.togekiss.clickedOn();
   }
     else{
     this.resetDialogue();

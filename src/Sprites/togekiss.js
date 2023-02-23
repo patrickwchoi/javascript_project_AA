@@ -6,8 +6,8 @@ togekissSprite.src = './assets/togekiss_spritesheet_34x34.png'
 togekissSprite.width = 34*3;
 togekissSprite.height = 34*4;
 
-const togepi_crying = new Image();
-togepi_crying.src = './assets/togepi_crying.jpg'
+const togekiss_pokedex = new Image();
+togekiss_pokedex.src = './assets/togekiss_pokedex.png'
 
 
 class Togekiss extends Pokemon{
@@ -20,9 +20,10 @@ class Togekiss extends Pokemon{
     this.friendshiplevel = 0;
     this.friendshipmax = 1;
     this.encountered = false;
-    // this.pokedexpic = togekiss_crying;
+    this.pokedexpic = togekiss_pokedex;
     this.moving=true;
     this.player=player;
+    this.movingToTogepi = false;
   }
   clickedOn(){
     Utils.showPokedexPicInBottom(this.pokedexpic.src)
@@ -37,7 +38,46 @@ class Togekiss extends Pokemon{
     }
   }
   interactBeforeFriendshipMax(){
-    
+    this.player.metMom();
+    this.encountered = true;
+    if (this.encountered===false){
+      Utils.changeDialogueText1('Togekiss: Togekiss? ;{')
+      Utils.changeDialogueText2('You met Togekiss! Togekiss looks distraught... Is she looking for someone?')
+    } else {
+      Utils.changeDialogueText1('Togekiss: Togekiss? ;{')
+      Utils.changeDialogueText2('Togekiss still looks distraught... Is she looking for someone?')
+    }
+    if (this.game.togepi.encountered===true){
+      Utils.changeButton1({
+        newHTML: 'Tell her you found Togepi', 
+        onClick: ()=>{
+          Utils.changeDialogueText1('Togekiss: Togekiss??? ')
+          Utils.changeDialogueText2(`Togekiss looks relieved! Tell her where Togepi is!`)
+          this.handleTogepiQuestion();
+        }, 
+        bold:false})
+    } 
+  }
+
+  handleTogepiQuestion(){
+    console.log('hello')
+    Utils.changeButton1({
+      newHTML: 'Tell her Togepi is by the waterfall',
+      onClick: ()=>{
+        Utils.changeDialogueText2(`That's not true! Think...`)
+      }
+    })
+    Utils.changeButton2({
+      newHTML: 'Tell her Togepi is on the island',
+      onClick: ()=>{
+        Utils.changeDialogueText1('')
+        Utils.changeDialogueText2(`You tell her you saw Togepi on the island.`)
+        this.game.togekiss.movingToTogepi = true;
+      }
+    })
+  }
+  moveToTogepi(){
+
   }
 }
 
