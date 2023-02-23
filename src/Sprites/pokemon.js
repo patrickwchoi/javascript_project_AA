@@ -1,4 +1,5 @@
 const Sprite = require("./sprite.js");
+const Utils = require("../utils.js");
 
 const salamenceSprite = new Image();
 salamenceSprite.src = './assets/salamence_sprites_31x28.png'
@@ -98,6 +99,7 @@ class Pokemon extends Sprite{
   updatePokedexFriendship(){
     let pokedexFriendship = document.querySelector(`#${this.name}-pokedex-item .pokedex-friendshiplevel`);
     pokedexFriendship.innerHTML = `Friendship level: ${this.friendshiplevel}/${this.friendshipmax}`
+    Utils.goToPokedexScreen();
   }
 
   clickedOn(){ 

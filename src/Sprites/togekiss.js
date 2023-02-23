@@ -101,13 +101,19 @@ class Togekiss extends Pokemon{
   interactAfterFriendshipMax(){
     Utils.changeDialogueText1('Togekiss: Togekiss!! :)')
     Utils.changeDialogueText2('Togekiss looks so relieved! She thanks you and Bagon for your help!')
+    this.player.pokemon.incrementFriendship()
     Utils.changeButton1({
-      newHTML: 'Continue', 
+      newHTML: 'Level up Bagon', 
       onClick: ()=>{
-        this.player.pokemon.incrementFriendship(); //not sure if I should handle levelup dialogue in here or in trainerpokemon incrementFriendship()
-        this.player.pokemon.clickedOn();
-        Utils.changeDialogueText1('Bagon: Rawrr!!! ^u^')
-        Utils.changeDialogueText2(`Bagon leveled up after helping Togekiss! He's feeling happy`)
+        //not sure if I should handle levelup dialogue in here or in trainerpokemon incrementFriendship()
+        if (this.player.pokemon.friendshiplevel === this.player.pokemon.friendshipmax){ 
+          //if bagon evolved, go to bagons evolve dialogue. add condition for shelgon here when I add shelgon
+          this.player.pokemon.clickedOn();
+        } else{
+          this.player.pokemon.clickedOn();
+          Utils.changeDialogueText1('Bagon: Rawrr!!! ^u^')
+          Utils.changeDialogueText2(`Bagon leveled up after helping Togekiss! He's feeling happy`)
+        }
       }, 
       bold:true})
   }
