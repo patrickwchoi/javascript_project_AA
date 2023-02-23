@@ -152,7 +152,13 @@ function showElements(selector) {
     element.classList.remove("hidden");
   });
 }
-
+function playIsabelleAudioLong(){
+  const isabelle_long = document.getElementById("isabelle_audio_long");
+  isabelle_long.addEventListener("ended", () => {
+    isabelle_long.currentTime = 0; // reset the audio to the beginning
+  });
+  isabelle_long.play();
+}
 function changeInnerHTML(selector, newHTML) {
   const elements = document.querySelectorAll(selector);
   elements.forEach(element => {
@@ -184,6 +190,7 @@ function changeDialogueText2(newHTML){ //Bottom dialogue box
   showElements("#dialogue-text-container");
   dialogue.innerHTML = "";
   printLetterByLetter("dialoguetext2", newHTML, 40);
+  playIsabelleAudioLong();
   // dialogue.innerHTML = newHTML;
 }
 function changeButton1({newHTML, onClick, bold=false}){ //Bottom button box 1

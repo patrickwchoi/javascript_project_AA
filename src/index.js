@@ -7,3 +7,35 @@ const canvas = document.getElementById('canvas');
 let g = new Game(canvas);
 g.play();
 
+const themesong = document.getElementById("themesong");
+// themesong.play();
+let volume = 0.2;
+themesong.volume=volume;
+
+let isMuted = false;
+const muteButton = document.getElementById("mute-button");
+muteButton.addEventListener("click", toggleMute);
+
+function toggleMute() {
+  isMuted = !isMuted;
+  const sounds = document.querySelectorAll("audio");
+  sounds.forEach(sound => {
+    if (isMuted) {
+      sound.volume = 0;
+    } else {
+      sound.volume = volume;
+    }
+  });
+
+  // Update mute button icon
+  // const muteIcon = document.getElementById("mute-icon");
+  // if (isMuted) {
+  //   muteIcon.classList.remove("fa-volume-up");
+  //   muteIcon.classList.add("fa-volume-mute");
+  // } else {
+  //   muteIcon.classList.remove("fa-volume-mute");
+  //   muteIcon.classList.add("fa-volume-up");
+  // }
+}
+
+
