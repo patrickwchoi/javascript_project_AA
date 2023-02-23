@@ -84,8 +84,9 @@ class Togekiss extends Pokemon{
       if (this.distmovedX === 770){///set up where you want snorlax to stop moving
         this.frames.yval = 0; //facing forward
         this.inNewPos=true;
-        this.friendshiplevel += 1;
-        this.game.togepi.foundTogekiss();
+        this.friendshiplevel = 1;
+        this.updatePokedexEntry();
+        this.game.togepi.foundTogekiss(); 
         this.game.remakeBoundaries();
         this.moving=false;
       } else{

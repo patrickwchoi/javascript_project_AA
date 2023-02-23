@@ -53,6 +53,7 @@ class Togepi extends Pokemon{
   }
   foundTogekiss(){
     this.friendshiplevel = 1;
+    this.updatePokedexEntry();
     this.frames.yval=1;
     this.moving=true;
     // this.interactAfterFriendshipMax();
