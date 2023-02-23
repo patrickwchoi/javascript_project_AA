@@ -153,7 +153,7 @@ function showElements(selector) {
   });
 }
 function playIsabelleAudioLong(){
-  const isabelle_long = document.getElementById("isabelle_audio_long");
+  const isabelle_long = document.getElementById("isabelle_audio_medium");
   isabelle_long.addEventListener("ended", () => {
     isabelle_long.currentTime = 0; // reset the audio to the beginning
   });

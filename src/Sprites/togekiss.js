@@ -45,6 +45,7 @@ class Togekiss extends Pokemon{
     this.player.metMom();
     if (this.encountered===false){
       this.encountered = true;
+      this.addEntryToPokedex();
        Utils.changeDialogueText1('Togekiss: Togekiss? ;{')
        Utils.changeDialogueText2('You met Togekiss! Togekiss looks distraught... Is she looking for someone?')
     } else {

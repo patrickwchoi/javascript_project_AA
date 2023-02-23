@@ -39,6 +39,7 @@ class Togepi extends Pokemon{
   interactBeforeFriendshipMax(){
     if (this.encountered===false){
       this.encountered = true;
+      this.addEntryToPokedex();
       Utils.changeDialogueText1('Togepi: Togepi? ;{')
       Utils.changeDialogueText2('You met Togepi! Togepi is crying... Where could its mom be?')
     } else {

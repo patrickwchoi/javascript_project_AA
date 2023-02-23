@@ -1,10 +1,13 @@
 // JS Entry File
 const Game = require("./game.js");
+const Utils = require("./utils.js");
 // import Game from './game.js';
 
-//Create Canvas
+
 const canvas = document.getElementById('canvas'); 
 let g = new Game(canvas);
+// Utils.changeDialogueText1("Welcome to Pokemon: The Game! Press the button below to start the game.");
+document.getElementById('instructionsButton').click();
 g.play();
 
 const themesong = document.getElementById("themesong");

@@ -109,7 +109,7 @@ button:hover {
 
 #rightside-container {
   background-color: rgb(156, 235, 156);
-  width: 400px;
+  width: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -190,7 +190,7 @@ button:hover {
   padding-bottom: 10px;
   text-align: center;
   font-weight: bold;
-  line-height: 1.25;
+  line-height: 1.35;
 }
 
 .backButton {
