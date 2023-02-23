@@ -152,23 +152,37 @@ function showElements(selector) {
     element.classList.remove("hidden");
   });
 }
+
 function changeInnerHTML(selector, newHTML) {
   const elements = document.querySelectorAll(selector);
   elements.forEach(element => {
     element.innerHTML = newHTML;
   });
 }
+function printLetterByLetter(destination, message, speed){
+  let i = 0;
+  let interval = setInterval(function(){
+      document.getElementById(destination).innerHTML += message.charAt(i);
+      i++;
+      if (i > message.length){
+          clearInterval(interval);
+      }
+  }, speed);
+}
+
 function changeDialogueText1(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext1");
   showElements("#dialoguetext1");
   showElements("#dialogue-text-container");
-  dialogue.innerHTML = newHTML;
+  printLetterByLetter("dialoguetext1", newHTML, 70);
+  // dialogue.innerHTML = newHTML;
 }
 function changeDialogueText2(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext2");
   showElements("#dialoguetext2");
   showElements("#dialogue-text-container");
-  dialogue.innerHTML = newHTML;
+  printLetterByLetter("dialoguetext2", newHTML, 70);
+  // dialogue.innerHTML = newHTML;
 }
 function changeButton1({newHTML, onClick, bold=false}){ //Bottom button box 1
   const button = document.getElementById("option1");

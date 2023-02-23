@@ -25,7 +25,8 @@ class Snorlax extends Pokemon{
       'fed': false,
     }
     this.pokedexpic = snorlax_pokedexpic;
-    this.moving=false;
+    // this.moving=false;
+    this.moving=true; //only set to true so he moves out of way for testing. When I finalize game, must set to false
     this.player=player;
     this.inNewPos = false;
     this.distmovedX = 0; //we'll edit these so he moves X pixels left and Y pixels up

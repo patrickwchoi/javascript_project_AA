@@ -37,12 +37,12 @@ class Togekiss extends Pokemon{
         break;
     }
   }
-  interactBeforeFriendshipMax(){
+  async interactBeforeFriendshipMax(){
     this.player.metMom();
-    this.encountered = true;
     if (this.encountered===false){
-      Utils.changeDialogueText1('Togekiss: Togekiss? ;{')
-      Utils.changeDialogueText2('You met Togekiss! Togekiss looks distraught... Is she looking for someone?')
+      this.encountered = true;
+      await Utils.changeDialogueText1('Togekiss: Togekiss? ;{')
+      await Utils.changeDialogueText2('You met Togekiss! Togekiss looks distraught... Is she looking for someone?')
     } else {
       Utils.changeDialogueText1('Togekiss: Togekiss? ;{')
       Utils.changeDialogueText2('Togekiss still looks distraught... Is she looking for someone?')
@@ -60,7 +60,6 @@ class Togekiss extends Pokemon{
   }
 
   handleTogepiQuestion(){
-    console.log('hello')
     Utils.changeButton1({
       newHTML: 'Tell her Togepi is by the waterfall',
       onClick: ()=>{
