@@ -21,8 +21,12 @@ class Player extends Sprite{
     this.posForPokemon = [this.pos[0]-this.pokemon.width*2, this.pos[1]] //25 is guess for pokemons width
     this.moving = false;
     this.inventory={};
+    this.metTogepiMom = false;
   }
 
+  metMom(){
+    this.metTogepiMom = true;
+  }
   changeToJessie(){
     this.image = jessie;
     console.log('player')

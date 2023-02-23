@@ -7,7 +7,7 @@ const Utils = require("./utils.js");
 const TrainerPokemon = require("./Sprites/trainerpokemon.js");
 const Snorlax = require("./Sprites/snorlax.js");
 const SitrusBerry = require("./Sprites/Items/SitrusBerry.js");
-
+const Togepi = require("./Sprites/togepi.js");
 
 const map = new Image();
 map.src = "./assets/tilemap8.png";
@@ -65,7 +65,12 @@ class Game {
       ctx: this.ctx,
       player: this.player, game:this
     });
-    this.pokemonArr = [this.snorlax]; //arr for pokemon with boundaries
+    this.togepi = new Togepi({
+      pos: [500 , -10],
+      ctx: this.ctx,
+      player: this.player, game:this
+    });
+    this.pokemonArr = [this.snorlax, this.togepi]; //arr for pokemon with boundaries
     this.itemsArr = [this.sitrusberry]; //arr for items with boundaries. Split to two arrs so we can remove only items from map
     this.remakeBoundaries();
   }
@@ -144,12 +149,12 @@ class Game {
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.player)){
     this.player.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.snorlax)){
-    console.log(`snorlax pos: ${this.snorlax.pos}`)
-    // console.log(this.snorlax.screenWidth)
+    // console.log(`snorlax pos: ${this.snorlax.pos}`)
     this.snorlax.clickedOn();
   } else if (Utils.isMouseOnRect([mouseX, mouseY], this.sitrusberry)){
-    // console.log(this.sitrusberry.pos)
     this.sitrusberry.clickedOn();
+  } else if (Utils.isMouseOnRect([mouseX, mouseY], this.togepi)){
+    this.togepi.clickedOn();
   }
     else{
     this.resetDialogue();

@@ -101,6 +101,12 @@ button:hover {
     padding: 10px 30px;
   }
 }
+#pokedex_pic_bottom {
+  height: 100px;
+  width: auto;
+  border-radius: 5px;
+}
+
 #rightside-container {
   background-color: rgb(156, 235, 156);
   width: 400px;
