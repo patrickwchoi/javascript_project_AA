@@ -122,11 +122,13 @@ class Snorlax extends Pokemon{
     //move snorlax position one step at a time. First in Y direction, then in X
     if (this.distmovedY ===150 ){ 
       if (this.distmovedX === 80){///set up where you want snorlax to stop moving
+        this.frames.yval = 0; //facing forward
         this.inNewPos=true;
         this.game.remakeBoundaries();
         this.moving=false;
         
       } else{
+        this.frames.yval = 2;
         this.pos[0] += 1;
         this.distmovedX += 1;
       }
