@@ -4,9 +4,7 @@ const Player = require("./Sprites/player.js");
 const Boundary = require("./Map/boundary.js");
 // import Boundary from './Map/boundary.js';
 const Utils = require("./utils.js");
-const Pokemon = require("./Sprites/pokemon.js");
 const TrainerPokemon = require("./Sprites/trainerpokemon.js");
-const Item = require("./Sprites/Items/item.js");
 const Snorlax = require("./Sprites/snorlax.js");
 const SitrusBerry = require("./Sprites/Items/SitrusBerry.js");
 
