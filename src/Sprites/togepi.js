@@ -11,7 +11,7 @@ togepi_crying.src = './assets/togepi_crying.jpg'
 
 
 class Togepi extends Pokemon{
-  constructor({pos, image, ctx, frames = {dimx:2, dimy:2, zoom:2}, name, player, game}){
+  constructor({pos, image, ctx, frames = {dimx:2, dimy:2, zoom:1.5}, name, player, game}){
     image = togepiSprite;
     frames = frames;
     super({pos, ctx, image, frames, game});

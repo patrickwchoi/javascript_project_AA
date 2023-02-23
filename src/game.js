@@ -8,6 +8,8 @@ const TrainerPokemon = require("./Sprites/trainerpokemon.js");
 const Snorlax = require("./Sprites/snorlax.js");
 const SitrusBerry = require("./Sprites/Items/SitrusBerry.js");
 const Togepi = require("./Sprites/togepi.js");
+const Togekiss = require("./Sprites/togekiss.js");
+
 
 const map = new Image();
 map.src = "./assets/tilemap8.png";
@@ -70,7 +72,13 @@ class Game {
       ctx: this.ctx,
       player: this.player, game:this
     });
-    this.pokemonArr = [this.snorlax, this.togepi]; //arr for pokemon with boundaries
+    this.togekiss = new Togekiss({
+      pos: [300 , -10],
+      ctx: this.ctx,
+      player: this.player, game:this
+    });
+    
+    this.pokemonArr = [this.snorlax, this.togepi, this.togekiss]; //arr for pokemon with boundaries
     this.itemsArr = [this.sitrusberry]; //arr for items with boundaries. Split to two arrs so we can remove only items from map
     this.remakeBoundaries();
   }
