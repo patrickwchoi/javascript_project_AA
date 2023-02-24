@@ -10,9 +10,17 @@ sitrusberry_pokedexpic.src = "../../assets/sitrus_berry.png";
 
 
 class SitrusBerry extends Item{
-    constructor(...args){
-      super(...args);
+    constructor({pos, ctx, frames = {dimx:1, dimy:1, zoom:1}, player, name, game}){
+      let image = sitrusberry_pokedexpic;
+      // image.width=20;
+      // image.height=20;
+      image.style.width = '20px'; // set the width to 20 pixels
+      image.style.height = 'auto';
+      super({pos, image, ctx, frames, player, name, game});
       this.name='Sitrus Berry'
+      this.image = sitrusberry_pokedexpic;
+      // this.image.width=20;
+      // this.image.height=20;
       this.pokedexpic = sitrusberry_pokedexpic;
     }
 

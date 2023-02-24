@@ -31,7 +31,7 @@ class TrainerPokemon extends Pokemon{
   }
 
 
-  incrementFriendship(){
+  incrementFriendship(){ //this doesnt trigger dialogue by itself
     // if (this.friendshiplevel===this.friendshipmax-1){ 
     //   maxFriendshipInteraction();
     // } else 
@@ -49,7 +49,6 @@ class TrainerPokemon extends Pokemon{
     Utils.changeDialogueText2(``);
     this.updateSpriteSalamence();
     this.name='Salamence'
-  
   }
   updateSpriteSalamence(){
     this.image = salamenceSprite;
@@ -117,6 +116,7 @@ class TrainerPokemon extends Pokemon{
   }
 
   clickedOn(){ //what happens when we click on bagon
+    Utils.goToPokedexScreen();
     switch (true){
       case this.friendshiplevel < this.friendshipmax:
         this.defaultInteraction();

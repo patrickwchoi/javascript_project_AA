@@ -103,6 +103,7 @@ class Pokemon extends Sprite{
   }
 
   clickedOn(){ 
+    Utils.goToPokedexScreen();
     console.log(`pokemon class clickedOn method!`)
     } 
   defaultInteraction(){

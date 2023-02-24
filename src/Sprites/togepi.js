@@ -8,7 +8,8 @@ togepiSprite.height = 21*2;
 
 const togepi_crying = new Image();
 togepi_crying.src = './assets/togepi_crying.jpg'
-
+const togepi_sleeping = new Image();
+togepi_sleeping.src = './assets/togepi_sleeping.jpg'
 
 class Togepi extends Pokemon{
   constructor({pos, image, ctx, frames = {dimx:2, dimy:2, zoom:1.7}, name, player, game}){
@@ -56,6 +57,7 @@ class Togepi extends Pokemon{
     this.updatePokedexEntry();
     this.frames.yval=1;
     this.moving=true;
+    this.pokedexpic = togepi_sleeping;
     // this.interactAfterFriendshipMax();
   }
   draw(){//all I am changing for togepu is how long it rotates frames
