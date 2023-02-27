@@ -48,7 +48,7 @@ class TrainerPokemon extends Pokemon{
     Utils.changeDialogueText1(`Bagon's friendship has been maxed! Bagon will now evolve into a Salamence! Congratulations!`);
     Utils.changeDialogueText2(``);
     this.updateSpriteSalamence();
-    this.name='Salamence'
+    this.name='salamence'
   }
   updateSpriteSalamence(){
     this.image = salamenceSprite;
@@ -117,18 +117,22 @@ class TrainerPokemon extends Pokemon{
 
   clickedOn(){ //what happens when we click on bagon
     Utils.goToPokedexScreen();
+    Utils.showPokedexPicInBottom(this.pokedexpic.src);
     switch (true){
       case this.friendshiplevel < this.friendshipmax:
         this.defaultInteraction();
         break;
       case this.friendshiplevel === this.friendshipmax:
-        this.maxFriendshipInteraction();
+        if (this.name!='salamence'){
+          this.evolveToSalamence();
+        } else{
+          this.maxFriendshipInteraction();
+        }
         break;
     }
   }
 
   defaultInteraction(){
-    Utils.showPokedexPicInBottom(this.pokedexpic.src);
     Utils.changeDialogueText1(`${this.name}: ${this.dialogue.roar}`);
     Utils.changeDialogueText2(`What would you like to do?`);
     Utils.changeButton1({
@@ -159,9 +163,9 @@ class TrainerPokemon extends Pokemon{
     });
   }
   SalamenceInteraction(){
-    Utils.showPokedexPicInBottom(this.pokedexpic.src);
     Utils.changeDialogueText1(`${this.name}: ${this.dialogue.roar}`);
     Utils.changeDialogueText2(`Congrats on evolving Bagon to a Salamence! Refresh to restart`);
+    Utils.hideElements('#option1')
   }
 }
 
