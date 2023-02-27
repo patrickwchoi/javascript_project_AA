@@ -10,6 +10,8 @@ const togepi_crying = new Image();
 togepi_crying.src = './assets/togepi_crying.jpg'
 const togepi_sleeping = new Image();
 togepi_sleeping.src = './assets/togepi_sleeping.jpg'
+const togepi_neutral = new Image();
+togepi_neutral.src = './assets/togepi_neutral.jpg'
 
 class Togepi extends Pokemon{
   constructor({pos, image, ctx, frames = {dimx:2, dimy:2, zoom:1.7}, name, player, game}){
@@ -21,12 +23,13 @@ class Togepi extends Pokemon{
     this.friendshiplevel = 0;
     this.friendshipmax = 1;
     this.encountered = false;
-    this.pokedexpic = togepi_crying;
+    this.pokedexpic = togepi_neutral;
+    this.dialogue_pic = togepi_crying; //made dialogue_pic for togepi bc dialoguepic != pokedexpic
     this.moving=false;
     this.player=player;
   }
   clickedOn(){
-    Utils.showPokedexPicInBottom(this.pokedexpic.src)
+    Utils.showPokedexPicInBottom(this.dialogue_pic.src)
     Utils.goToPokedexScreen();
     switch(this.friendshiplevel) {
       case 0:
@@ -57,7 +60,7 @@ class Togepi extends Pokemon{
     this.updatePokedexEntry();
     this.frames.yval=1;
     this.moving=true;
-    this.pokedexpic = togepi_sleeping;
+    this.dialogue_pic = togepi_sleeping;
     // this.interactAfterFriendshipMax();
   }
   draw(){//all I am changing for togepu is how long it rotates frames

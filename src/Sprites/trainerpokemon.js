@@ -11,13 +11,13 @@ const salamence_pokedexpic = new Image();
 salamence_pokedexpic.src = './assets/salamence_pokedexpic.png';
 
 class TrainerPokemon extends Pokemon{
-  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}, pokedexpic}){
+  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}}){
     super({pos, image, ctx, frames});
     this.pokedexpic = bagon_pokedexpic;
     this.name = 'bagon'
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
-    this.friendshipmax = 3;
+    this.friendshipmax = 2;
     //friendship variables: booleans for if tasks that increase friendship have been completed
     this.friendship = {
       'fed': false,
@@ -44,11 +44,14 @@ class TrainerPokemon extends Pokemon{
 
   }
   evolveToSalamence(){
-    this.updatePokedexFriendship();
-    Utils.changeDialogueText1(`Bagon's friendship has been maxed! Bagon will now evolve into a Salamence! Congratulations!`);
-    Utils.changeDialogueText2(``);
     this.updateSpriteSalamence();
     this.name='salamence'
+    Utils.changeDialogueText1(`Bagon's friendship has been maxed! Bagon will now evolve into a Salamence! Congratulations!`);
+    Utils.changeDialogueText2(``);
+    this.updatePokedexFriendship();
+
+    // this.pokedexpic = salamence_pokedexpic;
+    Utils.showPokedexPicInBottom(this.pokedexpic.src);
   }
   updateSpriteSalamence(){
     this.image = salamenceSprite;
@@ -126,7 +129,7 @@ class TrainerPokemon extends Pokemon{
         if (this.name!='salamence'){
           this.evolveToSalamence();
         } else{
-          this.maxFriendshipInteraction();
+          this.SalamenceInteraction();
         }
         break;
     }
@@ -161,6 +164,15 @@ class TrainerPokemon extends Pokemon{
       },
       bold: !this.friendship.fed
     });
+  }
+
+  updatePokedexFriendship(){
+    //for bagon, some changes must be made to function to account for evolution
+    let pokedexFriendship = document.querySelector(`#bagon-pokedex-item .pokedex-friendshiplevel`);
+    pokedexFriendship.innerHTML = `Friendship level: ${this.friendshiplevel}/${this.friendshipmax}`
+    const pokemonImage = document.querySelector('.pokedex-img-right');
+    pokemonImage.src = this.pokedexpic.src;
+    Utils.goToPokedexScreen();
   }
   SalamenceInteraction(){
     Utils.changeDialogueText1(`${this.name}: ${this.dialogue.roar}`);
