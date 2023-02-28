@@ -33,11 +33,11 @@ class Game {
     this.ctx.fillRect(0, 0, canvas.width, canvas.height);
     this.ctx.drawImage(map,0,0)
     this.offset = [-1400, -1200]; //default location of map at start
-
     this.collisionsMap = this.make2dArrCollisions();
  
     this.framesPressed = 0; //will let us know how long a key is held down
     this.registerEventListeners();
+    this.talking=false
 
     this.background = new Sprite({
       pos: this.offset, image: map, ctx: this.ctx, });

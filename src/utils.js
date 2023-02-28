@@ -165,16 +165,16 @@ function changeInnerHTML(selector, newHTML) {
     element.innerHTML = newHTML;
   });
 }
-function printLetterByLetter(destination, message, speed){
+function printLetterByLetter(destinationDiv, message, speed=40){
   //there is an  error where when you click on another pokemon while this message is loading, it happens at same time
   let i = 0;
   let interval = setInterval(function(){
-      document.getElementById(destination).innerHTML += message.charAt(i);
+      destinationDiv.innerHTML += message.charAt(i);
       i++;
-      if (i > message.length){
+      if (i > message.length) {
           clearInterval(interval);
       }
-  }, speed);
+    }, speed);
 }
 
 function changeDialogueText1(newHTML){ //Bottom dialogue box
@@ -184,14 +184,15 @@ function changeDialogueText1(newHTML){ //Bottom dialogue box
   dialogue.innerHTML = newHTML;
 }
 function changeDialogueText2(newHTML){ //Bottom dialogue box
-  const dialogue = document.getElementById("dialoguetext2");
-  //delete element
-  //make an identical element
-  //add identical element to the DOM
+  const oldDiv = document.getElementById("dialoguetext2");
+  const newDiv = document.createElement("div");
+  newDiv.id = "dialoguetext2";
+  newDiv.className = "dialogueContent";
+  oldDiv.parentNode.insertBefore(newDiv, oldDiv.nextSibling);
+  oldDiv.parentNode.removeChild(oldDiv);
   showElements("#dialoguetext2");
   showElements("#dialogue-text-container");
-  dialogue.innerHTML = "";
-  printLetterByLetter("dialoguetext2", newHTML, 40);
+  printLetterByLetter(newDiv, newHTML, 40);
   playIsabelleAudioLong();
 }
 function changeButton1({newHTML, onClick, bold=false}){ //Bottom button box 1

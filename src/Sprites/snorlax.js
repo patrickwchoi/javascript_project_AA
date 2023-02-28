@@ -57,7 +57,7 @@ class Snorlax extends Pokemon{
       this.encountered = true;
       this.addEntryToPokedex();
       Utils.changeDialogueText1('Snorlax: Zzz... -_-')
-      Utils.changeDialogueText2('You encountered a Snorlax! Snorlax is sleeping...')
+      Utils.changeDialogueText2('You encountered a Snorlax! Snorlax is sleeping...', this.game)
       Utils.changeButton1({
         newHTML: 'Wake up Snorlax', 
         onClick: ()=>{
