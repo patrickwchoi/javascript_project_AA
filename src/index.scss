@@ -137,6 +137,23 @@ button:hover {
   border-radius: 2px;
 }
 
+.pokedex-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  padding:10px;
+}
+.pokedex-item:after{
+  content:'';
+  width:100%;
+  height:2px;
+  margin-top:15px;
+  background-color:black;
+  border-radius:5px;
+}
+
 .pokedex-item-initial-content{
   display:flex;
   flex-direction: row;
@@ -146,6 +163,9 @@ button:hover {
   padding: 10px;
   padding-left:20px;
   padding-right:20px;
+}
+.pokedex-item-initial-content img{
+  border-radius: 5px;
 }
 .pokedex-item-image-name{
   display:flex;
@@ -161,10 +181,23 @@ button:hover {
   width:70%;
 }
 .pokedex-friendshiplevel{
-  font-size: 16px;
+  font-size: 14px;
   // font-weight: bold;
-  line-height: 1.5;
+  line-height: 1;
+  margin-top:5px;
 }
+#bagon-progressdiv{
+  padding:5px;
+  margin-left:10px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  row-gap: 5px;
+}
+
+
 #dialogue-text-container{
   display: flex;
   // justify-content: center;
@@ -190,7 +223,6 @@ button:hover {
   text-align: center;
   font-weight: bold;
   line-height: 1.35;
-
 }
 
 .backButton{

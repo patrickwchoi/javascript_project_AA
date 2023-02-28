@@ -43,9 +43,11 @@ class Pokemon extends Sprite{
     friendshipContainer.classList.add(`pokedex-friendship-container`);
 
     // Add the Pokémon`s name to the friendship container
-    const pokemonName = document.createElement(`h2`);
+    const pokemonName = document.createElement(`h1`);
     pokemonName.classList.add(`pokedex-name`);
-    pokemonName.textContent = `${this.name}`;
+    const name = `${this.name}`;
+    const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+    pokemonName.textContent = capitalizedName
     friendshipContainer.appendChild(pokemonName);
 
     // Add the friendship level to the friendship container
