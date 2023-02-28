@@ -105,9 +105,9 @@ class Snorlax extends Pokemon{
         newHTML: 'Continue', 
         onClick: ()=>{
           if (this.player.pokemon.friendship.snorlax===false){
+            this.player.pokemon.friendship.snorlax=true;
             this.player.pokemon.incrementFriendship(); //not sure if I should handle levelup dialogue in here or in trainerpokemon incrementFriendship()
           }
-          this.player.pokemon.friendship.snorlax=true;
           this.player.pokemon.clickedOn();
           Utils.changeDialogueText1('Bagon: Rawrr!!! ^u^')
           Utils.changeDialogueText2(`Bagon leveled up after helping Snorlax! He's feeling happy`)

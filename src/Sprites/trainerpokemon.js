@@ -11,13 +11,13 @@ const salamence_pokedexpic = new Image();
 salamence_pokedexpic.src = './assets/salamence_pokedexpic.png';
 
 class TrainerPokemon extends Pokemon{
-  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}}){
-    super({pos, image, ctx, frames});
+  constructor({pos, image, ctx, frames = {dimx:1, dimy:1, zoom:1}}, game){
+    super({pos, image, ctx, frames, game});
     this.pokedexpic = bagon_pokedexpic;
     this.name = 'bagon'
     this.feelings = 'nervous :{'
     this.friendshiplevel = 0;
-    this.friendshipmax = 2;
+    this.friendshipmax = 4;
     //friendship variables: booleans for if tasks that increase friendship have been completed
     this.friendship = {
       'fed': false,
@@ -26,30 +26,26 @@ class TrainerPokemon extends Pokemon{
       'togepi' : false,
     }
     this.pokedexpic=bagon_pokedexpic;
-
     this.addEntryToPokedex();
+    this.addProgressDiv();
   }
 
-
   incrementFriendship(){ //this doesnt trigger dialogue by itself
-    // if (this.friendshiplevel===this.friendshipmax-1){ 
-    //   maxFriendshipInteraction();
-    // } else 
+    this.updateProgressDiv(); //before calling incrementFrienship() anywhere, must update the friendship object for this to update
     if (this.friendshiplevel<this.friendshipmax){
       this.friendshiplevel++
       this.updatePokedexFriendship();
     } else{
       console.log('friendship maxed out')
     }
-
   }
+
   evolveToSalamence(){
     this.updateSpriteSalamence();
     this.name='salamence'
     Utils.changeDialogueText1(`Bagon's friendship has been maxed! Bagon will now evolve into a Salamence! Congratulations!`);
     Utils.changeDialogueText2(``);
     this.updatePokedexFriendship();
-
     // this.pokedexpic = salamence_pokedexpic;
     Utils.showPokedexPicInBottom(this.pokedexpic.src);
   }
@@ -145,9 +141,9 @@ class TrainerPokemon extends Pokemon{
         Utils.changeDialogueText1(`${this.name}: ${this.dialogue.happy}`);
         Utils.changeDialogueText2(`*Giving ${this.name} compliments*`);
         if (this.friendship.complimented===false){
+          this.friendship.complimented = true;
           this.incrementFriendship();
         }
-        this.friendship.complimented = true;
       }, 
       bold: !this.friendship.complimented //if they didnt compliment yet, make it bold
     });
@@ -158,9 +154,9 @@ class TrainerPokemon extends Pokemon{
         Utils.changeDialogueText1(`${this.name}: ${this.dialogue.eating}`);
         Utils.changeDialogueText2(`*Giving ${this.name} treats*`);
         if (this.friendship.fed===false){
+          this.friendship.fed = true;
           this.incrementFriendship();
         }
-        this.friendship.fed = true;
       },
       bold: !this.friendship.fed
     });
@@ -174,11 +170,40 @@ class TrainerPokemon extends Pokemon{
     pokemonImage.src = this.pokedexpic.src;
     Utils.goToPokedexScreen();
   }
+  addProgressDiv(){
+    //add the progress div
+    let bagonProgressDiv =  document.createElement(`div`);
+    bagonProgressDiv.id = `bagon-progressdiv`;
+
+    let progressHeader = document.createElement(`h2`)
+    progressHeader.innerHTML = `Friendship Progress`;
+    bagonProgressDiv.appendChild(progressHeader);
+
+    for (let task in this.friendship) {
+      let taskItem = document.createElement(`div`);
+      taskItem.classList.add(`progress-item`);
+      taskItem.id = `progress-item-${task}`;
+      taskItem.innerHTML = `???: Incomplete`;
+      bagonProgressDiv.appendChild(taskItem);
+    }
+    let bagonPokedexItem  = document.querySelector(`#bagon-pokedex-item`);
+    bagonPokedexItem.appendChild(bagonProgressDiv)
+  }
+  updateProgressDiv(){
+    for (let task in this.friendship) {
+      let taskItem = document.querySelector(`#progress-item-${task}`);
+      if (this.friendship[task]){
+        taskItem.innerHTML = `${task}: Comeplete!`;
+      }
+    }
+  }
+
   SalamenceInteraction(){
     Utils.changeDialogueText1(`${this.name}: ${this.dialogue.roar}`);
     Utils.changeDialogueText2(`Congrats on evolving Bagon to a Salamence! Refresh to restart`);
     Utils.hideElements('#option1')
   }
+  
 }
 
 module.exports = TrainerPokemon;

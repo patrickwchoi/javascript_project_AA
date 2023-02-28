@@ -102,6 +102,7 @@ class Togekiss extends Pokemon{
   interactAfterFriendshipMax(){
     Utils.changeDialogueText1('Togekiss: Togekiss!! :)')
     Utils.changeDialogueText2('Togekiss looks so relieved! She thanks you and Bagon for your help!')
+    this.player.pokemon.frienship.togepi = true;
     this.player.pokemon.incrementFriendship()
     Utils.changeButton1({
       newHTML: 'Level up Bagon', 
