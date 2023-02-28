@@ -2,7 +2,7 @@ const Sprite = require("../sprite.js");
 const Utils = require("../../utils.js");
 
 const pokeballImg = new Image();
-pokeballImg.src = "../../../assets/pokeball3.png"
+pokeballImg.src = "../../assets/pokeball3.png"
 pokeballImg.width = 23;
 pokeballImg.height = 23;
 

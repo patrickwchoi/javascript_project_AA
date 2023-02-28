@@ -17,12 +17,12 @@ map.width = 160*16; //MUST CHANGE MANUALLY WHEN CHANGING MAP DIMENSIONS
 map.height = 130*16;
 
 const james = new Image();
-james.src = "./assets/james_sprites.png";
+james.src = "/assets/james_sprites.png";
 james.width = 16*3;
 james.height = 20*4;
 
 const bagonImg = new Image();
-bagonImg.src = "./assets/bagon_sprites.png"
+bagonImg.src = "/assets/bagon_sprites.png"
 bagonImg.width = 16*2;
 bagonImg.height = 21*4;
 
