@@ -185,6 +185,9 @@ function changeDialogueText1(newHTML){ //Bottom dialogue box
 }
 function changeDialogueText2(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext2");
+  //delete element
+  //make an identical element
+  //add identical element to the DOM
   showElements("#dialoguetext2");
   showElements("#dialogue-text-container");
   dialogue.innerHTML = "";

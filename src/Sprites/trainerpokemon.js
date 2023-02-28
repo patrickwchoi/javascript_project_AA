@@ -193,7 +193,7 @@ class TrainerPokemon extends Pokemon{
     for (let task in this.friendship) {
       let taskItem = document.querySelector(`#progress-item-${task}`);
       if (this.friendship[task]){
-        taskItem.innerHTML = `${task}: Comeplete!`;
+        taskItem.innerHTML = `${task}: Complete!`;
       }
     }
   }
