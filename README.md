@@ -39,6 +39,10 @@ My first step was setting up my background. On tiled, I made a map that I export
 To draw out my sprites, I used the drawImage() function for canvas and used all 8 pos args to crop out and resize my sprite. Having a screenWidth and screenHeight property helped me out a lot because they account for the zoom that I apply to the original png of my sprites.
 ![image](https://user-images.githubusercontent.com/98565804/206596370-03fe211b-390a-4f84-8717-9af6479b92a8.png)
 
+In my utils file, I created functions to DOM manipulate my components throughout my code. DRYing up this helped me code much more efficiently.
+![image](https://user-images.githubusercontent.com/98565804/221798939-61532a52-209b-4672-897a-c9868aaf2b1a.png)
+
+
 A lot of my other logic came from OOP and defining objects and how to interact between them. Something dificult was having my code interact and update HTML elements because of how much code I felt like I had to write for very simple tasks. 
 
 <hr>
