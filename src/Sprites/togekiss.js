@@ -28,6 +28,7 @@ class Togekiss extends Pokemon{
     this.distmovedX = 0; //we'll edit these so he moves X pixels left and Y pixels up
     this.distmovedY = 0;
     this.inNewPos = false;
+    this.originalPos = this.pos;
   }
   clickedOn(){
     Utils.showPokedexPicInBottom(this.pokedexpic.src)
@@ -79,6 +80,10 @@ class Togekiss extends Pokemon{
       }
     })
   }
+  moveBeforeTogepi(){
+
+  }
+
   moveToTogepi(){
     if (this.distmovedY ===190 ){ 
       if (this.distmovedX === 770){///set up where you want snorlax to stop moving

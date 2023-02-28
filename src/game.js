@@ -58,7 +58,7 @@ class Game {
     // console.log([canvas.width / 2 +50, canvas.height / 2 +50])
     this.snorlax = new Snorlax({
       // pos: [canvas.width / 2 +50, canvas.height / 2 +50], 
-      pos: [345,150],
+      pos: [345,1500], //should be [345,150]
       ctx: this.ctx,
       player: this.player, game:this
     });
@@ -98,8 +98,11 @@ class Game {
     if (this.snorlax.moving){
       this.snorlax.moveOutOfWay();
     } 
+
     if (this.togekiss.movingToTogepi){
       this.togekiss.moveToTogepi();
+    } else{
+      this.togekiss.moveBeforeTogepi();
     }
     this.pokemonArr.forEach((sprite) => { //draw sprite if its not picked up
       sprite.draw();
