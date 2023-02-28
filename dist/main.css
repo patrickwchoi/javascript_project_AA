@@ -98,7 +98,7 @@ button:hover {
 
 @media (min-width: 768px) {
   .default-content-right {
-    padding: 10px 30px;
+    padding: 0px 20px;
   }
 }
 #pokedex_pic_bottom {
@@ -247,6 +247,28 @@ button:hover {
   padding-right: 20px;
 }
 
+#misc-bar-right {
+  align-self: flex-start;
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+#mute-button {
+  background: none;
+  border: none;
+  padding: 10px !important;
+  scale: 2;
+}
+
+#mute-button:hover {
+  box-shadow: none;
+  transform: scale(1.3);
+  transition: transform 0.2s;
+}
+
 #teamrocket-sprite-container button {
   border: none;
   background-color: transparent;
@@ -259,23 +281,6 @@ button:hover {
   scale: 2;
   object-fit: none;
   object-position: left top;
-}
-
-#mute-button {
-  background: none;
-  border: none;
-  padding: 10px !important;
-  scale: 2;
-  align-self: flex-start;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
-
-#mute-button:hover {
-  box-shadow: none;
-  transform: scale(1.3);
-  transition: transform 0.2s;
 }
 
 #links-to-patrick {

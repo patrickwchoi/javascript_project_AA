@@ -12,7 +12,7 @@ const Togekiss = require("./Sprites/togekiss.js");
 
 
 const map = new Image();
-map.src = "./assets/tilemap8.png";
+map.src = "/assets/tilemap8.png";
 map.width = 160*16; //MUST CHANGE MANUALLY WHEN CHANGING MAP DIMENSIONS
 map.height = 130*16;
 

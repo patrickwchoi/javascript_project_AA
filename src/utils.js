@@ -247,6 +247,10 @@ function goToInventoryScreen(){
   showElements('#inventory-container');
   showElements('#inventory-container > *');
 }
+function accessImage(name){
+  let image = new Image();
+  image.src = `./assets/${name}`;
+}
 
 module.exports = {
   rectangularCollision, movePlayer, isMouseOnRect, addBoundaries, addSpriteBoundaries,

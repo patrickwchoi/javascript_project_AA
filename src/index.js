@@ -11,7 +11,7 @@ document.getElementById('instructionsButton').click();
 g.play();
 
 const themesong = document.getElementById("themesong");
-themesong.play();
+// themesong.play();
 let volume = 0.2;
 themesong.volume=volume;
 
