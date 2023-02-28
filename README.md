@@ -1,4 +1,4 @@
-<h2>Patrick's Pokemon Game (name will be updated)</h2>
+<h2>Bagon Adventures</h2>
 
 Link: https://patrickwchoi.github.io/javascript_project_AA/ 
 
@@ -12,22 +12,20 @@ Controls: Use WASD to move, use your mouse to interact with things on screen.
 
 <h3>Features: </h3>
 
-<li>Moving a background image with WASD on canvas to simulate movement. </li>
-<li>Adding collision detection where relevant on my map </li>
-<li>Interaction with canvas through mouse clicking </li>
-<li>Interaction with buttons on dialoguebox and Menu through clicking </li>
+<li>Using WASD to move background image, boundaries, and in-game objects</li>
+<li> Adding collision detection to match the setting </li>
+<li> Interacting with pokemon in-game by clicking </li>
+<li> DRY DOM manipulation to update components based on in-game statistcs and actions </li>
+<li> Algorithms to traverse spritesheet in relevant manner depending on action </li>
 
-![image](https://user-images.githubusercontent.com/98565804/206596016-589e9ef3-51b8-40ed-97a3-e1f049dfd546.png)
-![image](https://user-images.githubusercontent.com/98565804/206596073-e40b6948-4c0d-40f6-b16e-0ba94516c92e.png)
 
+![image](https://user-images.githubusercontent.com/98565804/221733509-3662d713-41c2-4f7f-b711-0d115d32a235.png)
 
 <hr>
 
-<h3>NB: </h3>
-Today's version is still unfortunately largely  unfinished. I realized my project would take a lot longer to fully complete in terms of content. I was able to establish a lot of the base logic such as movement, collisions, interaction with the dialogue box/menu/canvas, as well as how to make/find my relevant assets like the map I built. But there is still a lot more content I need to push into my game, partly due to the nature of my game being an RPG driven by plot. 
-<hr>
 
-Technologies: Mostly HTML Canvas. The rest is all JS/CSS/HTML. Used Tiled to build a gridded map that I exported as a PNG, as well as an array so I could have the coordinates of all my collision blocks to add. 
+Technologies: HTML Canvas, Vanilla JS, HTML/CSS. Used Tiled to build a gridded map along with an array of boundary tiles.
+
 <hr>
 
 <h3>Implementation: </h3>
@@ -44,18 +42,3 @@ To draw out my sprites, I used the drawImage() function for canvas and used all 
 A lot of my other logic came from OOP and defining objects and how to interact between them. Something dificult was having my code interact and update HTML elements because of how much code I felt like I had to write for very simple tasks. 
 
 <hr>
-<h3>To do List:</h3>
-  -Fix up visuals for my evolved pokemon
-  -Improve overall CSS styling of dialogue box and menu
-  -Add other pokemon that I can interact with. They will help me evolve my pokemon
-  -Add items I can interact with to help me evolve pokemon
-  -Add inventory section in menu to items
-  -Improve map
-  -Restructure code to be more organized
-  -Add feature to switch avatars
-  -Add music and sound effects
-  -Add animation for plot purposes
-  -Add a start screen
-  -Clean up interaction between logic and dialoguebox and menu
-  -Add some sort of DSA like finding the shortest path to me
-
