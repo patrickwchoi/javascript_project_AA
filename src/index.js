@@ -11,7 +11,7 @@ document.getElementById('instructionsButton').click();
 g.play();
 
 const themesong = document.getElementById("themesong");
-// themesong.play();
+themesong.play();
 let volume = 0.2;
 themesong.volume=volume;
 
@@ -31,14 +31,14 @@ function toggleMute() {
   });
 
   // Update mute button icon
-  // const muteIcon = document.getElementById("mute-icon");
-  // if (isMuted) {
-  //   muteIcon.classList.remove("fa-volume-up");
-  //   muteIcon.classList.add("fa-volume-mute");
-  // } else {
-  //   muteIcon.classList.remove("fa-volume-mute");
-  //   muteIcon.classList.add("fa-volume-up");
-  // }
+  const muteIcon = document.getElementById("mute-icon");
+  if (isMuted) {
+    muteIcon.classList.remove("fa-volume-high");
+    muteIcon.classList.add("fa-volume-mute");
+  } else {
+    muteIcon.classList.remove("fa-volume-mute");
+    muteIcon.classList.add("fa-volume-high");
+  }
 }
 
 

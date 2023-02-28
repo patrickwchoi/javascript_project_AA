@@ -181,7 +181,6 @@ function changeDialogueText1(newHTML){ //Bottom dialogue box
   const dialogue = document.getElementById("dialoguetext1");
   showElements("#dialoguetext1");
   showElements("#dialogue-text-container");
-  // printLetterByLetter("dialoguetext1", newHTML, 70);
   dialogue.innerHTML = newHTML;
 }
 function changeDialogueText2(newHTML){ //Bottom dialogue box
@@ -191,7 +190,6 @@ function changeDialogueText2(newHTML){ //Bottom dialogue box
   dialogue.innerHTML = "";
   printLetterByLetter("dialoguetext2", newHTML, 40);
   playIsabelleAudioLong();
-  // dialogue.innerHTML = newHTML;
 }
 function changeButton1({newHTML, onClick, bold=false}){ //Bottom button box 1
   const button = document.getElementById("option1");
