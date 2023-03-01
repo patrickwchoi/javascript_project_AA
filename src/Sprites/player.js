@@ -2,12 +2,12 @@ const Sprite = require("./sprite.js");
 const Utils = require("../utils.js");
 
 const james = new Image();
-james.src = "../../assets/james_sprites.png";
+james.src = "./assets/james_sprites.png";
 james.width = 16*3;
 james.height = 20*4;
 
 const jessie = new Image();
-jessie.src = "../../assets/Jessie_16x20.png";
+jessie.src = "./assets/Jessie_16x20.png";
 jessie.width = 16*3;
 jessie.height = 20*4;
 
