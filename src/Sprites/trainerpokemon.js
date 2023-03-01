@@ -36,7 +36,7 @@ class TrainerPokemon extends Pokemon{
       this.friendshiplevel++
       this.updatePokedexFriendship();
     } else{
-      console.log('friendship maxed out')
+      // console.log('friendship maxed out')
     }
   }
 

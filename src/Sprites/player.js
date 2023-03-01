@@ -29,7 +29,6 @@ class Player extends Sprite{
   }
   changeToJessie(){
     this.image = jessie;
-    console.log('player')
   }
   changeToJames(){
     this.image = james;

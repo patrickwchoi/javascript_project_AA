@@ -116,7 +116,7 @@ class Snorlax extends Pokemon{
 
       this.moving=true; //trigger moving animation in animation cycle
     } else {
-      console.log('cannot increment friendship')
+      // console.log('cannot increment friendship')
     }
   }
   
