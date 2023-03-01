@@ -2,7 +2,7 @@ const Item = require("./item.js");
 const Utils = require("../../utils.js");
 
 const sitrusberry_pokedexpic = new Image();
-sitrusberry_pokedexpic.src = "../../assets/sitrus_berry.png";
+sitrusberry_pokedexpic.src = "./assets/sitrus_berry.png";
 // sitrusberry_pokedexpic.width = 20;
 // sitrusberry_pokedexpic.height = 20;
 
