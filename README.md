@@ -1,4 +1,4 @@
-<h2>Bagon Adventures</h2>
+<h2>Bagon Adventuress</h2>
 
 Link: https://patrickwchoi.github.io/javascript_project_AA/ 
 
