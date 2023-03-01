@@ -58,7 +58,7 @@ class Game {
     // console.log([canvas.width / 2 +50, canvas.height / 2 +50])
     this.snorlax = new Snorlax({
       // pos: [canvas.width / 2 +50, canvas.height / 2 +50], 
-      pos: [345,1500], //should be [345,150]
+      pos: [345,150], //should be [345,150]
       ctx: this.ctx,
       player: this.player, game:this
     });
@@ -91,7 +91,7 @@ class Game {
   animate() {
     //animates screen. will run infinietly and 'refresh' screen
     this.background.draw();
-    this.drawBoundaries(); //disable when finished with game
+    // this.drawBoundaries(); //disable when finished with game
     this.bagon.changePokemonDirection(this.keys, this.player) 
     this.bagon.followPlayer(this.player);
     this.player.draw();
